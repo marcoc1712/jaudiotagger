@@ -123,8 +123,13 @@ public class FlacTag implements Tag
     }
 
     @Override
-    public void setField(FieldKey genericKey, String value) throws KeyNotFoundException, FieldDataInvalidException
+    public void setField(FieldKey genericKey, String... values) throws KeyNotFoundException, FieldDataInvalidException
     {
+        if (values == null || values[0] == null)
+        {
+            throw new IllegalArgumentException(ErrorMessage.GENERAL_INVALID_NULL_ARGUMENT.getMsg());
+        }
+        String value = values[0];
         if(genericKey==FieldKey.ALBUM_ARTIST)
         {
             switch(TagOptionSingleton.getInstance().getVorbisAlbumArtistSaveOptions())
@@ -140,6 +145,22 @@ public class FlacTag implements Tag
                 {
                     TagField tagfield = createField(VorbisCommentFieldKey.ALBUMARTIST_JRIVER, value);
                     setField(tagfield);
+                    return;
+                }
+
+                case WRITE_ALBUMARTIST_AND_DELETE_JRIVER_ALBUMARTIST:
+                {
+                    TagField tagfield = createField(genericKey, value);
+                    setField(tagfield);
+                    deleteField(VorbisCommentFieldKey.ALBUMARTIST_JRIVER.getFieldName());
+                    return;
+                }
+
+                case WRITE_JRIVER_ALBUMARTIST_AND_DELETE_ALBUMARTIST:
+                {
+                    TagField tagfield = createField(VorbisCommentFieldKey.ALBUMARTIST_JRIVER, value);
+                    setField(tagfield);
+                    deleteField(VorbisCommentFieldKey.ALBUMARTIST.getFieldName());
                     return;
                 }
                 case WRITE_BOTH:
@@ -164,13 +185,18 @@ public class FlacTag implements Tag
      * Create new field and add it to the tag
      *
      * @param genericKey
-     * @param value
+     * @param values
      * @throws KeyNotFoundException
      * @throws FieldDataInvalidException
      */
     @Override
-    public void addField(FieldKey genericKey, String value) throws KeyNotFoundException, FieldDataInvalidException
+    public void addField(FieldKey genericKey, String... values) throws KeyNotFoundException, FieldDataInvalidException
     {
+        if (values == null || values[0] == null)
+        {
+            throw new IllegalArgumentException(ErrorMessage.GENERAL_INVALID_NULL_ARGUMENT.getMsg());
+        }
+        String value = values[0];
         if(genericKey==FieldKey.ALBUM_ARTIST)
         {
             switch(TagOptionSingleton.getInstance().getVorbisAlbumArtistSaveOptions())
@@ -179,13 +205,27 @@ public class FlacTag implements Tag
                 {
                     TagField tagfield = createField(genericKey, value);
                     addField(tagfield);
-                    return;
                 }
 
                 case WRITE_JRIVER_ALBUMARTIST:
                 {
                     TagField tagfield = createField(VorbisCommentFieldKey.ALBUMARTIST_JRIVER, value);
                     addField(tagfield);
+                    return;
+                }
+                case WRITE_ALBUMARTIST_AND_DELETE_JRIVER_ALBUMARTIST:
+                {
+                    TagField tagfield = createField(genericKey, value);
+                    addField(tagfield);
+                    deleteField(VorbisCommentFieldKey.ALBUMARTIST_JRIVER.getFieldName());
+                    return;
+                }
+
+                case WRITE_JRIVER_ALBUMARTIST_AND_DELETE_ALBUMARTIST:
+                {
+                    TagField tagfield = createField(VorbisCommentFieldKey.ALBUMARTIST_JRIVER, value);
+                    addField(tagfield);
+                    deleteField(VorbisCommentFieldKey.ALBUMARTIST.getFieldName());
                     return;
                 }
                 case WRITE_BOTH:
@@ -256,7 +296,7 @@ public class FlacTag implements Tag
         }
     }
 
-    public TagField createField(FieldKey genericKey, String value) throws KeyNotFoundException, FieldDataInvalidException
+    public TagField createField(FieldKey genericKey, String... value) throws KeyNotFoundException, FieldDataInvalidException
     {
         if (genericKey.equals(FieldKey.COVER_ART))
         {
