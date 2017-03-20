@@ -57,6 +57,7 @@ Summarise Changes
 #183:OGG: String index out of range: 7
 #192:NumberFormatException when creating ID3v1 tag from ID3v2 tag with textual genres
 #196:Memory Mapping in MP3File.readV2Tag() leads to JVM crashes
+#189:Aiff Reader should never throw BufferUnderflowException even if file is corrupt
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

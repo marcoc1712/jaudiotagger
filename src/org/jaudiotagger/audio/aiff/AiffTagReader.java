@@ -80,7 +80,7 @@ public class AiffTagReader extends AiffChunkReader
 
         long startLocationOfId3TagInFile = fc.position();
         AiffChunkType chunkType = AiffChunkType.get(chunkHeader.getID());
-        if (chunkType!=null && chunkType== AiffChunkType.TAG)
+        if (chunkType!=null && chunkType== AiffChunkType.TAG && chunkHeader.getSize() > 0)
         {
             ByteBuffer chunkData = readChunkDataIntoBuffer(fc, chunkHeader);
             aiffTag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
