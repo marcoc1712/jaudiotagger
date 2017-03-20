@@ -23,12 +23,7 @@ package org.jaudiotagger.audio.mp3;
 
 
 import org.jaudiotagger.audio.AudioFile;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
-import org.jaudiotagger.audio.exceptions.CannotWriteException;
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
-import org.jaudiotagger.audio.exceptions.NoWritePermissionsException;
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
-import org.jaudiotagger.audio.exceptions.UnableToModifyFileException;
+import org.jaudiotagger.audio.exceptions.*;
 import org.jaudiotagger.audio.generic.Permissions;
 import org.jaudiotagger.logging.*;
 import org.jaudiotagger.tag.Tag;
@@ -40,8 +35,6 @@ import org.jaudiotagger.tag.lyrics3.AbstractLyrics3;
 import org.jaudiotagger.tag.reference.ID3V2Version;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
@@ -170,14 +163,14 @@ public class MP3File extends AudioFile
     }
 
     /**
-     * Read V2tag if exists
+     * Read V2tag, if exists.
      *
      * TODO:shouldn't we be handing TagExceptions:when will they be thrown
      *
-     * @param file
-     * @param loadOptions
-     * @throws IOException
-     * @throws TagException
+     * @param file the file to read tags from
+     * @param loadOptions load options
+     * @throws IOException IO issues
+     * @throws TagException tag issues
      */
     private void readV2Tag(File file, int loadOptions, int startByte) throws IOException, TagException
     {
@@ -186,36 +179,10 @@ public class MP3File extends AudioFile
         if (startByte >= AbstractID3v2Tag.TAG_HEADER_LENGTH)
         {
             logger.finer("Attempting to read id3v2tags");
-            FileInputStream fis = null;
-            FileChannel fc = null;
-            ByteBuffer bb;
-            try
+            try (final FileInputStream fis = new FileInputStream(file))
             {
-                fis = new FileInputStream(file);
-                fc = fis.getChannel();
-                bb = fc.map(FileChannel.MapMode.READ_ONLY,0,startByte);
-            }
-            //#JAUDIOTAGGER-419:If reading networked file map can fail so just copy bytes instead
-            catch(IOException ioe)
-            {
-                bb =  ByteBuffer.allocate(startByte);
-                fc.read(bb,0);
-            }
-            finally
-            {
-                if (fc != null)
-                {
-                    fc.close();
-                }
-
-                if (fis != null)
-                {
-                    fis.close();
-                }
-            }
-
-            try
-            {
+                final ByteBuffer bb = ByteBuffer.allocateDirect(startByte);
+                fis.getChannel().read(bb,0);
                 bb.rewind();
 
                 if ((loadOptions & LOAD_IDV2TAG) != 0)
@@ -255,33 +222,6 @@ public class MP3File extends AudioFile
                     }
                 }
             }
-            finally
-            {
-                //Workaround for 4724038 on Windows
-                bb.clear();
-                if (bb.isDirect() && !TagOptionSingleton.getInstance().isAndroid())
-                {
-                    // Reflection substitute for following code:
-                    //    ((sun.nio.ch.DirectBuffer) bb).cleaner().clean();
-                    // which causes exception on Android - Sun NIO classes are not available
-                    try {
-                        Class<?> clazz = Class.forName("sun.nio.ch.DirectBuffer");
-                        Method cleanerMethod = clazz.getMethod("cleaner");
-                        Object cleaner = cleanerMethod.invoke(bb);  // cleaner = bb.cleaner()
-                        if (cleaner != null) {
-                            Method cleanMethod = cleaner.getClass().getMethod("clean");
-                            cleanMethod.invoke(cleaner);   // cleaner.clean()
-                        }
-                    } catch (ClassNotFoundException e) {
-                        logger.severe("Could not load sun.nio.ch.DirectBuffer.");
-                    } catch (NoSuchMethodException e) {
-                        logger.severe("Could not invoke DirectBuffer method - " + e.getMessage());
-                    } catch (InvocationTargetException e) {
-                        logger.severe("Could not invoke DirectBuffer method - target exception");
-                    } catch (IllegalAccessException e) {
-                        logger.severe("Could not invoke DirectBuffer method - illegal access");
-                    }
-                }            }
         }
         else
         {

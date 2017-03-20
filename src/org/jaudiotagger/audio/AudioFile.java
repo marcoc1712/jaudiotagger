@@ -1,6 +1,6 @@
 /*
  * Entagged Audio Tag library 
- * Copyright (c) 2003-2005 RaphaÃ«l Slinckx <raphael@slinckx.net>
+ * Copyright (c) 2003-2005 Raphaël Slinckx <raphael@slinckx.net>
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -311,55 +311,62 @@ public class AudioFile
      */
     public Tag createDefaultTag()
     {
-        if(SupportedFileFormat.FLAC.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        String extension = getExt();
+        if(extension == null)
+        {
+            String fileName = file.getName();
+            extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+            setExt(extension);
+        }
+        if(SupportedFileFormat.FLAC.getFilesuffix().equals(extension))
         {
             return new FlacTag(VorbisCommentTag.createNewTag(), new ArrayList< MetadataBlockDataPicture >());
         }
-        else if(SupportedFileFormat.OGG.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.OGG.getFilesuffix().equals(extension))
         {
             return VorbisCommentTag.createNewTag();
         }
-        else if(SupportedFileFormat.MP4.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.MP4.getFilesuffix().equals(extension))
         {
             return new Mp4Tag();
         }
-        else if(SupportedFileFormat.M4A.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.M4A.getFilesuffix().equals(extension))
         {
             return new Mp4Tag();
         }
-        else if(SupportedFileFormat.M4P.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.M4P.getFilesuffix().equals(extension))
         {
             return new Mp4Tag();
         }
-        else if(SupportedFileFormat.WMA.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.WMA.getFilesuffix().equals(extension))
         {
             return new AsfTag();
         }
-        else if(SupportedFileFormat.WAV.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.WAV.getFilesuffix().equals(extension))
         {
             return new WavTag(TagOptionSingleton.getInstance().getWavOptions());
         }
-        else if(SupportedFileFormat.RA.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.RA.getFilesuffix().equals(extension))
         {
             return new RealTag();
         }
-        else if(SupportedFileFormat.RM.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.RM.getFilesuffix().equals(extension))
         {
             return new RealTag();
         }
-        else if(SupportedFileFormat.AIF.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.AIF.getFilesuffix().equals(extension))
         {
             return new AiffTag();
         }
-        else if(SupportedFileFormat.AIFC.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.AIFC.getFilesuffix().equals(extension))
         {
             return new AiffTag();
         }
-        else if(SupportedFileFormat.AIFF.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.AIFF.getFilesuffix().equals(extension))
         {
             return new AiffTag();
         }
-        else if(SupportedFileFormat.DSF.getFilesuffix().equals(file.getName().substring(file.getName().lastIndexOf('.') + 1)))
+        else if(SupportedFileFormat.DSF.getFilesuffix().equals(extension))
         {
             return Dsf.createDefaultTag();
         }
