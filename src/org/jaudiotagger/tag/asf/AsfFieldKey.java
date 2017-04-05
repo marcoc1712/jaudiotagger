@@ -110,6 +110,7 @@ public enum AsfFieldKey
     GENRE_ID("WM/GenreID", true),
     GROUPING("WM/ContentGroupDescription", false),
     INITIAL_KEY("WM/InitialKey", false),
+    INSTRUMENT("INSTRUMENT", true),
     INVOLVED_PERSON("WM/InvolvedPerson", true),
     ISRC("WM/ISRC", false),
     ISVBR("IsVBR", true),

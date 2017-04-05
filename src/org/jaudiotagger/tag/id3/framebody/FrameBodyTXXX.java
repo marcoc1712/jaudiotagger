@@ -74,6 +74,7 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String ENSEMBLE                     = "ENSEMBLE";
     public static final String ENSEMBLE_SORT                = "ENSEMBLE_SORT";
     public static final String FBPM                         = "FBPM";
+    public static final String INSTRUMENT                   = "INSTRUMENT";
     public static final String IS_CLASSICAL                 = "IS_CLASSICAL";
     public static final String IS_SOUNDTRACK                = "IS_SOUNDTRACK";
     public static final String MOOD                         = "MOOD";          //ID3 v23 only

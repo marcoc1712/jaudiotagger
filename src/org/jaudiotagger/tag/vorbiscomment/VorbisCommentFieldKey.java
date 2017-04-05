@@ -72,6 +72,7 @@ public enum VorbisCommentFieldKey
     FBPM("FBPM",EnumSet.of(Tagger.BEATUNES)),
     GENRE("GENRE",EnumSet.of(Tagger.XIPH,Tagger.PICARD,Tagger.JAIKOZ)),
     GROUPING("GROUPING",EnumSet.of(Tagger.PICARD,Tagger.JAIKOZ)),
+    INSTRUMENT("INSTRUMENT",EnumSet.of(Tagger.JAIKOZ)),
     INVOLVED_PERSON("INVOLVED_PERSON", EnumSet.of(Tagger.JAIKOZ)),
     ISRC("ISRC",EnumSet.of(Tagger.XIPH,Tagger.PICARD,Tagger.JAIKOZ)),
     IS_CLASSICAL("IS_CLASSICAL",EnumSet.of(Tagger.PICARD,Tagger.JAIKOZ)),

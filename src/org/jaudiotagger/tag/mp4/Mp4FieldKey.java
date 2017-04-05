@@ -88,6 +88,7 @@ public enum Mp4FieldKey
     GENRE_CUSTOM("©gen",Mp4TagFieldSubType.TEXT, TEXT),
     GE_ID("geID",Mp4TagFieldSubType.UNKNOWN, INTEGER, 4),
     GROUPING("©grp",Mp4TagFieldSubType.TEXT, TEXT),
+    INSTRUMENT("com.apple.iTunes", "INSTRUMENT", TEXT, Tagger.JAIKOZ),
     INVOLVED_PEOPLE("peop",Mp4TagFieldSubType.TEXT, TEXT, Tagger.MEDIA_MONKEY),
     ISRC("com.apple.iTunes", "ISRC", TEXT, Tagger.PICARD),
     ISRC_MMBETA("isrc",Mp4TagFieldSubType.TEXT, TEXT, Tagger.MEDIA_MONKEY),

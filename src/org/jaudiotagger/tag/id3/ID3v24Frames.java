@@ -420,7 +420,7 @@ public class ID3v24Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.FBPM, ID3v24FieldKey.FBPM);
         tagFieldToId3.put(FieldKey.GENRE, ID3v24FieldKey.GENRE);
         tagFieldToId3.put(FieldKey.GROUPING, ID3v24FieldKey.GROUPING);
-        tagFieldToId3.put(FieldKey.MOOD_INSTRUMENTAL, ID3v24FieldKey.MOOD_INSTRUMENTAL);
+        tagFieldToId3.put(FieldKey.INSTRUMENT, ID3v24FieldKey.INSTRUMENT);
         tagFieldToId3.put(FieldKey.INVOLVED_PERSON, ID3v24FieldKey.INVOLVED_PERSON);
         tagFieldToId3.put(FieldKey.ISRC, ID3v24FieldKey.ISRC);
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v24FieldKey.IS_CLASSICAL);
@@ -439,6 +439,7 @@ public class ID3v24Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.MOOD_AROUSAL, ID3v24FieldKey.MOOD_AROUSAL);
         tagFieldToId3.put(FieldKey.MOOD_DANCEABILITY, ID3v24FieldKey.MOOD_DANCEABILITY);
         tagFieldToId3.put(FieldKey.MOOD_HAPPY, ID3v24FieldKey.MOOD_HAPPY);
+        tagFieldToId3.put(FieldKey.MOOD_INSTRUMENTAL, ID3v24FieldKey.MOOD_INSTRUMENTAL);
         tagFieldToId3.put(FieldKey.MOOD_PARTY, ID3v24FieldKey.MOOD_PARTY);
         tagFieldToId3.put(FieldKey.MOOD_RELAXED, ID3v24FieldKey.MOOD_RELAXED);
         tagFieldToId3.put(FieldKey.MOOD_SAD, ID3v24FieldKey.MOOD_SAD);
