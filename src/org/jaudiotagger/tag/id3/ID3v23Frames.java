@@ -401,6 +401,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.COMPOSER_SORT, ID3v23FieldKey.COMPOSER_SORT);
         tagFieldToId3.put(FieldKey.CONDUCTOR, ID3v23FieldKey.CONDUCTOR);
         tagFieldToId3.put(FieldKey.CONDUCTOR_SORT, ID3v23FieldKey.CONDUCTOR_SORT);
+        tagFieldToId3.put(FieldKey.COPYRIGHT, ID3v23FieldKey.COPYRIGHT);
         tagFieldToId3.put(FieldKey.COUNTRY, ID3v23FieldKey.COUNTRY);
         tagFieldToId3.put(FieldKey.COVER_ART, ID3v23FieldKey.COVER_ART);
         tagFieldToId3.put(FieldKey.CUSTOM1, ID3v23FieldKey.CUSTOM1);

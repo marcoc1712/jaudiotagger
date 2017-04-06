@@ -114,6 +114,7 @@ public final class AsfTag extends AbstractTag
         tagFieldToAsfField.put(FieldKey.COMPOSER_SORT, AsfFieldKey.COMPOSER_SORT);
         tagFieldToAsfField.put(FieldKey.CONDUCTOR, AsfFieldKey.CONDUCTOR);
         tagFieldToAsfField.put(FieldKey.CONDUCTOR_SORT, AsfFieldKey.CONDUCTOR_SORT);
+        tagFieldToAsfField.put(FieldKey.COPYRIGHT, AsfFieldKey.COPYRIGHT);
         tagFieldToAsfField.put(FieldKey.COUNTRY, AsfFieldKey.COUNTRY);
         tagFieldToAsfField.put(FieldKey.COVER_ART, AsfFieldKey.COVER_ART);
         tagFieldToAsfField.put(FieldKey.CUSTOM1, AsfFieldKey.CUSTOM1);

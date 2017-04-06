@@ -352,6 +352,7 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.CONDUCTOR, ID3v22FieldKey.CONDUCTOR);
         tagFieldToId3.put(FieldKey.CONDUCTOR_SORT, ID3v22FieldKey.CONDUCTOR_SORT);
         tagFieldToId3.put(FieldKey.COUNTRY, ID3v22FieldKey.COUNTRY);
+        tagFieldToId3.put(FieldKey.COPYRIGHT, ID3v22FieldKey.COPYRIGHT);
         tagFieldToId3.put(FieldKey.COVER_ART, ID3v22FieldKey.COVER_ART);
         tagFieldToId3.put(FieldKey.CUSTOM1, ID3v22FieldKey.CUSTOM1);
         tagFieldToId3.put(FieldKey.CUSTOM2, ID3v22FieldKey.CUSTOM2);

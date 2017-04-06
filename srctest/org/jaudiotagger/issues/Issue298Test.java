@@ -104,6 +104,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.ARRANGER_SORT,"ArrangerSort"));
@@ -193,6 +194,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));
@@ -405,6 +407,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.PERFORMER_NAME_SORT,"Performer"));
@@ -517,6 +520,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));
@@ -645,6 +649,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.PERFORMER_NAME_SORT,"Performer"));
@@ -740,6 +745,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));
@@ -857,6 +863,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.PERFORMER_NAME_SORT,"Performer"));
@@ -953,6 +960,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));
@@ -1068,6 +1076,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.PERFORMER_NAME_SORT,"Performer"));
@@ -1187,6 +1196,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));
@@ -1305,6 +1315,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.PERFORMER_NAME_SORT,"Performer"));
@@ -1399,6 +1410,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));
@@ -1516,6 +1528,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.PART_NUMBER,"PartNumber"));
             tag.setField(tag.createField(FieldKey.ARTISTS_SORT,"ArtistsSort"));
             tag.setField(tag.createField(FieldKey.CONDUCTOR_SORT,"ConductorSort"));
+            tag.setField(tag.createField(FieldKey.COPYRIGHT,"Copyright"));
             tag.setField(tag.createField(FieldKey.ENSEMBLE_SORT,"EnsembleSort"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA_SORT,"OrchestraSort"));
             tag.setField(tag.createField(FieldKey.PERFORMER_NAME_SORT,"Performer"));
@@ -1614,6 +1627,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("PartNumber",af.getTag().getFirst(FieldKey.PART_NUMBER));
             assertEquals("ArtistsSort",af.getTag().getFirst(FieldKey.ARTISTS_SORT));
             assertEquals("ConductorSort",af.getTag().getFirst(FieldKey.CONDUCTOR_SORT));
+            assertEquals("Copyright",af.getTag().getFirst(FieldKey.COPYRIGHT));
             assertEquals("EnsembleSort",af.getTag().getFirst(FieldKey.ENSEMBLE_SORT));
             assertEquals("OrchestraSort",af.getTag().getFirst(FieldKey.ORCHESTRA_SORT));
             assertEquals("ArrangerSort",af.getTag().getFirst(FieldKey.ARRANGER_SORT));

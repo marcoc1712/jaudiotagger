@@ -37,6 +37,7 @@ public enum FieldKey
     COMPOSER_SORT,
     CONDUCTOR,
     CONDUCTOR_SORT,
+    COPYRIGHT,
     COUNTRY,
     COVER_ART,
     CUSTOM1,
