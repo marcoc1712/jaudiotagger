@@ -59,7 +59,7 @@ Summarise Changes
 #196:Memory Mapping in MP3File.readV2Tag() leads to JVM crashes
 #189:Aiff Reader should never throw BufferUnderflowException even if file is corrupt
 #199:Add support for INSTRUMENT field
-#200:Add support for GROUP field
+#201:Add support for MinimServer GROUP field
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
