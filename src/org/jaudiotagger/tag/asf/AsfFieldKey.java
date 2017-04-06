@@ -108,6 +108,7 @@ public enum AsfFieldKey
     FBPM("FBPM", true),
     GENRE("WM/Genre", true),
     GENRE_ID("WM/GenreID", true),
+    GROUP("GROUP", false),
     GROUPING("WM/ContentGroupDescription", false),
     INITIAL_KEY("WM/InitialKey", false),
     INSTRUMENT("INSTRUMENT", true),

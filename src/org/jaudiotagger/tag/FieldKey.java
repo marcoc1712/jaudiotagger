@@ -54,6 +54,7 @@ public enum FieldKey
     ENSEMBLE_SORT,
     FBPM,
     GENRE,
+    GROUP,
     GROUPING,
     INSTRUMENT,
     INVOLVED_PERSON,

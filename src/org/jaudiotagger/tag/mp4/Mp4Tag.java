@@ -87,6 +87,7 @@ public class Mp4Tag extends AbstractTag
         tagFieldToMp4Field.put(FieldKey.ENSEMBLE_SORT, Mp4FieldKey.ENSEMBLE_SORT);
         tagFieldToMp4Field.put(FieldKey.FBPM, Mp4FieldKey.FBPM);
         tagFieldToMp4Field.put(FieldKey.GENRE, Mp4FieldKey.GENRE);
+        tagFieldToMp4Field.put(FieldKey.GROUP, Mp4FieldKey.GROUP);
         tagFieldToMp4Field.put(FieldKey.GROUPING, Mp4FieldKey.GROUPING);
         tagFieldToMp4Field.put(FieldKey.INSTRUMENT, Mp4FieldKey.INSTRUMENT);
         tagFieldToMp4Field.put(FieldKey.INVOLVED_PERSON, Mp4FieldKey.INVOLVED_PEOPLE);

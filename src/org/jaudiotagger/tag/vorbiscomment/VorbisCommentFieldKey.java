@@ -71,6 +71,7 @@ public enum VorbisCommentFieldKey
     ENSEMBLE_SORT("ENSEMBLE_SORT",EnumSet.of(Tagger.JAIKOZ)),
     FBPM("FBPM",EnumSet.of(Tagger.BEATUNES)),
     GENRE("GENRE",EnumSet.of(Tagger.XIPH,Tagger.PICARD,Tagger.JAIKOZ)),
+    GROUP("GROUP",EnumSet.of(Tagger.JAIKOZ)),
     GROUPING("GROUPING",EnumSet.of(Tagger.PICARD,Tagger.JAIKOZ)),
     INSTRUMENT("INSTRUMENT",EnumSet.of(Tagger.JAIKOZ)),
     INVOLVED_PERSON("INVOLVED_PERSON", EnumSet.of(Tagger.JAIKOZ)),

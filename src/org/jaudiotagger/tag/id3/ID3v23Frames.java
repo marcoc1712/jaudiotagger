@@ -419,6 +419,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ENSEMBLE_SORT, ID3v23FieldKey.ENSEMBLE_SORT);
         tagFieldToId3.put(FieldKey.FBPM, ID3v23FieldKey.FBPM);
         tagFieldToId3.put(FieldKey.GENRE, ID3v23FieldKey.GENRE);
+        tagFieldToId3.put(FieldKey.GROUP, ID3v23FieldKey.GROUP);
         tagFieldToId3.put(FieldKey.GROUPING, ID3v23FieldKey.GROUPING);
         tagFieldToId3.put(FieldKey.INSTRUMENT, ID3v23FieldKey.INSTRUMENT);
         tagFieldToId3.put(FieldKey.INVOLVED_PERSON, ID3v23FieldKey.INVOLVED_PERSON);
