@@ -61,6 +61,7 @@ Summarise Changes
 #199:Add support for INSTRUMENT field
 #201:Add support for MinimServer GROUP field
 #155:Missing copyright tag mapping
+#204:Wav with corrupt ID3/LIST placement shoudnt cause complete Read fail
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

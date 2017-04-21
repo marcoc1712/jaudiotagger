@@ -28,7 +28,6 @@ import org.jaudiotagger.audio.wav.chunk.WavId3Chunk;
 import org.jaudiotagger.audio.wav.chunk.WavListChunk;
 import org.jaudiotagger.logging.Hex;
 import org.jaudiotagger.tag.TagOptionSingleton;
-import org.jaudiotagger.tag.id3.ID3v23Tag;
 import org.jaudiotagger.tag.wav.WavInfoTag;
 import org.jaudiotagger.tag.wav.WavTag;
 
@@ -147,7 +146,7 @@ public class WavTagReader
                     }
                     break;
 
-                case CORRUPT_LIST:
+                case CORRUPT_LIST_EARLY:
                     logger.severe(loggingName + " Found Corrupt LIST Chunk, starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
 
                     if(tag.getInfoTag()==null && tag.getID3Tag() == null)
@@ -155,6 +154,15 @@ public class WavTagReader
                         tag.setIncorrectlyAlignedTag(true);
                     }
                     fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE - 1));
+                    return true;
+
+                case CORRUPT_LIST_LATE:
+                    logger.severe(loggingName + " Found Corrupt LIST Chunk (2), starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
+                    if(tag.getInfoTag()==null && tag.getID3Tag() == null)
+                    {
+                        tag.setIncorrectlyAlignedTag(true);
+                    }
+                    fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE + 1));
                     return true;
 
                 case ID3:
