@@ -77,13 +77,13 @@ public class WavInfoTag extends GenericTag
         {
             output.append("\tendLocation:" + Hex.asDecAndHex(getEndLocationInFile()) + "\n");
         }
-        output.append(super.toString());
+        output.append(super.toString().replace("\0",""));
         if(unrecognisedFields.size()>0)
         {
             output.append("\nUnrecognized Tags:\n");
             for(TagTextField next:unrecognisedFields)
             {
-                output.append("\t"+next.getId()+":"+next.getContent()+"\n");
+                output.append("\t"+next.getId()+":"+next.getContent().replace("\0","")+"\n");
             }
         }
         return output.toString();
