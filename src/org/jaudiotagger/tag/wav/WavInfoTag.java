@@ -30,10 +30,10 @@ import java.util.List;
 /**
  * Represent wav metadata found in the LISTINFO Chunk
  *
- * An LIST INFO chunk was the original way to store metadata but simailr to ID3v1 it suffers from a limited
+ * An LIST INFO chunk was the original way to store metadata but similarly to ID3v1 it suffers from a limited
  * set of fields, although non-standard extra field cannot be added, notably there is no support for images.
  *
- * Any Wavc editors now instead/addtionally add data with an ID3tag
+ * Many Wavc editors now instead/additionally add data with an ID3 tag
  */
 public class WavInfoTag extends GenericTag
 {

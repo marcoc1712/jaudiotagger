@@ -1674,6 +1674,7 @@ public class WavMetadataTest extends AbstractTestCase
             System.out.println(f.getTag());
 
             f.getTag().setField(FieldKey.ARTIST, "artist");
+
             f.commit();
             f = AudioFileIO.read(testFile);
 
@@ -1695,8 +1696,10 @@ public class WavMetadataTest extends AbstractTestCase
             return;
         }
 
-        TagOptionSingleton.getInstance().setWavOptions(WavOptions.READ_ID3_UNLESS_ONLY_INFO);
-        TagOptionSingleton.getInstance().setWavSaveOrder(WavSaveOrder.INFO_THEN_ID3);
+        //TagOptionSingleton.getInstance().setWavOptions(WavOptions.READ_ID3_UNLESS_ONLY_INFO_AND_SYNC);
+        //TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_BOTH_AND_SYNC);
+        //TagOptionSingleton.getInstance().setWavSaveOrder(WavSaveOrder.INFO_THEN_ID3);
+        //TagOptionSingleton.getInstance().setWriteWavForTwonky(true);
 
         Exception exceptionCaught = null;
         try
@@ -1708,6 +1711,8 @@ public class WavMetadataTest extends AbstractTestCase
             System.out.println(f.getTag());
 
             f.getTag().setField(FieldKey.ARTIST, "artist");
+            f.getTag().setField(FieldKey.TRACK, "13");
+            f.getTag().setField(FieldKey.TRACK_TOTAL, "20");
             f.commit();
             f = AudioFileIO.read(testFile);
             System.out.println(f.getAudioHeader());

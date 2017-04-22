@@ -62,6 +62,7 @@ Summarise Changes
 #201:Add support for MinimServer GROUP field
 #155:Missing copyright tag mapping
 #204:Wav with corrupt ID3/LIST placement shoudnt cause complete Read fail
+#205:WAV files can have additional itrk fields added to RIFF chunk
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

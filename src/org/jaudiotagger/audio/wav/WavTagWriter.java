@@ -554,16 +554,24 @@ public class WavTagWriter
             while(ti.hasNext())
             {
                 TagTextField next = ti.next();
-                baos.write(next.getId().getBytes(StandardCharsets.US_ASCII));
-                logger.config(loggingName + " Writing:" +next.getId() + ":" + next.getContent());
-                byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.UTF_8);
-                baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
-                baos.write(contentConvertedToBytes);
 
-                //Write extra byte if data length not equal
-                if (Utils.isOddLength(contentConvertedToBytes.length))
+                /**
+                 * There may be an existing Twonky itrk field we don't want to re-add this because above we already
+                 * add based on value of TRACK if user has enabled the isWriteWavForTwonky option
+                 */
+                if(!next.getId().equals(WavInfoIdentifier.TWONKY_TRACKNO.getCode())|| !TagOptionSingleton.getInstance().isWriteWavForTwonky())
                 {
-                    baos.write(0);
+                    baos.write(next.getId().getBytes(StandardCharsets.US_ASCII));
+                    logger.config(loggingName + " Writing:" + next.getId() + ":" + next.getContent());
+                    byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.UTF_8);
+                    baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
+                    baos.write(contentConvertedToBytes);
+
+                    //Write extra byte if data length not equal
+                    if (Utils.isOddLength(contentConvertedToBytes.length))
+                    {
+                        baos.write(0);
+                    }
                 }
             }
 
