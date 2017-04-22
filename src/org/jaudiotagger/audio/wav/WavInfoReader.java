@@ -24,6 +24,7 @@ import org.jaudiotagger.audio.generic.Utils;
 import org.jaudiotagger.audio.iff.Chunk;
 import org.jaudiotagger.audio.iff.ChunkHeader;
 import org.jaudiotagger.audio.iff.IffHeaderChunk;
+import org.jaudiotagger.audio.wav.chunk.WavCorruptChunkType;
 import org.jaudiotagger.audio.wav.chunk.WavFactChunk;
 import org.jaudiotagger.audio.wav.chunk.WavFormatChunk;
 import org.jaudiotagger.logging.Hex;
@@ -154,21 +155,23 @@ public class WavInfoReader
                     break;
                 }
 
-                case CORRUPT_LIST_EARLY:
-                    logger.severe(loggingName + " Found Corrupt LIST Chunk, starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
-                    fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE - 1));
-                    return true;
-
-                case CORRUPT_LIST_LATE:
-                    logger.severe(loggingName + " Found Corrupt LIST Chunk (2), starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
-                    fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE + 1));
-                    return true;
-
                 //Dont need to do anything with these just skip
                 default:
                     logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize());
                     fc.position(fc.position() + chunkHeader.getSize());
             }
+        }
+        else if(id.substring(1,4).equals(WavCorruptChunkType.CORRUPT_LIST_EARLY.getCode()))
+        {
+            logger.severe(loggingName + " Found Corrupt LIST Chunk, starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
+            fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE - 1));
+            return true;
+        }
+        else if(id.substring(0,3).equals(WavCorruptChunkType.CORRUPT_LIST_LATE.getCode()))
+        {
+            logger.severe(loggingName + " Found Corrupt LIST Chunk (2), starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
+            fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE + 1));
+            return true;
         }
         //Unknown chunk type just skip
         else
