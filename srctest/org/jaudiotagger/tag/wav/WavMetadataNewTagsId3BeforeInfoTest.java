@@ -30,7 +30,7 @@ public class WavMetadataNewTagsId3BeforeInfoTest extends AbstractTestCase
         TagOptionSingleton.getInstance().setWavOptions(WavOptions.READ_INFO_ONLY);
         TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_BOTH);
         TagOptionSingleton.getInstance().setWavSaveOrder(WavSaveOrder.ID3_THEN_INFO);
-
+        TagOptionSingleton.getInstance().setWriteWavForTwonky(true);
         Exception exceptionCaught = null;
         try
         {
@@ -95,6 +95,7 @@ public class WavMetadataNewTagsId3BeforeInfoTest extends AbstractTestCase
         TagOptionSingleton.getInstance().setWavOptions(WavOptions.READ_INFO_ONLY);
         TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_BOTH);
         TagOptionSingleton.getInstance().setWavSaveOrder(WavSaveOrder.ID3_THEN_INFO);
+        TagOptionSingleton.getInstance().setWriteWavForTwonky(true);
 
         Exception exceptionCaught = null;
         try
@@ -163,6 +164,7 @@ public class WavMetadataNewTagsId3BeforeInfoTest extends AbstractTestCase
         TagOptionSingleton.getInstance().setWavOptions(WavOptions.READ_ID3_ONLY);
         TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_EXISTING_AND_ACTIVE);
         TagOptionSingleton.getInstance().setWavSaveOrder(WavSaveOrder.ID3_THEN_INFO);
+        TagOptionSingleton.getInstance().setWriteWavForTwonky(true);
         Exception exceptionCaught = null;
         try
         {

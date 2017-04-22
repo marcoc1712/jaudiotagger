@@ -511,6 +511,9 @@ public class WavTagWriter
             //Write the Info chunks
             List<TagField> fields = wif.getAll();
             Collections.sort(fields, new InfoFieldWriterOrderComparator());
+
+            boolean isTrackRewritten = false;
+
             for(TagField nextField:fields)
             {
                 TagTextField next = (TagTextField) nextField;
@@ -532,6 +535,7 @@ public class WavTagWriter
                 //Add a duplicated record for Twonky
                 if(wii==WavInfoIdentifier.TRACKNO)
                 {
+                    isTrackRewritten =true;
                     if(TagOptionSingleton.getInstance().isWriteWavForTwonky())
                     {
                         baos.write(WavInfoIdentifier.TWONKY_TRACKNO.getCode().getBytes(StandardCharsets.US_ASCII));
@@ -558,8 +562,12 @@ public class WavTagWriter
                 /**
                  * There may be an existing Twonky itrk field we don't want to re-add this because above we already
                  * add based on value of TRACK if user has enabled the isWriteWavForTwonky option
+                 *
+                 * And if we dont
                  */
-                if(!next.getId().equals(WavInfoIdentifier.TWONKY_TRACKNO.getCode())|| !TagOptionSingleton.getInstance().isWriteWavForTwonky())
+                if(!next.getId().equals(WavInfoIdentifier.TWONKY_TRACKNO.getCode())
+                        ||
+                  (!isTrackRewritten && TagOptionSingleton.getInstance().isWriteWavForTwonky()))
                 {
                     baos.write(next.getId().getBytes(StandardCharsets.US_ASCII));
                     logger.config(loggingName + " Writing:" + next.getId() + ":" + next.getContent());
