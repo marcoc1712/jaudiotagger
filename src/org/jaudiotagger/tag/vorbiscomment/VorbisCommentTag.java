@@ -163,6 +163,7 @@ public class VorbisCommentTag extends AbstractTag
         tagFieldToOggField.put(FieldKey.ORIGINAL_ARTIST, VorbisCommentFieldKey.ORIGINAL_ARTIST);
         tagFieldToOggField.put(FieldKey.ORIGINAL_LYRICIST, VorbisCommentFieldKey.ORIGINAL_LYRICIST);
         tagFieldToOggField.put(FieldKey.ORIGINAL_YEAR, VorbisCommentFieldKey.ORIGINAL_YEAR);
+        tagFieldToOggField.put(FieldKey.OVERALL_WORK, VorbisCommentFieldKey.OVERALL_WORK);
         tagFieldToOggField.put(FieldKey.PART, VorbisCommentFieldKey.PART);
         tagFieldToOggField.put(FieldKey.PART_NUMBER, VorbisCommentFieldKey.PART_NUMBER);
         tagFieldToOggField.put(FieldKey.PART_TYPE, VorbisCommentFieldKey.PART_TYPE);

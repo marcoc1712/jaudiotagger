@@ -127,6 +127,7 @@ public enum FieldKey
     ORIGINAL_ARTIST,
     ORIGINAL_LYRICIST,
     ORIGINAL_YEAR,
+    OVERALL_WORK,
     PART,
     PART_NUMBER,
     PART_TYPE,

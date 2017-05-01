@@ -181,6 +181,7 @@ public enum AsfFieldKey
     ORIGINAL_ARTIST("WM/OriginalArtist", true),
     ORIGINAL_LYRICIST("WM/OriginalLyricist", true),
     ORIGINAL_YEAR("WM/OriginalReleaseYear", true),
+    OVERALL_WORK("OVERALL_WORK", false),
     PART("PART", true),
     PART_NUMBER("PARTNUMBER",true),
     PART_TYPE("PART_TYPE",true),

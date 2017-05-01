@@ -178,6 +178,7 @@ public enum Mp4FieldKey
     ORIGINAL_ALBUM_TITLE("otit",Mp4TagFieldSubType.TEXT, TEXT, Tagger.MEDIA_MONKEY),
     ORIGINAL_ARTIST("oart",Mp4TagFieldSubType.TEXT, TEXT, Tagger.MEDIA_MONKEY),
     ORIGINAL_LYRICIST("olyr",Mp4TagFieldSubType.TEXT, TEXT, Tagger.MEDIA_MONKEY),
+    OVERALL_WORK("com.apple.iTunes", "OVERALL_WORK", TEXT, Tagger.JAIKOZ),
     PART("com.apple.iTunes", "PART", TEXT, Tagger.PICARD),
     PART_NUMBER("com.apple.iTunes","PARTNUMBER",  TEXT, Tagger.JAIKOZ),
     PART_OF_GAPLESS_ALBUM("pgap",Mp4TagFieldSubType.BYTE, INTEGER),

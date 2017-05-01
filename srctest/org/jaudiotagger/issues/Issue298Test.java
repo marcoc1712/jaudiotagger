@@ -72,6 +72,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.PART_TYPE,"Composition Type"));
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
@@ -165,6 +166,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Performer",af.getTag().getFirst(FieldKey.PERFORMER));
@@ -267,6 +269,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Performer",af.getTag().getFirst(FieldKey.PERFORMER));
@@ -377,6 +380,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
             tag.setField(tag.createField(FieldKey.CHOIR,"Choir"));
@@ -489,8 +493,8 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
-
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Performer",af.getTag().getFirst(FieldKey.PERFORMER));
             assertEquals("WorkType",af.getTag().getFirst(FieldKey.WORK_TYPE));
@@ -618,10 +622,10 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.CHOIR,"Choir"));
             tag.setField(tag.createField(FieldKey.RANKING,"Ranking"));
-
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
             tag.setField(tag.createField(FieldKey.PERFORMER,"Performer"));
             tag.setField(tag.createField(FieldKey.WORK_TYPE,"WorkType"));
@@ -716,6 +720,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Performer",af.getTag().getFirst(FieldKey.PERFORMER));
@@ -834,6 +839,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
             tag.setField(tag.createField(FieldKey.PERFORMER, PerformerHelper.formatForNonId3("Nigel Kennedy", "violinist")));
@@ -931,6 +937,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Nigel Kennedy (violinist)",af.getTag().getFirst(FieldKey.PERFORMER));
@@ -1048,6 +1055,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
             tag.setField(tag.createField(FieldKey.PERFORMER, PerformerHelper.formatForNonId3("Nigel Kennedy", "violinist")));
@@ -1144,6 +1152,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Nigel Kennedy (violinist)",af.getTag().getFirst(FieldKey.PERFORMER));
 
@@ -1286,6 +1295,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
             tag.setField(tag.createField(FieldKey.PERFORMER, PerformerHelper.formatForNonId3("Nigel Kennedy", "violinist")));
@@ -1381,6 +1391,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Nigel Kennedy (violinist)",af.getTag().getFirst(FieldKey.PERFORMER));
@@ -1500,6 +1511,7 @@ public class Issue298Test extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.TONALITY,"72"));
             tag.setField(tag.createField(FieldKey.KEY,"Am"));
             tag.setField(tag.createField(FieldKey.ORCHESTRA,"Orchestra"));
+            tag.setField(tag.createField(FieldKey.OVERALL_WORK,"OverallWork"));
             tag.setField(tag.createField(FieldKey.PART,"Part"));
             tag.setField(tag.createField(FieldKey.WORK,"Work"));
             tag.setField(tag.createField(FieldKey.PERFORMER, PerformerHelper.formatForNonId3("Nigel Kennedy", "violinist")));
@@ -1597,6 +1609,7 @@ public class Issue298Test extends AbstractTestCase
             assertEquals("72",af.getTag().getFirst(FieldKey.TONALITY));
             assertEquals("Am",af.getTag().getFirst(FieldKey.KEY));
             assertEquals("Orchestra",af.getTag().getFirst(FieldKey.ORCHESTRA));
+            assertEquals("OverallWork",af.getTag().getFirst(FieldKey.OVERALL_WORK));
             assertEquals("Part",af.getTag().getFirst(FieldKey.PART));
             assertEquals("Work",af.getTag().getFirst(FieldKey.WORK));
             assertEquals("Nigel Kennedy (violinist)",af.getTag().getFirst(FieldKey.PERFORMER));

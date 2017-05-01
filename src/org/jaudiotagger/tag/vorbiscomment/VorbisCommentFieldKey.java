@@ -146,6 +146,7 @@ public enum VorbisCommentFieldKey
     ORIGINAL_ARTIST("ORIGINAL ARTIST",EnumSet.of(Tagger.JAIKOZ,Tagger.MEDIA_MONKEY)),
     ORIGINAL_LYRICIST("ORIGINAL LYRICIST",EnumSet.of(Tagger.MEDIA_MONKEY)),
     ORIGINAL_YEAR("ORIGINAL YEAR",EnumSet.of(Tagger.JAIKOZ,Tagger.MEDIA_MONKEY)),
+    OVERALL_WORK("OVERALL_WORK",EnumSet.of(Tagger.JAIKOZ)),
     PART("PART",EnumSet.of(Tagger.JAIKOZ)),
     PART_NUMBER("PARTNUMBER",EnumSet.of(Tagger.XIPH)),
     PART_TYPE("PART_TYPE",EnumSet.of(Tagger.JAIKOZ)),
