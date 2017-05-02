@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -72,8 +73,6 @@ public class AiffTagReader extends AiffChunkReader
      */
     private boolean readChunk(FileChannel fc, AiffTag aiffTag) throws IOException
     {
-        logger.config(loggingName + ":Reading Tag Chunk");
-
         ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.BIG_ENDIAN);
         if (!chunkHeader.readHeader(fc))
         {
@@ -99,7 +98,8 @@ public class AiffTagReader extends AiffChunkReader
                 aiffTag.getID3Tag().setStartLocationInFile(startLocationOfId3TagInFile);
                 aiffTag.getID3Tag().setEndLocationInFile(fc.position());
             }
-            //else otherwise we discard because the first one found is the one that will be used by other apps
+            //otherwise we discard because the first one found is the one that will be used by other apps
+            else
             {
                 logger.warning(loggingName + ":Ignoring ID3Tag because already have one:"
                         + chunkHeader.getID() + ":"
