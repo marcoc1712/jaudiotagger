@@ -68,7 +68,7 @@ public class AiffTagWriter
         try
         {
             //Find AiffTag (if any)
-            AiffTagReader im = new AiffTagReader();
+            AiffTagReader im = new AiffTagReader(file.toString());
             return im.read(file);
         }
         catch (CannotReadException ex)

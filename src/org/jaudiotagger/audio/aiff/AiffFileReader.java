@@ -15,18 +15,15 @@ import java.nio.file.Path;
  */
 public class AiffFileReader extends AudioFileReader2
 {
-    private AiffInfoReader      ir = new AiffInfoReader();
-    private AiffTagReader       im = new AiffTagReader();
-
     @Override
-    protected GenericAudioHeader getEncodingInfo(Path path)throws CannotReadException, IOException
+    protected GenericAudioHeader getEncodingInfo(Path path) throws CannotReadException, IOException
     {
-        return ir.read(path);
+        return new AiffInfoReader(path.toString()).read(path);
     }
 
     @Override
-    protected Tag getTag(Path path)throws CannotReadException, IOException
+    protected Tag getTag(Path path) throws CannotReadException, IOException
     {
-        return im.read(path);
+        return new AiffTagReader(path.toString()).read(path);
     }
 }
