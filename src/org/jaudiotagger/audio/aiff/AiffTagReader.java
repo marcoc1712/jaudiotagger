@@ -52,7 +52,7 @@ public class AiffTagReader extends AiffChunkReader
             {
                 if (!readChunk(fc, aiffTag))
                 {
-                    logger.severe(file + " UnableToReadProcessChunk");
+                    logger.severe(file + ":UnableToReadProcessChunk");
                     break;
                 }
             }
@@ -72,14 +72,14 @@ public class AiffTagReader extends AiffChunkReader
      */
     private boolean readChunk(FileChannel fc, AiffTag aiffTag) throws IOException
     {
-        logger.config(loggingName + " Reading Tag Chunk");
+        logger.config(loggingName + ":Reading Tag Chunk");
 
         ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.BIG_ENDIAN);
         if (!chunkHeader.readHeader(fc))
         {
             return false;
         }
-        logger.config(loggingName + " Reading Chunk:" + chunkHeader.getID() + ":starting at:"
+        logger.config(loggingName + ":Reading Chunk:" + chunkHeader.getID() + ":starting at:"
                 + Hex.asDecAndHex(chunkHeader.getStartLocationInFile())
                 + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
 
@@ -101,9 +101,9 @@ public class AiffTagReader extends AiffChunkReader
             }
             //else otherwise we discard because the first one found is the one that will be used by other apps
             {
-                logger.warning(loggingName + " Ignoring ID3Tag because already have one:"
+                logger.warning(loggingName + ":Ignoring ID3Tag because already have one:"
                         + chunkHeader.getID() + ":"
-                        + chunkHeader.getStartLocationInFile()
+                        + chunkHeader.getStartLocationInFile() +":"
                         + Hex.asDecAndHex(chunkHeader.getStartLocationInFile() - 1)
                         + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
             }
@@ -112,7 +112,7 @@ public class AiffTagReader extends AiffChunkReader
         //didn't write padding byte
         else if(chunkType!=null && chunkType== AiffChunkType.CORRUPT_TAG_LATE)
         {
-            logger.warning(loggingName + "Found Corrupt ID3 Chunk, starting at Odd Location:" + chunkHeader.getID() + ":"
+            logger.warning(loggingName + ":Found Corrupt ID3 Chunk, starting at Odd Location:" + chunkHeader.getID() + ":"
                     + Hex.asDecAndHex(chunkHeader.getStartLocationInFile() - 1)
                     + ":sizeIncHeader:"+ (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
 
@@ -127,7 +127,7 @@ public class AiffTagReader extends AiffChunkReader
         //Other Special handling for ID3Tags
         else if(chunkType!=null && chunkType== AiffChunkType.CORRUPT_TAG_EARLY)
         {
-            logger.warning(loggingName + " Found Corrupt ID3 Chunk, starting at Odd Location:" + chunkHeader.getID()
+            logger.warning(loggingName + ":Found Corrupt ID3 Chunk, starting at Odd Location:" + chunkHeader.getID()
                     + ":" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile())
                     + ":sizeIncHeader:"+ (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
 
@@ -141,7 +141,7 @@ public class AiffTagReader extends AiffChunkReader
         }
         else
         {
-            logger.config(loggingName + "Skipping Chunk:" + chunkHeader.getID() + ":" + chunkHeader.getSize());
+            logger.config(loggingName + ":Skipping Chunk:" + chunkHeader.getID() + ":" + chunkHeader.getSize());
             aiffTag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
             fc.position(fc.position() + chunkHeader.getSize());
         }
