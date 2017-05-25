@@ -322,7 +322,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
      */
     protected void copyPrimitives(AbstractID3v2Tag copyObj)
     {
-        logger.config("Copying primitives");
+        logger.config(getLoggingFilename() +":Copying primitives");
         super.copyPrimitives(copyObj);
 
         if (copyObj instanceof ID3v24Tag)
@@ -367,7 +367,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
         }
         catch (InvalidFrameException ife)
         {
-            logger.log(Level.SEVERE, "Unable to convert frame:" + frame.getIdentifier());
+            logger.log(Level.SEVERE, getLoggingFilename() + ":Unable to convert frame:" + frame.getIdentifier());
         }
     }
 
@@ -477,7 +477,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
             else
             {
                 //we just lose this frame, we have already got one with the correct id.
-                logger.warning("Found duplicate TDRC frame in invalid situation,discarding:" + newFrame.getIdentifier());
+                logger.warning(getLoggingFilename() +":Found duplicate TDRC frame in invalid situation,discarding:" + newFrame.getIdentifier());
             }
         }
         else
@@ -496,7 +496,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
      */
     public ID3v24Tag(ID3v24Tag copyObject)
     {
-        logger.config("Creating tag from another tag of same type");
+        logger.config(getLoggingFilename() +":Creating tag from another tag of same type");
         copyPrimitives(copyObject);
         copyFrames(copyObject);
     }
@@ -508,7 +508,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
      */
     public ID3v24Tag(AbstractTag mp3tag)
     {
-        logger.config("Creating tag from a tag of a different version");
+        logger.config(getLoggingFilename() +":Creating tag from a tag of a different version");
         frameMap = new LinkedHashMap();
         encryptedFrameMap = new LinkedHashMap();
 
@@ -517,7 +517,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
             //Should use simpler copy constructor
             if ((mp3tag instanceof ID3v24Tag))
             {
-                throw new UnsupportedOperationException("Copy Constructor not called. Please type cast the argument");
+                throw new UnsupportedOperationException(getLoggingFilename() +":Copy Constructor not called. Please type cast the argument");
             }
             /* If we get a tag, we want to convert to id3v2_4
              * both id3v1 and lyrics3 convert to this type
@@ -619,7 +619,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
                     }
                     catch (InvalidTagException ex)
                     {
-                        logger.warning("Unable to convert Lyrics3 to v24 Frame:Frame Identifier");
+                        logger.warning(getLoggingFilename() +":Unable to convert Lyrics3 to v24 Frame:Frame Identifier");
                     }
                 }
             }
@@ -689,7 +689,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
             }
         }
         size += super.getSize();
-        logger.finer("Tag Size is" + size);
+        logger.finer(getLoggingFilename() +":Tag Size is" + size);
         return size;
     }
 
@@ -1110,7 +1110,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
     public long write(File file, long audioStartLocation) throws IOException
     {
         setLoggingFilename(file.getName());
-        logger.config("Writing tag to file:"+getLoggingFilename());
+        logger.config(getLoggingFilename()+":Writing tag to file:");
 
         //Write Body Buffer
         byte[] bodyByteBuffer = writeFramesToBuffer().toByteArray();
@@ -1132,7 +1132,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
     @Override
     public void write(WritableByteChannel channel, int currentTagSize) throws IOException
     {
-        logger.severe("Writing tag to channel");
+        logger.config(getLoggingFilename() +":Writing tag to channel");
 
         byte[] bodyByteBuffer = writeFramesToBuffer().toByteArray();
 
