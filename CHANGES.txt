@@ -57,6 +57,14 @@ Summarise Changes
 #183:OGG: String index out of range: 7
 #192:NumberFormatException when creating ID3v1 tag from ID3v2 tag with textual genres
 #196:Memory Mapping in MP3File.readV2Tag() leads to JVM crashes
+#189:Aiff Reader should never throw BufferUnderflowException even if file is corrupt
+#199:Add support for INSTRUMENT field
+#201:Add support for MinimServer GROUP field
+#155:Missing copyright tag mapping
+#204:Wav with corrupt ID3/LIST placement shoudnt cause complete Read fail
+#205:WAV files can have additional itrk fields added to RIFF chunk
+#181:Null characters are included in WavTag.toString
+#208:Add new OVERALL_WORK field to store the top level work
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

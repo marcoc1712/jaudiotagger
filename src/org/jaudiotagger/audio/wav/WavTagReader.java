@@ -24,11 +24,11 @@ import org.jaudiotagger.audio.iff.Chunk;
 import org.jaudiotagger.audio.iff.ChunkHeader;
 import org.jaudiotagger.audio.iff.ChunkSummary;
 import org.jaudiotagger.audio.iff.IffHeaderChunk;
+import org.jaudiotagger.audio.wav.chunk.WavCorruptChunkType;
 import org.jaudiotagger.audio.wav.chunk.WavId3Chunk;
 import org.jaudiotagger.audio.wav.chunk.WavListChunk;
 import org.jaudiotagger.logging.Hex;
 import org.jaudiotagger.tag.TagOptionSingleton;
-import org.jaudiotagger.tag.id3.ID3v23Tag;
 import org.jaudiotagger.tag.wav.WavInfoTag;
 import org.jaudiotagger.tag.wav.WavTag;
 
@@ -147,16 +147,6 @@ public class WavTagReader
                     }
                     break;
 
-                case CORRUPT_LIST:
-                    logger.severe(loggingName + " Found Corrupt LIST Chunk, starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
-
-                    if(tag.getInfoTag()==null && tag.getID3Tag() == null)
-                    {
-                        tag.setIncorrectlyAlignedTag(true);
-                    }
-                    fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE - 1));
-                    return true;
-
                 case ID3:
                     tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
                     if(tag.getID3Tag()==null)
@@ -197,6 +187,27 @@ public class WavTagReader
                     tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
                     fc.position(fc.position() + chunkHeader.getSize());
             }
+        }
+        else if(id.substring(1,4).equals(WavCorruptChunkType.CORRUPT_LIST_EARLY.getCode()))
+        {
+            logger.severe(loggingName + " Found Corrupt LIST Chunk, starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
+
+            if(tag.getInfoTag()==null && tag.getID3Tag() == null)
+            {
+                tag.setIncorrectlyAlignedTag(true);
+            }
+            fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE - 1));
+            return true;
+        }
+        else if(id.substring(0,3).equals(WavCorruptChunkType.CORRUPT_LIST_LATE.getCode()))
+        {
+            logger.severe(loggingName + " Found Corrupt LIST Chunk (2), starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
+            if(tag.getInfoTag()==null && tag.getID3Tag() == null)
+            {
+                tag.setIncorrectlyAlignedTag(true);
+            }
+            fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE + 1));
+            return true;
         }
         //Unknown chunk type just skip
         else

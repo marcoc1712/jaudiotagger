@@ -50,7 +50,7 @@ public class AiffFileHeader
 
         if (bytesRead < HEADER_LENGTH)
         {
-            throw new IOException(fileName + " AIFF:Unable to read required number of databytes read:" + bytesRead + ":required:" + HEADER_LENGTH);
+            throw new IOException(fileName + ":AIFF:Unable to read required number of databytes read:" + bytesRead + ":required:" + HEADER_LENGTH);
         }
 
         final String signature = Utils.readFourBytesAsChars(headerData);
@@ -58,7 +58,7 @@ public class AiffFileHeader
         {
             // read chunk size
             final long chunkSize  = headerData.getInt();
-            logger.severe(fileName + " Reading AIFF header size:" + Hex.asDecAndHex(chunkSize));
+            logger.config(fileName + ":Reading AIFF header size:" + Hex.asDecAndHex(chunkSize));
 
             readFileType(headerData, aiffAudioHeader);
             // subtract the file type length from the chunk size to get remaining number of bytes
@@ -66,7 +66,7 @@ public class AiffFileHeader
         }
         else
         {
-            throw new CannotReadException(fileName + "Not an AIFF file: incorrect signature " + signature);
+            throw new CannotReadException(fileName + ":Not an AIFF file: incorrect signature " + signature);
         }
     }
 

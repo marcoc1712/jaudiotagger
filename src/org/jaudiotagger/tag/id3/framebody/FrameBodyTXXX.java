@@ -74,6 +74,8 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String ENSEMBLE                     = "ENSEMBLE";
     public static final String ENSEMBLE_SORT                = "ENSEMBLE_SORT";
     public static final String FBPM                         = "FBPM";
+    public static final String GROUP                        = "GROUP";
+    public static final String INSTRUMENT                   = "INSTRUMENT";
     public static final String IS_CLASSICAL                 = "IS_CLASSICAL";
     public static final String IS_SOUNDTRACK                = "IS_SOUNDTRACK";
     public static final String MOOD                         = "MOOD";          //ID3 v23 only
@@ -124,6 +126,7 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String OPUS                                     = "OPUS";
     public static final String ORCHESTRA                                = "ORCHESTRA";
     public static final String ORCHESTRA_SORT                           = "ORCHESTRA_SORT";
+    public static final String OVERALL_WORK                             = "OVERALL_WORK";
     public static final String PART                                     = "PART";
     public static final String PART_NUMBER                              = "PARTNUMBER";
     public static final String PART_TYPE                                = "PART_TYPE";
