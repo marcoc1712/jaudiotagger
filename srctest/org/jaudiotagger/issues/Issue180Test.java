@@ -9,12 +9,15 @@ package org.jaudiotagger.issues;
 import org.jaudiotagger.AbstractTestCase;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.generic.AudioFileReader;
 import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.TagOptionSingleton;
+import org.jaudiotagger.tag.aiff.AiffTag;
 import org.jaudiotagger.tag.id3.ID3v22Tag;
 import org.jaudiotagger.tag.id3.ID3v23Tag;
 import org.jaudiotagger.tag.id3.ID3v24Tag;
+import org.jaudiotagger.tag.wav.WavTag;
 
 import java.io.File;
 
@@ -191,5 +194,117 @@ public class Issue180Test extends AbstractTestCase {
         final String g = iTunesV24File.getTag().getFirst(FieldKey.GROUPING);
         assertTrue(g == null || g.isEmpty());
         assertEquals("grouping", iTunesV24File.getTag().getFirst(FieldKey.WORK));
+    }
+
+    public void testWriteIDv23AifForITunes12_6() throws Exception
+    {
+        final TagOptionSingleton options = TagOptionSingleton.getInstance();
+        // start with special iTunes 12.6 mode
+        options.setId3v2ITunes12_6WorkGroupingMode(true);
+
+        final File testFile = AbstractTestCase.copyAudioToTmp("test119.aif");
+        final AudioFile audioFile = AudioFileIO.read(testFile);
+        audioFile.getTag().setField(FieldKey.GROUPING, "grouping");
+        audioFile.getTag().setField(FieldKey.WORK, "work");
+        System.out.println(((AiffTag) audioFile.getTag()));
+        audioFile.commit();
+
+        //Read using new Interface
+        final AudioFile v22File = AudioFileIO.read(testFile);
+        assertEquals("grouping", v22File.getTag().getFirst(FieldKey.GROUPING));
+        assertEquals("work", v22File.getTag().getFirst(FieldKey.WORK));
+
+        // now switch to regular mode
+        options.setId3v2ITunes12_6WorkGroupingMode(false);
+
+        final AudioFile regV22File = AudioFileIO.read(testFile);
+        assertEquals("work", regV22File.getTag().getFirst(FieldKey.GROUPING));
+        final String w = regV22File.getTag().getFirst(FieldKey.WORK);
+        assertTrue(w == null || w.isEmpty());
+    }
+
+    public void testWriteIDv23AifRegular() throws Exception
+    {
+        final TagOptionSingleton options = TagOptionSingleton.getInstance();
+        // start with regular mode
+        options.setId3v2ITunes12_6WorkGroupingMode(false);
+
+
+        final File testFile = AbstractTestCase.copyAudioToTmp("test119.aif");
+        final AudioFile audioFile = AudioFileIO.read(testFile);
+        audioFile.getTag().setField(FieldKey.GROUPING, "grouping");
+        audioFile.getTag().setField(FieldKey.WORK, "work");
+        System.out.println(((AiffTag) audioFile.getTag()));
+        audioFile.commit();
+
+
+        //Read using new Interface
+        final AudioFile v22File = AudioFileIO.read(testFile);
+        assertEquals("grouping", v22File.getTag().getFirst(FieldKey.GROUPING));
+        assertEquals("work", v22File.getTag().getFirst(FieldKey.WORK));
+
+        // now switch to iTunes mode
+        options.setId3v2ITunes12_6WorkGroupingMode(true);
+
+        final AudioFile iTunesV22File = AudioFileIO.read(testFile);
+        final String g = iTunesV22File.getTag().getFirst(FieldKey.GROUPING);
+        assertTrue(g == null || g.isEmpty());
+        assertEquals("grouping", iTunesV22File.getTag().getFirst(FieldKey.WORK));
+    }
+
+    public void testWriteIDv2WavForITunes12_6() throws Exception
+    {
+        final TagOptionSingleton options = TagOptionSingleton.getInstance();
+        // start with special iTunes 12.6 mode
+        options.setId3v2ITunes12_6WorkGroupingMode(true);
+
+        final File testFile = AbstractTestCase.copyAudioToTmp("test.wav");
+        final AudioFile audioFile = AudioFileIO.read(testFile);
+        audioFile.getTag().setField(FieldKey.GROUPING, "grouping");
+        audioFile.getTag().setField(FieldKey.WORK,"work");
+        System.out.println(((WavTag)audioFile.getTag()));
+        audioFile.commit();
+
+        //Read using new Interface
+        final AudioFile v22File = AudioFileIO.read(testFile);
+        assertEquals("grouping", v22File.getTag().getFirst(FieldKey.GROUPING));
+        assertEquals("work", v22File.getTag().getFirst(FieldKey.WORK));
+
+        // now switch to regular mode
+        options.setId3v2ITunes12_6WorkGroupingMode(false);
+
+        final AudioFile regV22File = AudioFileIO.read(testFile);
+        assertEquals("work", regV22File.getTag().getFirst(FieldKey.GROUPING));
+        final String w = regV22File.getTag().getFirst(FieldKey.WORK);
+        assertTrue(w == null || w.isEmpty());
+    }
+
+    public void testWriteIDv23WavRegular() throws Exception
+    {
+        final TagOptionSingleton options = TagOptionSingleton.getInstance();
+        // start with regular mode
+        options.setId3v2ITunes12_6WorkGroupingMode(false);
+
+
+        final File testFile = AbstractTestCase.copyAudioToTmp("test.wav");
+        final AudioFile audioFile = AudioFileIO.read(testFile);
+        audioFile.getTag().setField(FieldKey.GROUPING, "grouping");
+        audioFile.getTag().setField(FieldKey.WORK,"work");
+        System.out.println(((WavTag)audioFile.getTag()));
+        audioFile.commit();
+
+
+        //Read using new Interface
+        final AudioFile v22File = AudioFileIO.read(testFile);
+        assertEquals("grouping", v22File.getTag().getFirst(FieldKey.GROUPING));
+        assertEquals("work", v22File.getTag().getFirst(FieldKey.WORK));
+
+        // now switch to iTunes mode
+        options.setId3v2ITunes12_6WorkGroupingMode(true);
+
+        final AudioFile iTunesV22File = AudioFileIO.read(testFile);
+        final String g = iTunesV22File.getTag().getFirst(FieldKey.GROUPING);
+        assertTrue(g == null || g.isEmpty());
+        assertEquals("grouping", iTunesV22File.getTag().getFirst(FieldKey.WORK));
     }
 }
