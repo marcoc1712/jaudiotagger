@@ -528,12 +528,29 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.WORK_TYPE, ID3v23FieldKey.WORK_TYPE);
         tagFieldToId3.put(FieldKey.YEAR, ID3v23FieldKey.YEAR);
 
+        populateId3ToTagField();
+    }
+
+    private void populateId3ToTagField()
+    {
         for(Map.Entry<FieldKey,ID3v23FieldKey> next:tagFieldToId3.entrySet())
         {
             id3ToTagField.put(next.getValue(), next.getKey());
         }
     }
 
+    @Override
+    public void setITunes12_6WorkGroupingMode(final boolean id3v2ITunes12_6Mode)
+    {
+        if (id3v2ITunes12_6Mode) {
+            tagFieldToId3.put(FieldKey.WORK, ID3v23FieldKey.GROUPING);
+            tagFieldToId3.put(FieldKey.GROUPING, ID3v23FieldKey.ITUNES_GROUPING);
+        } else {
+            tagFieldToId3.put(FieldKey.WORK, ID3v23FieldKey.WORK);
+            tagFieldToId3.put(FieldKey.GROUPING, ID3v23FieldKey.GROUPING);
+        }
+        populateId3ToTagField();
+    }
 
     /**
      * @param genericKey
