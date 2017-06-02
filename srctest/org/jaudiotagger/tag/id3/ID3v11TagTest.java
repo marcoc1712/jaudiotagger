@@ -5,9 +5,12 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.jaudiotagger.AbstractTestCase;
 import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.tag.FieldDataInvalidException;
 import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.KeyNotFoundException;
 import org.jaudiotagger.tag.TagOptionSingleton;
 import org.jaudiotagger.tag.TagTextField;
+import org.jaudiotagger.tag.reference.GenreTypes;
 
 import java.io.File;
 
@@ -299,4 +302,21 @@ public class ID3v11TagTest extends TestCase
         tag = (ID3v11Tag)mp3File.getID3v1Tag();
         assertEquals("3", tag.getFirst(FieldKey.TRACK ));
     }
+
+    public void testCreateID3v11FromID3v23WithGenreWithHyphen() throws KeyNotFoundException, FieldDataInvalidException
+    {
+    	boolean originalWriteMp3GenresAsText = TagOptionSingleton.getInstance().isWriteMp3GenresAsText();
+    	try {
+    		TagOptionSingleton.getInstance().setWriteMp3GenresAsText(true);
+            ID3v23Tag v2Tag = new ID3v23Tag();
+            String genreName = "Hip-Hop";
+    		v2Tag.setField(FieldKey.GENRE, genreName);
+            ID3v11Tag v1Tag = new ID3v11Tag(v2Tag);
+            assertNotNull(v1Tag);
+            assertEquals(genreName, v1Tag.getFirstGenre());
+    	} finally {
+    		TagOptionSingleton.getInstance().setWriteMp3GenresAsText(originalWriteMp3GenresAsText);
+    	}
+    }
+
 }

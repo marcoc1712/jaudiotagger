@@ -352,6 +352,7 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.CONDUCTOR, ID3v22FieldKey.CONDUCTOR);
         tagFieldToId3.put(FieldKey.CONDUCTOR_SORT, ID3v22FieldKey.CONDUCTOR_SORT);
         tagFieldToId3.put(FieldKey.COUNTRY, ID3v22FieldKey.COUNTRY);
+        tagFieldToId3.put(FieldKey.COPYRIGHT, ID3v22FieldKey.COPYRIGHT);
         tagFieldToId3.put(FieldKey.COVER_ART, ID3v22FieldKey.COVER_ART);
         tagFieldToId3.put(FieldKey.CUSTOM1, ID3v22FieldKey.CUSTOM1);
         tagFieldToId3.put(FieldKey.CUSTOM2, ID3v22FieldKey.CUSTOM2);
@@ -368,7 +369,9 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ENSEMBLE_SORT, ID3v22FieldKey.ENSEMBLE_SORT);
         tagFieldToId3.put(FieldKey.FBPM, ID3v22FieldKey.FBPM);
         tagFieldToId3.put(FieldKey.GENRE, ID3v22FieldKey.GENRE);
+        tagFieldToId3.put(FieldKey.GROUP, ID3v22FieldKey.GROUP);
         tagFieldToId3.put(FieldKey.GROUPING, ID3v22FieldKey.GROUPING);
+        tagFieldToId3.put(FieldKey.INSTRUMENT, ID3v22FieldKey.INSTRUMENT);
         tagFieldToId3.put(FieldKey.INVOLVED_PERSON, ID3v22FieldKey.INVOLVED_PERSON);
         tagFieldToId3.put(FieldKey.ISRC, ID3v22FieldKey.ISRC);
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v22FieldKey.IS_CLASSICAL);
@@ -425,6 +428,7 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ORIGINAL_ARTIST, ID3v22FieldKey.ORIGINAL_ARTIST);
         tagFieldToId3.put(FieldKey.ORIGINAL_LYRICIST, ID3v22FieldKey.ORIGINAL_LYRICIST);
         tagFieldToId3.put(FieldKey.ORIGINAL_YEAR, ID3v22FieldKey.ORIGINAL_YEAR);
+        tagFieldToId3.put(FieldKey.OVERALL_WORK, ID3v22FieldKey.OVERALL_WORK);
         tagFieldToId3.put(FieldKey.PART, ID3v22FieldKey.PART);
         tagFieldToId3.put(FieldKey.PART_NUMBER, ID3v22FieldKey.PART_NUMBER);
         tagFieldToId3.put(FieldKey.PART_TYPE, ID3v22FieldKey.PART_TYPE);
@@ -474,11 +478,28 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.WORK_TYPE, ID3v22FieldKey.WORK_TYPE);
         tagFieldToId3.put(FieldKey.YEAR, ID3v22FieldKey.YEAR);
 
+        populateId3ToTagField();
+    }
 
+    private void populateId3ToTagField()
+    {
         for(Map.Entry<FieldKey,ID3v22FieldKey> next:tagFieldToId3.entrySet())
         {
             id3ToTagField.put(next.getValue(), next.getKey());
         }
+    }
+
+    @Override
+    public void setITunes12_6WorkGroupingMode(final boolean on)
+    {
+        if (on) {
+            tagFieldToId3.put(FieldKey.WORK, ID3v22FieldKey.GROUPING);
+            tagFieldToId3.put(FieldKey.GROUPING, ID3v22FieldKey.ITUNES_GROUPING);
+        } else {
+            tagFieldToId3.put(FieldKey.WORK, ID3v22FieldKey.WORK);
+            tagFieldToId3.put(FieldKey.GROUPING, ID3v22FieldKey.GROUPING);
+        }
+        populateId3ToTagField();
     }
 
     /**

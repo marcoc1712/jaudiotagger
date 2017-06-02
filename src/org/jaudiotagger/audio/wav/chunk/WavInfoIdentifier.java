@@ -16,7 +16,7 @@ public enum WavInfoIdentifier
     TRACKNO("ITRK", FieldKey.TRACK, 4),
     YEAR("ICRD", FieldKey.YEAR, 5),
     GENRE("IGNR", FieldKey.GENRE, 6),
-    //Custom MediaMonkey field, theres appears to be no official AlbumArtist field, nothing ever displayed for this field or IAAR in Windows Explorer
+    //Custom MediaMonkey field, there appears to be no official AlbumArtist field, nothing ever displayed for this field or IAAR in Windows Explorer
     ALBUM_ARTIST("iaar", FieldKey.ALBUM_ARTIST, 7),
     COMMENTS("ICMT", FieldKey.COMMENT, 8),
     COMPOSER("IMUS", FieldKey.COMPOSER, 9),

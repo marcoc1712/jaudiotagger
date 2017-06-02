@@ -28,6 +28,7 @@ import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.logging.ErrorMessage;
 import org.jaudiotagger.tag.*;
 import org.jaudiotagger.tag.id3.framebody.*;
+import org.jaudiotagger.tag.reference.GenreTypes;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -203,8 +204,13 @@ public class ID3v11Tag extends ID3v1Tag
                     }
                     catch (TagException ex)
                     {
-                        logger.log(Level.WARNING, getLoggingFilename() + ":" + "Unable to convert TCON frame to format suitable for v11 tag", ex);
-                        this.genre = (byte) ID3v1Tag.GENRE_UNDEFINED;
+                    	Integer genreId = GenreTypes.getInstanceOf().getIdForValue(text);
+                    	if(null!= genreId) this.genre = genreId.byteValue();
+                    	else
+                    	{
+                    		logger.log(Level.WARNING, getLoggingFilename() + ":" + "Unable to convert TCON frame to format suitable for v11 tag", ex);
+                    		this.genre = (byte) ID3v1Tag.GENRE_UNDEFINED;
+                    	}
                     }
                 }
                 if (id3tag.hasFrame(ID3v24Frames.FRAME_ID_TRACK))

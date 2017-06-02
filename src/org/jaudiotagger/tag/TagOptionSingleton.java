@@ -27,6 +27,9 @@ package org.jaudiotagger.tag;
 import org.jaudiotagger.audio.wav.WavOptions;
 import org.jaudiotagger.audio.wav.WavSaveOptions;
 import org.jaudiotagger.audio.wav.WavSaveOrder;
+import org.jaudiotagger.tag.id3.ID3v22Frames;
+import org.jaudiotagger.tag.id3.ID3v23Frames;
+import org.jaudiotagger.tag.id3.ID3v24Frames;
 import org.jaudiotagger.tag.id3.framebody.AbstractID3v2FrameBody;
 import org.jaudiotagger.tag.id3.framebody.FrameBodyCOMM;
 import org.jaudiotagger.tag.id3.framebody.FrameBodyTIPL;
@@ -222,6 +225,20 @@ public class TagOptionSingleton
      */
     private boolean id3v2Save = true;
 
+    /**
+     * Special mode for iTunes 12.6.
+     *
+     * If {@code true}, map
+     * {@link FieldKey#WORK} to {@link org.jaudiotagger.tag.id3.framebody.FrameBodyTIT1}
+     * and {@link FieldKey#GROUPING} to {@link org.jaudiotagger.tag.id3.framebody.FrameBodyGRP1}.
+     *
+     * If {@code false}, map
+     * {@link FieldKey#WORK} to special {@link org.jaudiotagger.tag.id3.framebody.FrameBodyTXXX}
+     * and {@link FieldKey#GROUPING} to {@link org.jaudiotagger.tag.id3.framebody.FrameBodyTIT1}.
+     *
+     * The latter used to be the default behavior before iTunes 12.6.
+     */
+    private boolean id3v2ITunes12_6WorkGroupingMode = false;
 
     /**
      * if we should keep an empty Lyrics3 field while we're reading. This is
@@ -630,6 +647,34 @@ public class TagOptionSingleton
         return id3v2Save;
     }
 
+    public boolean isId3v2ITunes12_6WorkGroupingMode() {
+        return id3v2ITunes12_6WorkGroupingMode;
+    }
+
+    /**
+     * <p>Special work/grouping mode for iTunes 12.6.</p>
+     *
+     * <p>If {@code true}, map
+     * {@link FieldKey#WORK} to {@link org.jaudiotagger.tag.id3.framebody.FrameBodyTIT1}
+     * and {@link FieldKey#GROUPING} to {@link org.jaudiotagger.tag.id3.framebody.FrameBodyGRP1}.</p>
+     *
+     * <p>If {@code false}, map
+     * {@link FieldKey#WORK} to special {@link org.jaudiotagger.tag.id3.framebody.FrameBodyTXXX}
+     * and {@link FieldKey#GROUPING} to {@link org.jaudiotagger.tag.id3.framebody.FrameBodyTIT1}.</p>
+     *
+     * <p>The latter used to be the default behavior before iTunes 12.6.</p>
+     *
+     * @param id3v2ITunes12_6WorkGroupingMode {@code true} or {@code false}.
+     */
+    public void setId3v2ITunes12_6WorkGroupingMode(final boolean id3v2ITunes12_6WorkGroupingMode) {
+        final boolean oldMode = this.id3v2ITunes12_6WorkGroupingMode;
+        if (oldMode != id3v2ITunes12_6WorkGroupingMode) {
+            ID3v22Frames.getInstanceOf().setITunes12_6WorkGroupingMode(id3v2ITunes12_6WorkGroupingMode);
+            ID3v23Frames.getInstanceOf().setITunes12_6WorkGroupingMode(id3v2ITunes12_6WorkGroupingMode);
+            ID3v24Frames.getInstanceOf().setITunes12_6WorkGroupingMode(id3v2ITunes12_6WorkGroupingMode);
+            this.id3v2ITunes12_6WorkGroupingMode = id3v2ITunes12_6WorkGroupingMode;
+        }
+    }
 
     /**
      * @return

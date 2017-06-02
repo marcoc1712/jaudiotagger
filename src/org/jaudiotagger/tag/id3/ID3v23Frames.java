@@ -401,6 +401,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.COMPOSER_SORT, ID3v23FieldKey.COMPOSER_SORT);
         tagFieldToId3.put(FieldKey.CONDUCTOR, ID3v23FieldKey.CONDUCTOR);
         tagFieldToId3.put(FieldKey.CONDUCTOR_SORT, ID3v23FieldKey.CONDUCTOR_SORT);
+        tagFieldToId3.put(FieldKey.COPYRIGHT, ID3v23FieldKey.COPYRIGHT);
         tagFieldToId3.put(FieldKey.COUNTRY, ID3v23FieldKey.COUNTRY);
         tagFieldToId3.put(FieldKey.COVER_ART, ID3v23FieldKey.COVER_ART);
         tagFieldToId3.put(FieldKey.CUSTOM1, ID3v23FieldKey.CUSTOM1);
@@ -419,8 +420,9 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ENSEMBLE_SORT, ID3v23FieldKey.ENSEMBLE_SORT);
         tagFieldToId3.put(FieldKey.FBPM, ID3v23FieldKey.FBPM);
         tagFieldToId3.put(FieldKey.GENRE, ID3v23FieldKey.GENRE);
+        tagFieldToId3.put(FieldKey.GROUP, ID3v23FieldKey.GROUP);
         tagFieldToId3.put(FieldKey.GROUPING, ID3v23FieldKey.GROUPING);
-        tagFieldToId3.put(FieldKey.MOOD_INSTRUMENTAL, ID3v23FieldKey.MOOD_INSTRUMENTAL);
+        tagFieldToId3.put(FieldKey.INSTRUMENT, ID3v23FieldKey.INSTRUMENT);
         tagFieldToId3.put(FieldKey.INVOLVED_PERSON, ID3v23FieldKey.INVOLVED_PERSON);
         tagFieldToId3.put(FieldKey.ISRC, ID3v23FieldKey.ISRC);
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v23FieldKey.IS_CLASSICAL);
@@ -439,6 +441,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.MOOD_AROUSAL, ID3v23FieldKey.MOOD_AROUSAL);
         tagFieldToId3.put(FieldKey.MOOD_DANCEABILITY, ID3v23FieldKey.MOOD_DANCEABILITY);
         tagFieldToId3.put(FieldKey.MOOD_HAPPY, ID3v23FieldKey.MOOD_HAPPY);
+        tagFieldToId3.put(FieldKey.MOOD_INSTRUMENTAL, ID3v23FieldKey.MOOD_INSTRUMENTAL);
         tagFieldToId3.put(FieldKey.MOOD_PARTY, ID3v23FieldKey.MOOD_PARTY);
         tagFieldToId3.put(FieldKey.MOOD_RELAXED, ID3v23FieldKey.MOOD_RELAXED);
         tagFieldToId3.put(FieldKey.MOOD_SAD, ID3v23FieldKey.MOOD_SAD);
@@ -475,13 +478,13 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ORIGINAL_ARTIST, ID3v23FieldKey.ORIGINAL_ARTIST);
         tagFieldToId3.put(FieldKey.ORIGINAL_LYRICIST, ID3v23FieldKey.ORIGINAL_LYRICIST);
         tagFieldToId3.put(FieldKey.ORIGINAL_YEAR, ID3v23FieldKey.ORIGINAL_YEAR);
+        tagFieldToId3.put(FieldKey.OVERALL_WORK, ID3v23FieldKey.OVERALL_WORK);
         tagFieldToId3.put(FieldKey.PART, ID3v23FieldKey.PART);
         tagFieldToId3.put(FieldKey.PART_NUMBER, ID3v23FieldKey.PART_NUMBER);
         tagFieldToId3.put(FieldKey.PART_TYPE, ID3v23FieldKey.PART_TYPE);
         tagFieldToId3.put(FieldKey.PERFORMER, ID3v23FieldKey.PERFORMER);
         tagFieldToId3.put(FieldKey.PERFORMER_NAME, ID3v23FieldKey.PERFORMER_NAME);
         tagFieldToId3.put(FieldKey.PERFORMER_NAME_SORT, ID3v23FieldKey.PERFORMER_NAME_SORT);
-
         tagFieldToId3.put(FieldKey.PERIOD, ID3v23FieldKey.PERIOD);
         tagFieldToId3.put(FieldKey.PRODUCER, ID3v23FieldKey.PRODUCER);
         tagFieldToId3.put(FieldKey.QUALITY, ID3v23FieldKey.QUALITY);
@@ -525,12 +528,29 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.WORK_TYPE, ID3v23FieldKey.WORK_TYPE);
         tagFieldToId3.put(FieldKey.YEAR, ID3v23FieldKey.YEAR);
 
+        populateId3ToTagField();
+    }
+
+    private void populateId3ToTagField()
+    {
         for(Map.Entry<FieldKey,ID3v23FieldKey> next:tagFieldToId3.entrySet())
         {
             id3ToTagField.put(next.getValue(), next.getKey());
         }
     }
 
+    @Override
+    public void setITunes12_6WorkGroupingMode(final boolean id3v2ITunes12_6Mode)
+    {
+        if (id3v2ITunes12_6Mode) {
+            tagFieldToId3.put(FieldKey.WORK, ID3v23FieldKey.GROUPING);
+            tagFieldToId3.put(FieldKey.GROUPING, ID3v23FieldKey.ITUNES_GROUPING);
+        } else {
+            tagFieldToId3.put(FieldKey.WORK, ID3v23FieldKey.WORK);
+            tagFieldToId3.put(FieldKey.GROUPING, ID3v23FieldKey.GROUPING);
+        }
+        populateId3ToTagField();
+    }
 
     /**
      * @param genericKey
