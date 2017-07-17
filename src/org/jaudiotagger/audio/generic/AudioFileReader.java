@@ -28,6 +28,7 @@ import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.Files;
@@ -91,8 +92,15 @@ public abstract class AudioFileReader
 
         if (!Files.isReadable(f.toPath()))
         {
-            logger.warning(Permissions.displayPermissions(f.toPath()));
-            throw new NoReadPermissionsException(ErrorMessage.GENERAL_READ_FAILED_DO_NOT_HAVE_PERMISSION_TO_READ_FILE.getMsg(f.toPath()));
+            if(!Files.exists(f.toPath()))
+            {
+                throw new FileNotFoundException(ErrorMessage.UNABLE_TO_FIND_FILE.getMsg(f.toPath()));
+            }
+            else
+            {
+                logger.warning(Permissions.displayPermissions(f.toPath()));
+                throw new NoReadPermissionsException(ErrorMessage.GENERAL_READ_FAILED_DO_NOT_HAVE_PERMISSION_TO_READ_FILE.getMsg(f.toPath()));
+            }
         }
 
         if (f.length() <= MINIMUM_SIZE_FOR_VALID_AUDIO_FILE)

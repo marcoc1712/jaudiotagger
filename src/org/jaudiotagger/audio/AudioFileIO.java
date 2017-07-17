@@ -348,7 +348,7 @@ public class AudioFileIO
     public AudioFile readFile(File f)
             throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException
     {
-        checkFileExists(f);
+        //checkFileExists(f);
         String ext = Utils.getExtension(f);
 
         AudioFileReader afr = readers.get(ext);
@@ -378,7 +378,7 @@ public class AudioFileIO
    public AudioFile readFileMagic(File f)
            throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException
    {
-       checkFileExists(f);
+       //checkFileExists(f);
        String ext = Utils.getMagicExtension(f);
 
        AudioFileReader afr = readers.get(ext);
@@ -411,8 +411,7 @@ public class AudioFileIO
   public AudioFile readFileAs(File f,String ext)
           throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException
   {
-      checkFileExists(f);
-//      String ext = Utils.getExtension(f);
+      //checkFileExists(f);
 
       AudioFileReader afr = readers.get(ext);
       if (afr == null)

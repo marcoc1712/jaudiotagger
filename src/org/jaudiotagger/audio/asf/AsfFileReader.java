@@ -226,7 +226,15 @@ public class AsfFileReader extends AudioFileReader
     {
         if (!f.canRead())
         {
-            throw new CannotReadException(ErrorMessage.GENERAL_READ_FAILED_DO_NOT_HAVE_PERMISSION_TO_READ_FILE.getMsg(f.getAbsolutePath()));
+            if (!f.exists())
+            {
+                logger.severe("Unable to find:" + f.getPath());
+                throw new FileNotFoundException(ErrorMessage.UNABLE_TO_FIND_FILE.getMsg(f.getPath()));
+            }
+            else
+            {
+                throw new CannotReadException(ErrorMessage.GENERAL_READ_FAILED_DO_NOT_HAVE_PERMISSION_TO_READ_FILE.getMsg(f.getAbsolutePath()));
+            }
         }
         InputStream stream = null;
         try

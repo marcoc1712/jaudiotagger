@@ -622,16 +622,16 @@ public class ID3v23Tag extends AbstractID3v2Tag
             {
                 //Read Frame
                 int posBeforeRead = byteBuffer.position();
-                logger.config(getLoggingFilename() + ":Looking for next frame at:" + posBeforeRead);
+                logger.severe(getLoggingFilename() + ":Looking for next frame at:" + posBeforeRead);
                 next = new ID3v23Frame(byteBuffer, getLoggingFilename());
                 id = next.getIdentifier();
-                logger.config(getLoggingFilename() + ":Found "+ id+ " at frame at:" + posBeforeRead);
+                logger.severe(getLoggingFilename() + ":Found "+ id+ " at frame at:" + posBeforeRead);
                 loadFrameIntoMap(id, next);
             }
             //Found Padding, no more frames
             catch (PaddingException ex)
             {
-                logger.config(getLoggingFilename() + ":Found padding starting at:" + byteBuffer.position());
+                logger.severe(getLoggingFilename() + ":Found padding starting at:" + byteBuffer.position());
                 break;
             }
             //Found Empty Frame, log it - empty frames should not exist
