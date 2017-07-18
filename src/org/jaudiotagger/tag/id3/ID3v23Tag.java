@@ -622,10 +622,10 @@ public class ID3v23Tag extends AbstractID3v2Tag
             {
                 //Read Frame
                 int posBeforeRead = byteBuffer.position();
-                logger.severe(getLoggingFilename() + ":Looking for next frame at:" + posBeforeRead);
+                logger.config(getLoggingFilename() + ":Looking for next frame at:" + posBeforeRead);
                 next = new ID3v23Frame(byteBuffer, getLoggingFilename());
                 id = next.getIdentifier();
-                logger.severe(getLoggingFilename() + ":Found "+ id+ " at frame at:" + posBeforeRead);
+                logger.config(getLoggingFilename() + ":Found "+ id+ " at frame at:" + posBeforeRead);
                 loadFrameIntoMap(id, next);
             }
             //Found Padding, no more frames

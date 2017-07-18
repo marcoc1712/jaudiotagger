@@ -914,7 +914,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
             try
             {
                 //Read Frame
-                logger.finest(getLoggingFilename() + ":" + "looking for next frame at:" + byteBuffer.position());
+                logger.config(getLoggingFilename() + ":" + "looking for next frame at:" + byteBuffer.position());
                 next = new ID3v24Frame(byteBuffer, getLoggingFilename());
                 id = next.getIdentifier();
                 loadFrameIntoMap(id, next);

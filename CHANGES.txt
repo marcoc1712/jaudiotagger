@@ -66,6 +66,8 @@ Summarise Changes
 #181:Null characters are included in WavTag.toString
 #208:Add new OVERALL_WORK field to store the top level work
 #180:Support for ITunes GRP field
+#214:Remove checkFileExists()
+#216:Cannot read mp4s when Mdat length is described as 64bit length header
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

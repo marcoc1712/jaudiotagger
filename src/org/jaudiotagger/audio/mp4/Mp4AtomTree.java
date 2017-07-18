@@ -13,6 +13,7 @@ import org.jaudiotagger.utils.tree.DefaultTreeModel;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -185,7 +186,24 @@ public class Mp4AtomTree
                     mdatNodes.add(newAtom);
                 }
                 rootNode.add(newAtom);
-                fc.position(fc.position() + boxHeader.getDataLength());
+
+                //64bit data length
+                if(boxHeader.getLength() == 1)
+                {
+                    ByteBuffer data64bitLengthBuffer = ByteBuffer.allocate(Mp4BoxHeader.DATA_64BITLENGTH);
+                    data64bitLengthBuffer.order(ByteOrder.BIG_ENDIAN);
+                    int  bytesRead = fc.read(data64bitLengthBuffer);
+                    if (bytesRead != Mp4BoxHeader.DATA_64BITLENGTH)
+                    {
+                        return null;
+                    }
+                    data64bitLengthBuffer.rewind();
+                    fc.position(fc.position() + data64bitLengthBuffer.getLong() - Mp4BoxHeader.REALDATA_64BITLENGTH);
+                }
+                else
+                {
+                    fc.position(fc.position() + boxHeader.getDataLength());
+                }
             }
             return dataTree;
         }
@@ -227,11 +245,25 @@ public class Mp4AtomTree
 
                 if(header instanceof NullPadding)
                 {
-                    System.out.println(tabbing + "Null pad " + " @ " + header.getFilePos() + " of size:" + header.getLength() + " ,ends @ " + (header.getFilePos() + header.getLength()));                                        
+                    if(header.getLength()==1)
+                    {
+                        System.out.println(tabbing + "Null pad " + " @ " + header.getFilePos() + " 64bitDataSize" + " ,ends @ " + (header.getFilePos() + header.getLength()));
+                    }
+                    else
+                    {
+                        System.out.println(tabbing + "Null pad " + " @ " + header.getFilePos() + " of size:" + header.getLength() + " ,ends @ " + (header.getFilePos() + header.getLength()));
+                    }
                 }
                 else
                 {
-                    System.out.println(tabbing + "Atom " + header.getId() + " @ " + header.getFilePos() + " of size:" + header.getLength() + " ,ends @ " + (header.getFilePos() + header.getLength()));
+                    if(header.getLength()==1)
+                    {
+                        System.out.println(tabbing + "Atom " + header.getId() + " @ " + header.getFilePos() + " 64BitDataSize"  + " ,ends @ " + (header.getFilePos() + header.getLength()));
+                    }
+                    else
+                    {
+                        System.out.println(tabbing + "Atom " + header.getId() + " @ " + header.getFilePos() + " of size:" + header.getLength() + " ,ends @ " + (header.getFilePos() + header.getLength()));
+                    }
                 }
             }
         }
