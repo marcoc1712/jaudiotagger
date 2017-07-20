@@ -1183,7 +1183,7 @@ public class ID3v24Tag extends AbstractID3v2Tag
     }
 
     /**
-     * Are all frame swithin this tag unsynchronized
+     * Are all frames within this tag unsynchronized
      *
      * <p>Because synchronization occurs at the frame level it is not normally desirable to unsynchronize all frames
      * and hence this flag is not normally set.
