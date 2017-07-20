@@ -106,6 +106,7 @@ test158.flac,no,137,flac with ID3 header at start
 test159.mp3,no,161,mp3 with encrypted frame
 test162.wav,no,204,wav with invalid ending ID3 length
 test164.m4a,yes,216,64bit mdat data length
+test210.m4a,no,210,NPE when reading a file with MP4 boxes of field type "genre"
 test218.mp4,yes,218,Corrupt files that apears to have 64bit mdat data length, but doesnt really
 test508.ogg, yes,183, flac with  part of ogg header and ogg suffix
 test509.wma, yes,184, corrupt wma file
