@@ -198,7 +198,12 @@ public class Mp4AtomTree
                         return null;
                     }
                     data64bitLengthBuffer.rewind();
-                    fc.position(fc.position() + data64bitLengthBuffer.getLong() - Mp4BoxHeader.REALDATA_64BITLENGTH);
+                    long length = data64bitLengthBuffer.getLong();
+                    if (length < Mp4BoxHeader.HEADER_LENGTH){
+                        return null;
+                    }
+
+                    fc.position(fc.position() + length - Mp4BoxHeader.REALDATA_64BITLENGTH);
                 }
                 else
                 {
