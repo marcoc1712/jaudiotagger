@@ -37,7 +37,7 @@ public class Issue210Test extends AbstractTestCase
             e.printStackTrace();
             ex=e;
         }
-        assertNotNull(ex);
+        assertNull(ex);
     }
 
 }
