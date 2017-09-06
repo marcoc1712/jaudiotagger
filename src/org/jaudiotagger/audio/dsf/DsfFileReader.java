@@ -101,11 +101,11 @@ public class DsfFileReader extends AudioFileReader2
                     switch (version)
                     {
                         case ID3v22Tag.MAJOR_VERSION:
-                            return new ID3v22Tag(id3Chunk.getDataBuffer(), "");
+                            return new ID3v22Tag(id3Chunk.getDataBuffer(), fileName);
                         case ID3v23Tag.MAJOR_VERSION:
-                            return new ID3v23Tag(id3Chunk.getDataBuffer(), "");
+                            return new ID3v23Tag(id3Chunk.getDataBuffer(), fileName);
                         case ID3v24Tag.MAJOR_VERSION:
-                            return new ID3v24Tag(id3Chunk.getDataBuffer(), "");
+                            return new ID3v24Tag(id3Chunk.getDataBuffer(), fileName);
                         default:
                             logger.log(Level.WARNING,   fileName + " Unknown ID3v2 version " + version + ". Returning an empty ID3v2 Tag.");
                             return null;
