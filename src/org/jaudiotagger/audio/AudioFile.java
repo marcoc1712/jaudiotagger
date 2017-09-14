@@ -388,14 +388,13 @@ public class AudioFile
     }
 
     /**
-     * Get the tag and convert to the default tag version or if the file doesn't have one at all, create a default tag
-     * set as tag for this file
+     *  Get the tag and convert to the default tag version or if the file doesn't have one at all, create a default tag
      *
-     * Conversions are currently only necessary/available for formats that support ID3
+     *  Conversions are currently only necessary/available for some formats that support ID3- Dsf, Mp3
      *
      * @return
      */
-    public Tag getTagAndConvertOrCreateAndSetDefault()
+    public Tag getTagAndConvertOrCreateDefault()
     {
         Tag tag = getTagOrCreateDefault();
 
@@ -407,17 +406,31 @@ public class AudioFile
             Tag convertedTag = convertID3Tag((AbstractID3v2Tag)tag, TagOptionSingleton.getInstance().getID3V2Version());
             if(convertedTag!=null)
             {
-                setTag(convertedTag);
+                return convertedTag;
             }
             else
             {
-                setTag(tag);
+                return tag;
             }
         }
         else
         {
-            setTag(tag);
+           return tag;
         }
+    }
+
+    /**
+     * Get the tag and convert to the default tag version or if the file doesn't have one at all, create a default tag
+     * set as tag for this file
+     *
+     * Conversions are currently only necessary/available for some formats that support ID3- Dsf, Mp3
+     *
+     * @return
+     */
+    public Tag getTagAndConvertOrCreateAndSetDefault()
+    {
+        Tag tag = getTagAndConvertOrCreateDefault();
+        setTag(tag);
         return getTag();
     }
 

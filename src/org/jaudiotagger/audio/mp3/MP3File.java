@@ -1127,7 +1127,6 @@ public class MP3File extends AudioFile
         return tag;
     }
 
-
     /**
      * Get the ID3v2 tag and convert to preferred version or if the file doesn't have one at all
      * create a default tag of preferred version and set it. The file may already contain a ID3v1 tag but because
@@ -1136,18 +1135,27 @@ public class MP3File extends AudioFile
      * @return
      */
     @Override
-    public Tag getTagAndConvertOrCreateAndSetDefault()
+    public Tag getTagAndConvertOrCreateDefault()
     {
         Tag tag          = getTagOrCreateDefault();
         Tag convertedTag = convertID3Tag((AbstractID3v2Tag)tag, TagOptionSingleton.getInstance().getID3V2Version());
         if(convertedTag!=null)
         {
-            setTag(convertedTag);
+            return convertedTag;
         }
-        else
-        {
-            setTag(tag);
-        }
+        return tag;
+    }
+
+    /**
+     * Get the ID3v2 tag and convert to preferred version and set as the current tag
+     *
+     * @return
+     */
+    @Override
+    public Tag getTagAndConvertOrCreateAndSetDefault()
+    {
+        Tag tag = getTagAndConvertOrCreateDefault();
+        setTag(tag);
         return getTag();
     }
 }
