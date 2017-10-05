@@ -95,13 +95,16 @@ public class Mp4Tag extends AbstractTag
         tagFieldToMp4Field.put(FieldKey.GROUPING, Mp4FieldKey.GROUPING);
         tagFieldToMp4Field.put(FieldKey.INSTRUMENT, Mp4FieldKey.INSTRUMENT);
         tagFieldToMp4Field.put(FieldKey.INVOLVED_PERSON, Mp4FieldKey.INVOLVED_PEOPLE);
+        tagFieldToMp4Field.put(FieldKey.IPI, Mp4FieldKey.IPI);
         tagFieldToMp4Field.put(FieldKey.ISRC, Mp4FieldKey.ISRC);
+        tagFieldToMp4Field.put(FieldKey.ISWC, Mp4FieldKey.ISWC);
         tagFieldToMp4Field.put(FieldKey.IS_COMPILATION, Mp4FieldKey.COMPILATION);
         tagFieldToMp4Field.put(FieldKey.IS_CLASSICAL, Mp4FieldKey.IS_CLASSICAL);
         tagFieldToMp4Field.put(FieldKey.IS_SOUNDTRACK, Mp4FieldKey.IS_SOUNDTRACK);
         tagFieldToMp4Field.put(FieldKey.KEY, Mp4FieldKey.KEY);
         tagFieldToMp4Field.put(FieldKey.LANGUAGE, Mp4FieldKey.LANGUAGE);
         tagFieldToMp4Field.put(FieldKey.LYRICIST, Mp4FieldKey.LYRICIST);
+        tagFieldToMp4Field.put(FieldKey.LYRICIST_SORT, Mp4FieldKey.LYRICIST_SORT);
         tagFieldToMp4Field.put(FieldKey.LYRICS, Mp4FieldKey.LYRICS);
         tagFieldToMp4Field.put(FieldKey.MEDIA, Mp4FieldKey.MEDIA);
         tagFieldToMp4Field.put(FieldKey.MIXER, Mp4FieldKey.MIXER);

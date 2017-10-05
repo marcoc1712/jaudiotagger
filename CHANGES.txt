@@ -68,6 +68,8 @@ Summarise Changes
 #180:Support for ITunes GRP field
 #214:Remove checkFileExists()
 #216:Cannot read mp4s when Mdat length is described as 64bit length header
+#220: Add support for ISWC and IPI codes
+#213: LYRICIST_SORT field missing
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

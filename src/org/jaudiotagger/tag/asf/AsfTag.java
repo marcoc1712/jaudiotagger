@@ -137,13 +137,16 @@ public final class AsfTag extends AbstractTag
         tagFieldToAsfField.put(FieldKey.GROUPING, AsfFieldKey.GROUPING);
         tagFieldToAsfField.put(FieldKey.INSTRUMENT, AsfFieldKey.INSTRUMENT);
         tagFieldToAsfField.put(FieldKey.INVOLVED_PERSON, AsfFieldKey.INVOLVED_PERSON);
+        tagFieldToAsfField.put(FieldKey.IPI, AsfFieldKey.IPI);
         tagFieldToAsfField.put(FieldKey.ISRC, AsfFieldKey.ISRC);
+        tagFieldToAsfField.put(FieldKey.ISWC, AsfFieldKey.ISWC);
         tagFieldToAsfField.put(FieldKey.IS_CLASSICAL, AsfFieldKey.IS_CLASSICAL);
         tagFieldToAsfField.put(FieldKey.IS_COMPILATION, AsfFieldKey.IS_COMPILATION);
         tagFieldToAsfField.put(FieldKey.IS_SOUNDTRACK, AsfFieldKey.IS_SOUNDTRACK);
         tagFieldToAsfField.put(FieldKey.KEY, AsfFieldKey.INITIAL_KEY);
         tagFieldToAsfField.put(FieldKey.LANGUAGE, AsfFieldKey.LANGUAGE);
         tagFieldToAsfField.put(FieldKey.LYRICIST, AsfFieldKey.LYRICIST);
+        tagFieldToAsfField.put(FieldKey.LYRICIST_SORT, AsfFieldKey.LYRICIST_SORT);
         tagFieldToAsfField.put(FieldKey.LYRICS, AsfFieldKey.LYRICS);
         tagFieldToAsfField.put(FieldKey.MEDIA, AsfFieldKey.MEDIA);
         tagFieldToAsfField.put(FieldKey.MIXER, AsfFieldKey.MIXER);
