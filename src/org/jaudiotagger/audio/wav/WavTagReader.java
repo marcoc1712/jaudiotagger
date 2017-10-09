@@ -66,7 +66,7 @@ public class WavTagReader
         WavTag tag = new WavTag(TagOptionSingleton.getInstance().getWavOptions());
         try(FileChannel fc = FileChannel.open(path))
         {
-            if (WavRIFFHeader.isValidHeader(fc))
+            if (WavRIFFHeader.isValidHeader(loggingName, fc))
             {
                 while (fc.position() < fc.size())
                 {

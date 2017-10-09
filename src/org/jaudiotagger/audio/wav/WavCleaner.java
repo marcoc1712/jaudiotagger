@@ -54,7 +54,7 @@ public class WavCleaner
     {
         try(FileChannel fc = FileChannel.open(path, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
-            if(WavRIFFHeader.isValidHeader(fc))
+            if(WavRIFFHeader.isValidHeader(loggingName, fc))
             {
                 while (fc.position() < fc.size())
                 {
