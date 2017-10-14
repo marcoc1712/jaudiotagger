@@ -98,3 +98,5 @@ I.e update your `pom.xml` as follows to use release 2.2.3:
             <version>2.2.3</version>
         </dependency>
     </dependencies>
+
+# mc2 version changeLog:
