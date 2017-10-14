@@ -1,0 +1,1811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c6ab1c14-6cd1-42fd-af1f-7ac1a83b7f78" name="Default" comment="#216:Cannot read mp4s when Mdat length is described as 64bit length header">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue210Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jaudiotagger.iws" afterPath="$PROJECT_DIR$/jaudiotagger.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testdata/testfiles.txt" afterPath="$PROJECT_DIR$/testdata/testfiles.txt" />
+    </list>
+    <ignored path="jaudiotagger.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="jaudiotagger" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Mp4AtomTree.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4AtomTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="8347">
+              <caret line="242" column="31" selection-start-line="242" selection-start-column="31" selection-end-line="242" selection-end-column="31" />
+              <folding>
+                <element signature="e#3513#3514#0" expanded="true" />
+                <element signature="e#3556#3557#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mp4TagReader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4TagReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1937" max-vertical-offset="4930">
+              <caret line="158" column="22" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Issue218Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue218Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="371" max-vertical-offset="1088">
+              <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Issue210Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue210Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="121" max-vertical-offset="697">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mp4GenreField.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/field/Mp4GenreField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1491" max-vertical-offset="2091">
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mp4BoxHeader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/atom/Mp4BoxHeader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3944" max-vertical-offset="6273">
+              <caret line="301" column="0" selection-start-line="297" selection-start-column="15" selection-end-line="301" selection-end-column="0" />
+              <folding>
+                <element signature="e#4569#4570#0" expanded="true" />
+                <element signature="e#4603#4604#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testfiles.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testdata/testfiles.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.734375" vertical-offset="1413" max-vertical-offset="2006">
+              <caret line="108" column="79" selection-start-line="108" selection-start-column="79" selection-end-line="108" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Issue164Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue164Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="901">
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mp4InfoReader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4InfoReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5128" max-vertical-offset="5695">
+              <caret line="351" column="12" selection-start-line="351" selection-start-column="12" selection-end-line="351" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Issue463Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue463Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="521" max-vertical-offset="1020">
+              <caret line="44" column="46" selection-start-line="43" selection-start-column="12" selection-end-line="44" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/tag/wav/WavMetadataNewTagsId3BeforeInfoTest.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/tag/wav/WavMetadataNewTagsInfobeforeId3Test.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavChunkType.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavInfoReader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/chunk/WavCorruptChunkType.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavTagReader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/wav/WavTag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/generic/AbstractTag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/wav/WavInfoTag.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue181Test.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/FieldKey.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/asf/AsfTag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/asf/AsfFieldKey.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/Mp4Tag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/Mp4FieldKey.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/vorbiscomment/VorbisCommentTag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/vorbiscomment/VorbisCommentFieldKey.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v24Frames.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v23Frames.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v22FieldKey.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/framebody/FrameBodyTXXX.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v24FieldKey.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v23FieldKey.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue298Test.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/chunk/ID3Chunk.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/audio/aiff/AiffInfoReaderTest.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffFileReader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffInfoReader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffFileHeader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffTagWriter.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffTagReader.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/tag/aiff/AiffAudioTagTest.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v22Frames.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue180Test.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue163Test.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/generic/AudioFileReader2.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/generic/AudioFileReader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/AudioFileIO.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/AsfFileReader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/AudioFile.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue005Test.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue164Test.java" />
+        <option value="$PROJECT_DIR$/CHANGES.txt" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v23Tag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v22Tag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v24Tag.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/atom/Mp4BoxHeader.java" />
+        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4AtomTree.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue218Test.java" />
+        <option value="$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue210Test.java" />
+        <option value="$PROJECT_DIR$/testdata/testfiles.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers ProjectPane="true" />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testdata" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="srctest" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="srctest" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaudiotagger" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tag" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="recentsLimit" value="5" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="290" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="298" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="952" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="292" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="297" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="951" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="LayoutCode.rearrangeEntries" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JaikozServer" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.jaudiotagger.issues" />
+      <recent name="org.jaudiotagger.audio.wav.chunk" />
+      <recent name="org.jaudiotagger.tag.id3" />
+      <recent name="org.jaudiotagger.tag.id3.framebody" />
+      <recent name="org.jaudiotagger.tag.wav" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.jaudiotagger.tag.wav" />
+      <recent name="org.jaudiotagger.audio.asf" />
+      <recent name="org.jaudiotagger.audio.wav" />
+      <recent name="org.jaudiotagger.tag.aiff" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.Issue210Test.testReadingInvalidGenre">
+    <configuration default="false" name="Issue164Test.testReadmp4With64BitMDatLength" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue164Test" />
+      <option name="METHOD_NAME" value="testReadmp4With64BitMDatLength" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Issue218Test.testReadCorruptMp4ThatLooksLikehas64bitDataLength" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue218Test" />
+      <option name="METHOD_NAME" value="testReadCorruptMp4ThatLooksLikehas64bitDataLength" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Issue218Test.testReadCorruptMp4ThatLooksLikehas64bitDataLengthAtomTree" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue218Test" />
+      <option name="METHOD_NAME" value="testReadCorruptMp4ThatLooksLikehas64bitDataLengthAtomTree" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Issue218Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue218Test" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Issue210Test.testReadingInvalidGenre" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue210Test" />
+      <option name="METHOD_NAME" value="testReadingInvalidGenre" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
+      <setting name="environment" value="" />
+      <setting name="specsToExecute" value="" />
+      <setting name="tags" value="" />
+      <setting name="parallelNodes" value="" />
+      <setting name="execInParallel" value="false" />
+      <setting name="programParameters" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="moduleName" value="" />
+      <envMap />
+      <setting name="rowsRange" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Issue164Test.testReadWriteMp4With64BitMDatLength" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue164Test" />
+      <option name="METHOD_NAME" value="testReadWriteMp4With64BitMDatLength" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Issue180Test.testWriteIDv22AifForITunes12_6" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue180Test" />
+      <option name="METHOD_NAME" value="testWriteIDv22AifForITunes12_6" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AiffAudioTagTest.testReadAiff3" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.tag.aiff" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.tag.aiff.AiffAudioTagTest" />
+      <option name="METHOD_NAME" value="testReadAiff3" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AiffAudioTagTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.tag.aiff" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.tag.aiff.AiffAudioTagTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <list size="9">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.Issue164Test.testReadWriteMp4With64BitMDatLength" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.Issue180Test.testWriteIDv22AifForITunes12_6" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.AiffAudioTagTest.testReadAiff3" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.AiffAudioTagTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.Issue164Test.testReadmp4With64BitMDatLength" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.Issue218Test.testReadCorruptMp4ThatLooksLikehas64bitDataLength" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.Issue218Test.testReadCorruptMp4ThatLooksLikehas64bitDataLengthAtomTree" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.Issue218Test" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.Issue210Test.testReadingInvalidGenre" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.Issue210Test.testReadingInvalidGenre" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.Issue218Test" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.Issue218Test.testReadCorruptMp4ThatLooksLikehas64bitDataLengthAtomTree" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.Issue218Test.testReadCorruptMp4ThatLooksLikehas64bitDataLength" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.Issue164Test.testReadmp4With64BitMDatLength" />
+      </list>
+    </recent_temporary>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c6ab1c14-6cd1-42fd-af1f-7ac1a83b7f78" name="Default" comment="" />
+      <created>1410537432863</created>
+      <updated>1410537432863</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Updated testfile to one that exists in repository so mp4 tests actually run">
+      <created>1442237635559</created>
+      <updated>1442237635559</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Basic tidy up of the Aiff Read code">
+      <created>1442307954083</created>
+      <updated>1442307954083</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Setup dumy classes for writing data for AIff">
+      <created>1442310115566</created>
+      <updated>1442310115566</updated>
+    </task>
+    <task id="LOCAL-00004" summary="https://bitbucket.org/ijabz/jaudiotagger/issues/30/support-for-aiff-format&#10;Added support for writing&#10;Refactored existing AIFF code&#10;Made some general modifications for tagwriting">
+      <created>1442438750938</created>
+      <updated>1442438750938</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add test and some code tidy up for Dsf Read">
+      <created>1442482096593</created>
+      <updated>1442482096593</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Dsf format:More COde tidyup/simplification">
+      <created>1442484250714</created>
+      <updated>1442484250714</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Dsf format:Further code simplication">
+      <created>1442484936988</created>
+      <updated>1442484936988</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed accidental modiciation of &lt;description&gt; to &lt;compression&gt;">
+      <created>1442485407677</created>
+      <updated>1442485407677</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Dsf:ChannelNumber being set twice (probably because have no field to store ChannelType)">
+      <created>1442485467771</created>
+      <updated>1442485467771</updated>
+    </task>
+    <task id="LOCAL-00010" summary="AIFF:Reduced down the level of logging">
+      <created>1442486520020</created>
+      <updated>1442486520020</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Aiff:Added minimal sound chunk processing">
+      <created>1442486938835</created>
+      <updated>1442486938835</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Wav:Code Tidy up">
+      <created>1442502045053</created>
+      <updated>1442502045053</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Tidyup code for converting signed bytes/shorts to unsigned ints">
+      <created>1442502771239</created>
+      <updated>1442502771239</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Simplified use of charsets to use StandardCharSet">
+      <created>1442505582880</created>
+      <updated>1442505582880</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Optimized Import statements">
+      <created>1442505980391</created>
+      <updated>1442505980391</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Started to make Aiff and Wav code simailr as both based on Aiff chunck mechanism">
+      <created>1442507918079</created>
+      <updated>1442507918079</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Reactored Aiff/Wav code as they are both iff format to share some code&#10;Made Wav code more chunk like&#10;Made Wav code use ByteBuffers better to reduce file i/o &#10;Made wav code  use ByteBuffers in preference to byte arrays">
+      <created>1442522741538</created>
+      <updated>1442522741538</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Manual merge of https://bitbucket.org/ijabz/jaudiotagger/pull-requests/15/aifffilereader_cleanup/diff by Hendrik Schreiber&#10;AMendements need to ByteOrder because ChunkHeader now used by both Aiff and Wav">
+      <created>1442524920388</created>
+      <updated>1442524920388</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Manul merge of https://bitbucket.org/ijabz/jaudiotagger/pull-requests/14  by Hendrik Schreiber">
+      <created>1442525517503</created>
+      <updated>1442525517503</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed AIFF code that that AiffReader.getTag() is no longer dependent on AiffFileReader.getEncodingInfo(), although this means the file has to be parsed twice most of the file can be skipped as each method can just analyse the chunks they need. This brings the code inline with other formats, as part of this refactored AiffFileReader into AiffInfoReader and AiffTagReader">
+      <created>1442565892141</created>
+      <updated>1442565892141</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Converted to CommonChunk to process ByteBuffer rather than RAF, this allows us to use inbuilt ByteBuffer methods for reading ints etc but more importantly means we dont need to keep track of bytesLeft because already moved to start of next chunk in calling AiffInfoReader code">
+      <created>1442567115776</created>
+      <updated>1442567115776</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Converted all Chunks to process ByteBuffer rather than RAF, this allows us to use inbuilt ByteBuffer methods for reading ints etc but more importantly means we dont need to keep track of bytesLeft because already moved to start of next chunk in calling AiffInfoReader code.&#10;Also tidyup/removal of some util methods">
+      <created>1442569493770</created>
+      <updated>1442569493770</updated>
+    </task>
+    <task id="LOCAL-00023" summary="https://bitbucket.org/ijabz/jaudiotagger/pull-requests/19 by Hendrik Schreiber&#10;Plus extended toString() for AiffAudioHeader so outputs addtional Aiff Specific Info">
+      <created>1442580572270</created>
+      <updated>1442580572270</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Move comon code in AiffInfoReader and AiffTagReader into AiffChunkReader">
+      <created>1442581907656</created>
+      <updated>1442581907656</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Tidy up of some of the Util methods">
+      <created>1442584239656</created>
+      <updated>1442584239656</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fixed PascalString method&#10;Fixed AiffTagWriter so not dependent on previous read in order to identify location of existing Tag">
+      <created>1442585332496</created>
+      <updated>1442585332496</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fix signed Int to Unsigned Long method">
+      <created>1442586054064</created>
+      <updated>1442586054064</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Reduce File I/O when reading dsf files">
+      <created>1442588426716</created>
+      <updated>1442588426716</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fix made to AiffTag.delete() to not depdn on previous read to find location of tag before deletion">
+      <created>1442588915065</created>
+      <updated>1442588915065</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Tidyup Wav">
+      <created>1442589139907</created>
+      <updated>1442589139907</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added aiff test file, and updated tests to use it">
+      <created>1442591793892</created>
+      <updated>1442591793892</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added basic suport for reading Wav INFO metadata chunk (written by MediaMonkey) into Tag">
+      <created>1442825775393</created>
+      <updated>1442825775393</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added reading of remaining Wav INFO metadata that can be written by MediaMonkey">
+      <created>1442828972890</created>
+      <updated>1442828972890</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Aiff:Fixed AiffInfoReader and AiffTagReader incorrectly had instance variables, they cannot because these readers are reused.&#10;Also chnaged to skipBytes() rather than readbytes into buffer if not interested in contents because quicker">
+      <created>1442833451847</created>
+      <updated>1442833451847</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Aiff:tagReader skipBytes() rather than readbytes into buffer if not interested in contents because quicker">
+      <created>1442834226351</created>
+      <updated>1442834226351</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Wav:Fixed WavTagagReader incorrectly had WavTag declared as an instance variable">
+      <created>1442835066013</created>
+      <updated>1442835066013</updated>
+    </task>
+    <task id="LOCAL-00037" summary="When allocating buffer for reading chunks used direct buffer rather than allocating form heap. This prevents using up our vaulable heap and should be quicker, as log as we dont use ByteBuffer.toArray() this is perfectly safe.">
+      <created>1442835327978</created>
+      <updated>1442835327978</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Make WavTag a wrapper of WavInfoTag as a precursor to being able to read Wav ID3 tag as well as info tag">
+      <created>1442846797979</created>
+      <updated>1442846797979</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Basic (and buggy) implementation allowing Wav INFO metadata to be edited and saved.">
+      <created>1442915194933</created>
+      <updated>1442915194933</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Simplified chunkHeader write code">
+      <created>1442915394541</created>
+      <updated>1442915394541</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Removed calls to ByteBuffer.array() where easy to do so, as this is old style pre NIO and would fail if ByteBuffer used allocatedDirect()">
+      <created>1442916406494</created>
+      <updated>1442916406494</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Fixed WavTagWriter so it can pad data when new tag is smaller than original tag&#10;Also added test for the reverse when new tag is alrger than original tag">
+      <created>1442922963496</created>
+      <updated>1442922963496</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added support for deleting LISTINFO chunk from a Wav">
+      <created>1442925082241</created>
+      <updated>1442925082241</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Updated README.txt">
+      <created>1442925416124</created>
+      <updated>1442925416124</updated>
+    </task>
+    <task id="LOCAL-00045" summary=".">
+      <created>1442925468785</created>
+      <updated>1442925468785</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Fixed typo">
+      <created>1442926486538</created>
+      <updated>1442926486538</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Wav ability to remove LISTINFO chunk even when not last chunk">
+      <created>1442932725262</created>
+      <updated>1442932725262</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Wav:Must read all LISTINFO tuples, even those we dont understand because we need to write them back again if tag is modified and then written back again.">
+      <created>1442934584884</created>
+      <updated>1442934584884</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Added support for MUSICBRAINZ_WORK, in contrast to WORK which is now used for work derived from title">
+      <created>1479303584964</created>
+      <updated>1479303584964</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Make WORK same name as far as possible">
+      <created>1479303683448</created>
+      <updated>1479303683448</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Rename WORK_COMPOSITION to MUSICBRAINZ_WORK_COMPOSITION">
+      <created>1479304307612</created>
+      <updated>1479304307612</updated>
+    </task>
+    <task id="LOCAL-00052" summary=",">
+      <created>1479304384976</created>
+      <updated>1479304384976</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Remapping of some work related fields">
+      <created>1479306870683</created>
+      <updated>1479306870683</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Rename of some ACOUSTICBRAINZ fields for better comptability when converting between audio formats">
+      <created>1479400127599</created>
+      <updated>1479400127599</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Make TIMBRE and TONALITY fields consistent (havent preceded with MOOD_) because clearly understood measures outside of MOOD">
+      <created>1479400705825</created>
+      <updated>1479400705825</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Attempt to  get all new classical music fields to share same names over different audio formats.">
+      <created>1479402690365</created>
+      <updated>1479402690365</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Fixes to field mappings">
+      <created>1479458124920</created>
+      <updated>1479458124920</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fixes for tag mappings">
+      <created>1479458382183</created>
+      <updated>1479458382183</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Added contact details">
+      <created>1479482369471</created>
+      <updated>1479482369471</updated>
+    </task>
+    <task id="LOCAL-00060" summary=".">
+      <created>1479482401565</created>
+      <updated>1479482401565</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Make TIMBRE and TONALITY fields consistent (havent preceded with MOOD_) because clearly understood measures outside of MOOD">
+      <created>1479482442476</created>
+      <updated>1479482442476</updated>
+    </task>
+    <task id="LOCAL-00062" summary=".">
+      <created>1479482469175</created>
+      <updated>1479482469175</updated>
+    </task>
+    <task id="LOCAL-00063" summary=".">
+      <created>1479482506329</created>
+      <updated>1479482506329</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Fixed work type">
+      <created>1480427457891</created>
+      <updated>1480427457891</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Fixed incorrect mapping for ID3v22,ID3V23 for ALBUM_ARTISTS and ALBUM_ARTISTS_SORT">
+      <created>1481207028358</created>
+      <updated>1481207028358</updated>
+    </task>
+    <task id="LOCAL-00066" summary="getAll() not reading YEAR key back properly because in ID3v23 served by two different fields TDAT and TYER">
+      <created>1481412068284</created>
+      <updated>1481412068284</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Removed debugging">
+      <created>1481442998428</created>
+      <updated>1481442998428</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Removed more debugging">
+      <created>1481443420703</created>
+      <updated>1481443420703</updated>
+    </task>
+    <task id="LOCAL-00069" summary=".">
+      <created>1481530373071</created>
+      <updated>1481530373071</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Added generic field key ITUNES_GROUPING that maps to the GP1/GRP1 frame recently introduced by iTunes for ID3 format. Warning generic key does not map to a key in other formats since this is field key is currenlty specific to iTunes and ID3, nothing else.">
+      <created>1481816082835</created>
+      <updated>1481816082835</updated>
+    </task>
+    <task id="LOCAL-00071" summary="#187:If VorbisAlbumArtistSaveOptions set to WRITE_ALBUMARTIST shoud remove JRIVER on write">
+      <created>1483607128813</created>
+      <updated>1483607128813</updated>
+    </task>
+    <task id="LOCAL-00072" summary="#183:OGG: String index out of range: 7">
+      <created>1483607941489</created>
+      <updated>1483607941489</updated>
+    </task>
+    <task id="LOCAL-00073" summary="#184:Added Test">
+      <created>1483608277506</created>
+      <updated>1483608277506</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Work on #167">
+      <created>1483609760795</created>
+      <updated>1483609760795</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Failed attempt to replaice">
+      <created>1490005761571</created>
+      <updated>1490005761571</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Failed attempt to replaice">
+      <created>1490005931739</created>
+      <updated>1490005931739</updated>
+    </task>
+    <task id="LOCAL-00077" summary="#189:Aiff Reader should never throw BufferUnderflowException even if file is corrupt">
+      <created>1490009824562</created>
+      <updated>1490009824562</updated>
+    </task>
+    <task id="LOCAL-00078" summary="#199:Add support for INSTRUMENT field">
+      <created>1491400802370</created>
+      <updated>1491400802370</updated>
+    </task>
+    <task id="LOCAL-00079" summary="#200:Support for MinimServer GROUP field">
+      <created>1491463761789</created>
+      <updated>1491463761789</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Failed attempt to replaice">
+      <created>1491463839655</created>
+      <updated>1491463839655</updated>
+    </task>
+    <task id="LOCAL-00081" summary="#155@Common Tag Mapping for Copyright">
+      <created>1491466487978</created>
+      <updated>1491466487978</updated>
+    </task>
+    <task id="LOCAL-00082" summary="#204:Wav with corrupt ID3/LIST placement shoudnt cause complete Read fail">
+      <created>1492788089539</created>
+      <updated>1492788089539</updated>
+    </task>
+    <task id="LOCAL-00083" summary="#205:WAV files can have additional itrk fields added to RIFF chunk">
+      <created>1492854850189</created>
+      <updated>1492854850189</updated>
+    </task>
+    <task id="LOCAL-00084" summary="#205:Modified so if have writeTwonkyEnabled and no TRACK field in new data but there is an existing itrk field that field should be retained">
+      <created>1492859486180</created>
+      <updated>1492859486180</updated>
+    </task>
+    <task id="LOCAL-00085" summary="#204:Improved now recognises ISTx and xLIS where x can be any char">
+      <created>1492860953421</created>
+      <updated>1492860953421</updated>
+    </task>
+    <task id="LOCAL-00086" summary="#181:Null characters are included in WavTag.toString">
+      <created>1492879262624</created>
+      <updated>1492879262624</updated>
+    </task>
+    <task id="LOCAL-00087" summary="#208:Add new OVERALL_WORK field to store the top level work">
+      <created>1493645589802</created>
+      <updated>1493645589802</updated>
+    </task>
+    <task id="LOCAL-00088" summary="#208:Add new OVERALL_WORK field to store the top level work">
+      <created>1493645626113</created>
+      <updated>1493645626113</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Improvements to aiff files so that filename is always logged with log messages, also made some log messages lower level">
+      <created>1493712068546</created>
+      <updated>1493712068546</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Improvements to aiff logging">
+      <created>1493714614635</created>
+      <updated>1493714614635</updated>
+    </task>
+    <task id="LOCAL-00091" summary="AiffTagReader incorreclty reporting duplicate ID3 tag in log because of commented out else statement">
+      <created>1493716212305</created>
+      <updated>1493716212305</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Improved logging to include filename">
+      <created>1495719684835</created>
+      <updated>1495719684835</updated>
+    </task>
+    <task id="LOCAL-00093" summary="#180:Add support for new iTunes GRP1 field">
+      <created>1496046423586</created>
+      <updated>1496046423586</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Issue 214:Remove checkFileExists() check">
+      <created>1500322677795</created>
+      <updated>1500322677795</updated>
+    </task>
+    <task id="LOCAL-00095" summary="#216:Cannot read mp4s when Mdat length is described as 64bit length header&#10;Also fixed debugging level for ID3 tag frame reading">
+      <created>1500369033657</created>
+      <updated>1500369033657</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Fixed typo">
+      <created>1500538949257</created>
+      <updated>1500538949257</updated>
+    </task>
+    <task id="LOCAL-00097" summary="#218:Infinite loop trying to parse corrupted mp4">
+      <created>1500548023066</created>
+      <updated>1500548023066</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44766146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3986637" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3040089" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.577951" sideWeight="0.6022032" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3997555" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20095949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32739422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" x="589" y="441" width="501" height="127" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328341" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.85067874" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" x="589" y="441" width="501" height="127" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328341" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39599556" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20149253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.967706" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.85067874" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32739422" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3986637" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19599108" sideWeight="0.6022032" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3997555" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="Added generic field key ITUNES_GROUPING that maps to the GP1/GRP1 frame recently introduced by iTunes for ID3 format. Warning generic key does not map to a key in other formats since this is field key is currenlty specific to iTunes and ID3, nothing else." />
+    <MESSAGE value="#187:If VorbisAlbumArtistSaveOptions set to WRITE_ALBUMARTIST shoud remove JRIVER on write" />
+    <MESSAGE value="#183:OGG: String index out of range: 7" />
+    <MESSAGE value="#184:Added Test" />
+    <MESSAGE value="Work on #167" />
+    <MESSAGE value="#189:Aiff Reader should never throw BufferUnderflowException even if file is corrupt" />
+    <MESSAGE value="#199:Add support for INSTRUMENT field" />
+    <MESSAGE value="#200:Support for MinimServer GROUP field" />
+    <MESSAGE value="Failed attempt to replaice" />
+    <MESSAGE value="#155@Common Tag Mapping for Copyright" />
+    <MESSAGE value="#204:Wav with corrupt ID3/LIST placement shoudnt cause complete Read fail" />
+    <MESSAGE value="#205:WAV files can have additional itrk fields added to RIFF chunk" />
+    <MESSAGE value="#205:Modified so if have writeTwonkyEnabled and no TRACK field in new data but there is an existing itrk field that field should be retained" />
+    <MESSAGE value="#204:Improved now recognises ISTx and xLIS where x can be any char" />
+    <MESSAGE value="#181:Null characters are included in WavTag.toString" />
+    <MESSAGE value="#208:Add new OVERALL_WORK field to store the top level work" />
+    <MESSAGE value="Improvements to aiff files so that filename is always logged with log messages, also made some log messages lower level" />
+    <MESSAGE value="Improvements to aiff logging" />
+    <MESSAGE value="AiffTagReader incorreclty reporting duplicate ID3 tag in log because of commented out else statement" />
+    <MESSAGE value="Improved logging to include filename" />
+    <MESSAGE value="#180:Add support for new iTunes GRP1 field" />
+    <MESSAGE value="Issue 214:Remove checkFileExists() check" />
+    <MESSAGE value="#216:Cannot read mp4s when Mdat length is described as 64bit length header&#10;Also fixed debugging level for ID3 tag frame reading" />
+    <MESSAGE value="Fixed typo" />
+    <MESSAGE value="#218:Infinite loop trying to parse corrupted mp4" />
+    <option name="LAST_COMMIT_MESSAGE" value="#218:Infinite loop trying to parse corrupted mp4" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jaudiotagger/tag/aiff/AiffTag.java</url>
+          <line>247</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavTagWriter.java</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/AbstractID3v2Tag.java</url>
+          <line>2521</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="5" />
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue298Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="28407">
+          <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v24Frames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8246" max-vertical-offset="9129">
+          <caret line="514" column="58" selection-start-line="514" selection-start-column="58" selection-end-line="514" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/datatype/AbstractIntStringValuePair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="765">
+          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/field/Mp4FieldType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/atom/Mp4DataBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1643" max-vertical-offset="2482">
+          <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/AbstractID3Tag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="562" max-vertical-offset="1343">
+          <caret line="103" column="32" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/vorbiscomment/VorbisCommentFieldKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="149" max-vertical-offset="3672">
+          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffFileHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="769" max-vertical-offset="1462">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffInfoReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="212" max-vertical-offset="2839">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/aiff/AiffTag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="5134">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/aiff/AiffTagReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="617" max-vertical-offset="2363">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue180Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4538" max-vertical-offset="5066">
+          <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/FieldKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2159" max-vertical-offset="2941">
+          <caret line="127" column="21" selection-start-line="127" selection-start-column="13" selection-end-line="127" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v22Frames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5464" max-vertical-offset="8840">
+          <caret line="336" column="48" selection-start-line="336" selection-start-column="43" selection-end-line="336" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/TagOptionSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="18522" max-vertical-offset="19329">
+          <caret line="1377" column="15" selection-start-line="1377" selection-start-column="15" selection-end-line="1377" selection-end-column="15" />
+          <folding>
+            <element signature="e#36559#36560#0" expanded="false" />
+            <element signature="e#36601#36602#0" expanded="false" />
+            <element signature="e#39527#39528#0" expanded="false" />
+            <element signature="e#39556#39557#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue163Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/nio/file/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="38672" max-vertical-offset="62594">
+          <caret line="2378" column="26" selection-start-line="2378" selection-start-column="26" selection-end-line="2378" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp3/MP3FileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="918">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12000" max-vertical-offset="37162">
+          <caret line="759" column="19" selection-start-line="759" selection-start-column="19" selection-end-line="759" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/AudioFileIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.6140351" vertical-offset="4809" max-vertical-offset="7361">
+          <caret line="358" column="36" selection-start-line="358" selection-start-column="36" selection-end-line="358" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/generic/AudioFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="695" max-vertical-offset="2057">
+          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/AsfFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2990" max-vertical-offset="4284">
+          <caret line="236" column="13" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp3/MP3AudioHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1646" max-vertical-offset="12750">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp3/MP3File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6579" max-vertical-offset="18819">
+          <caret line="417" column="27" selection-start-line="417" selection-start-column="27" selection-end-line="417" selection-end-column="27" />
+          <folding>
+            <element signature="e#4161#4162#0" expanded="false" />
+            <element signature="e#4207#4208#0" expanded="false" />
+            <element signature="e#20443#20444#0" expanded="false" />
+            <element signature="e#20479#20480#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/AudioFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1754384" vertical-offset="3110" max-vertical-offset="7310">
+          <caret line="261" column="107" selection-start-line="261" selection-start-column="107" selection-end-line="261" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/tag/vorbiscomment/VorbisWriteTagTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13923">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue005Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="2210">
+          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4FileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="476">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#1560#1561#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue220Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="847" max-vertical-offset="4556">
+          <caret line="67" column="0" selection-start-line="65" selection-start-column="12" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/nio/HeapByteBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5992" max-vertical-offset="9316">
+          <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/nio/channels/FileChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5145" max-vertical-offset="19040">
+          <caret line="347" column="24" selection-start-line="347" selection-start-column="24" selection-end-line="347" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGES.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="962" max-vertical-offset="1564">
+          <caret line="86" column="47" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v22Tag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5850" max-vertical-offset="14399">
+          <caret line="421" column="43" selection-start-line="421" selection-start-column="43" selection-end-line="421" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/generic/AudioFileReader2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462">
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/flac/FlacFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/Tag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4603" max-vertical-offset="5474">
+          <caret line="337" column="1" selection-start-line="337" selection-start-column="1" selection-end-line="337" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v24FieldKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2347" max-vertical-offset="3978">
+          <caret line="167" column="5" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v24Tag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="19108" max-vertical-offset="24327">
+          <caret line="1203" column="45" selection-start-line="1203" selection-start-column="23" selection-end-line="1203" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v23Tag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="13537" max-vertical-offset="22321">
+          <caret line="868" column="26" selection-start-line="868" selection-start-column="26" selection-end-line="868" selection-end-column="26" />
+          <folding>
+            <element signature="e#29651#29652#0" expanded="true" />
+            <element signature="e#29693#29694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/ID3v23Frame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="13413">
+          <caret line="156" column="58" selection-start-line="156" selection-start-column="58" selection-end-line="156" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue484Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4TagReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1937" max-vertical-offset="4930">
+          <caret line="158" column="22" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4InfoReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5128" max-vertical-offset="5695">
+          <caret line="351" column="12" selection-start-line="351" selection-start-column="12" selection-end-line="351" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue463Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="521" max-vertical-offset="1020">
+          <caret line="44" column="46" selection-start-line="43" selection-start-column="12" selection-end-line="44" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/atom/Mp4BoxHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3944" max-vertical-offset="6273">
+          <caret line="301" column="0" selection-start-line="297" selection-start-column="15" selection-end-line="301" selection-end-column="0" />
+          <folding>
+            <element signature="e#4569#4570#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/audio/mp4/Mp4AtomTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="8347">
+          <caret line="242" column="31" selection-start-line="242" selection-start-column="31" selection-end-line="242" selection-end-column="31" />
+          <folding>
+            <element signature="e#3513#3514#0" expanded="true" />
+            <element signature="e#3556#3557#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue164Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="901">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue218Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="371" max-vertical-offset="1088">
+          <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/field/Mp4GenreField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1491" max-vertical-offset="2091">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srctest/org/jaudiotagger/issues/Issue210Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="121" max-vertical-offset="697">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testdata/testfiles.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.734375" vertical-offset="1413" max-vertical-offset="2006">
+          <caret line="108" column="79" selection-start-line="108" selection-start-column="79" selection-end-line="108" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>jaudiotagger</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.20000002" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: junit:junit:3.8.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+
