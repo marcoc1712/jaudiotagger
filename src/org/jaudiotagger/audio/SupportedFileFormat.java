@@ -20,7 +20,8 @@ public enum SupportedFileFormat
     AIF("aif"),
     AIFF("aiff"),
     AIFC("aifc"),
-    DSF("dsf");
+    DSF("dsf"),
+    DFF("dff");
 
     private String filesuffix;
 
