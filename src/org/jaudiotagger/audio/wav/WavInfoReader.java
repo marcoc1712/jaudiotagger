@@ -70,6 +70,8 @@ public class WavInfoReader
                 throw new CannotReadException(loggingName + " Wav RIFF Header not valid");
             }
         }
+
+        info.setLossless(true);
         calculateTrackLength(info);
         return info;
     }
