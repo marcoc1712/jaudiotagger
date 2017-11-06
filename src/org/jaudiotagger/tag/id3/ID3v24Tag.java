@@ -874,12 +874,11 @@ public class ID3v24Tag extends AbstractID3v2Tag
         {
             throw new TagNotFoundException(getLoggingFilename() + ":" + getIdentifier() + " tag not found");
         }
-        logger.config(getLoggingFilename() + ":" + "Reading ID3v24 tag");
         readHeaderFlags(byteBuffer);
 
         // Read the size, this is size of tag apart from tag header
         size = ID3SyncSafeInteger.bufferToValue(byteBuffer);
-        logger.config(getLoggingFilename() + ":" + "Reading tag from file size set in header is" + size);
+        logger.config(getLoggingFilename() + ":" + "Reading tag from file size set in header is:" + size);
 
         if (extended)
         {

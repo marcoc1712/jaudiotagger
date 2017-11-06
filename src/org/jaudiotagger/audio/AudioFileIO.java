@@ -51,6 +51,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
+import org.jaudiotagger.audio.dff.DffFileReader;
 
 /**
  *
@@ -304,6 +305,7 @@ public class AudioFileIO
         readers.put(SupportedFileFormat.AIFC.getFilesuffix(), new AiffFileReader());
         readers.put(SupportedFileFormat.AIFF.getFilesuffix(), new AiffFileReader());
         readers.put(SupportedFileFormat.DSF.getFilesuffix(), new DsfFileReader());
+        readers.put(SupportedFileFormat.DFF.getFilesuffix(), new DffFileReader());
         final RealFileReader realReader = new RealFileReader();
         readers.put(SupportedFileFormat.RA.getFilesuffix(), realReader);
         readers.put(SupportedFileFormat.RM.getFilesuffix(), realReader);
