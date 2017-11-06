@@ -72,6 +72,7 @@ Summarise Changes
 #213:LYRICIST_SORT field missing
 #225:When writing DSF file with existing metadata chunk we dont rewrite DSDChunk filesize to reflect changes due to new metadata chunk
 #229:Read DFF header
+#226:getAudioHeader().isLossless() reports false for WAV files
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
