@@ -479,8 +479,8 @@ public class WavTagWriter
     {
         public int compare(TagField field1,TagField field2)
         {
-            WavInfoIdentifier code1 = WavInfoIdentifier.getByByFieldKey(FieldKey.valueOf(field1.getId()));
-            WavInfoIdentifier code2 = WavInfoIdentifier.getByByFieldKey(FieldKey.valueOf(field2.getId()));
+            WavInfoIdentifier code1 = WavInfoIdentifier.getByFieldKey(FieldKey.valueOf(field1.getId()));
+            WavInfoIdentifier code2 = WavInfoIdentifier.getByFieldKey(FieldKey.valueOf(field2.getId()));
             int order1 = Integer.MAX_VALUE;
             int order2 = Integer.MAX_VALUE;
             if(code1!=null)
@@ -517,7 +517,7 @@ public class WavTagWriter
             for(TagField nextField:fields)
             {
                 TagTextField next = (TagTextField) nextField;
-                WavInfoIdentifier wii = WavInfoIdentifier.getByByFieldKey(FieldKey.valueOf(next.getId()));
+                WavInfoIdentifier wii = WavInfoIdentifier.getByFieldKey(FieldKey.valueOf(next.getId()));
                 baos.write(wii.getCode().getBytes(StandardCharsets.US_ASCII));
                 logger.config(loggingName + " Writing:" + wii.getCode() + ":" + next.getContent());
 
