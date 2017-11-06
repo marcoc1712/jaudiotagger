@@ -67,6 +67,8 @@ public class DsfFileReader extends AudioFileReader2
             DsdChunk dsd = DsdChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, DsdChunk.DSD_HEADER_LENGTH));
             if (dsd != null)
             {
+                logger.config( file +":actualFileSize:" + fc.size()+":"+dsd.toString());
+
                 return readTag(fc, dsd, file.toString());
             }
             else
