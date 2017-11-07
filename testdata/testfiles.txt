@@ -116,3 +116,5 @@ test517.aiff, no,227, qobuz 24bit aif file
 test518.flac, no,227, qobuz 24bit flac file
 test519.m4a, no,227, qobuz 24bit m4a file
 test520.m4a, no,227, qobuz 24bit wma file
+test521.aif, no,227, hdtracks 24bit aif file (trailing 4 bytes)
+test522.aif, no,227, hdtracks 96/24bit aif file (trailing 4 bytes)

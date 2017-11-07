@@ -246,4 +246,82 @@ public class Issue227Test extends AbstractTestCase
         }
         assertNull(ex);
     }
+
+    public void testReadAndWriteHiRefAifFromHdTracks() throws Exception
+    {
+        File orig = new File("testdata", "test521.aif");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception ex=null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test521.aif");
+            AudioFile af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            System.out.println(af.getAudioHeader());
+            System.out.println(af.getTag());
+
+            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
+
+            af.getTag().setField(FieldKey.ALBUM,"Whipping");
+            //Artwork newartwork = ArtworkFactory.createArtworkFromFile(new File("testdata", "coverart.png"));
+            //af.getTag().setField(newartwork);
+            af.commit();
+
+            af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            System.out.println(af.getAudioHeader());
+            System.out.println(af.getTag());
+//            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            ex=e;
+        }
+        assertNull(ex);
+    }
+
+    public void testReadAndWriteHiRefAifFromHdTracks2() throws Exception
+    {
+        File orig = new File("testdata", "test522.aif");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception ex=null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test522.aif");
+            AudioFile af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            System.out.println(af.getAudioHeader());
+            System.out.println(af.getTag());
+
+//            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
+
+            af.getTag().setField(FieldKey.ALBUM,"Whipping");
+            //Artwork newartwork = ArtworkFactory.createArtworkFromFile(new File("testdata", "coverart.png"));
+            //af.getTag().setField(newartwork);
+            af.commit();
+
+            af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            System.out.println(af.getAudioHeader());
+            System.out.println(af.getTag());
+//            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            ex=e;
+        }
+        assertNull(ex);
+    }
 }
