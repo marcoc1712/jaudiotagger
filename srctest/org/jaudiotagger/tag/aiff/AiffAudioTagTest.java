@@ -511,7 +511,7 @@ public class AiffAudioTagTest extends TestCase {
     private static List<String> readChunkIds(final File file) throws IOException {
         final List<String> chunkIds = new ArrayList<>();
         try (final RandomAccessFile raf = new RandomAccessFile(file, "r")) {
-            raf.seek(IffHeaderChunk.HEADER_LENGTH);
+            raf.seek(IffHeaderChunk.FORM_HEADER_LENGTH);
             final ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.BIG_ENDIAN);
 
             while (raf.getFilePointer() != raf.length()) {

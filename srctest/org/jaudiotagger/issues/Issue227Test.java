@@ -277,7 +277,7 @@ public class Issue227Test extends AbstractTestCase
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
             assertNotNull(af.getTag());
-            //assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
+//            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"Whipping");
         }
         catch(Exception e)
         {
@@ -305,8 +305,7 @@ public class Issue227Test extends AbstractTestCase
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
 
-//            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
-
+            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"American Idiot");
             af.getTag().setField(FieldKey.ALBUM,"Whipping");
             //Artwork newartwork = ArtworkFactory.createArtworkFromFile(new File("testdata", "coverart.png"));
             //af.getTag().setField(newartwork);

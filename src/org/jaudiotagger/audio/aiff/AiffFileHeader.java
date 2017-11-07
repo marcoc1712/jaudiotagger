@@ -12,8 +12,7 @@ import java.util.logging.Logger;
 import static java.nio.ByteOrder.BIG_ENDIAN;
 import static org.jaudiotagger.audio.aiff.AiffType.AIFC;
 import static org.jaudiotagger.audio.aiff.AiffType.AIFF;
-import static org.jaudiotagger.audio.iff.IffHeaderChunk.HEADER_LENGTH;
-import static org.jaudiotagger.audio.iff.IffHeaderChunk.TYPE_LENGTH;
+import static org.jaudiotagger.audio.iff.IffHeaderChunk.FORM_HEADER_LENGTH;
 
 /**
  * <p>
@@ -48,14 +47,14 @@ public class AiffFileHeader
      */
     public long readHeader(FileChannel fc, final AiffAudioHeader aiffAudioHeader) throws IOException, CannotReadException
     {
-        final ByteBuffer headerData = ByteBuffer.allocateDirect(HEADER_LENGTH);
+        final ByteBuffer headerData = ByteBuffer.allocateDirect(FORM_HEADER_LENGTH);
         headerData.order(BIG_ENDIAN);
         final int bytesRead = fc.read(headerData);
         headerData.position(0);
 
-        if (bytesRead < HEADER_LENGTH)
+        if (bytesRead < FORM_HEADER_LENGTH)
         {
-            throw new IOException(loggingName + ":AIFF:Unable to read required number of databytes read:" + bytesRead + ":required:" + HEADER_LENGTH);
+            throw new IOException(loggingName + ":AIFF:Unable to read required number of databytes read:" + bytesRead + ":required:" + FORM_HEADER_LENGTH);
         }
 
         final String signature = Utils.readFourBytesAsChars(headerData);

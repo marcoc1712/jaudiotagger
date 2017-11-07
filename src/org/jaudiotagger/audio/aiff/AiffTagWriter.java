@@ -285,7 +285,12 @@ public class AiffTagWriter
         try(FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
             //Issue 227:HDtracks issue, if crap at end of file after length according to FORM then delete it
-
+            /*long formFileLength     = existingTag.getFormSize() + ChunkHeader.CHUNK_HEADER_SIZE;
+            if(formFileLength < fc.size())
+            {
+                fc.position(formFileLength);
+                fc.truncate(formFileLength);
+            }*/
             long existingFileLength = fc.size();
 
             final AiffTag aiffTag = (AiffTag) tag;

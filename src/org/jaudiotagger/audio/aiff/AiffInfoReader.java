@@ -37,7 +37,7 @@ public class AiffInfoReader extends AiffChunkReader
             AiffAudioHeader aiffAudioHeader = new AiffAudioHeader();
             final AiffFileHeader fileHeader = new AiffFileHeader(loggingName);
             long noOfBytes = fileHeader.readHeader(fc, aiffAudioHeader);
-            while (fc.position() < (noOfBytes + IffHeaderChunk.HEADER_LENGTH) && (fc.position() < fc.size()))
+            while ((fc.position() < (noOfBytes + ChunkHeader.CHUNK_HEADER_SIZE)) && (fc.position() < fc.size()))
             {
                 boolean result = readChunk(fc, aiffAudioHeader);
                 if (!result)
