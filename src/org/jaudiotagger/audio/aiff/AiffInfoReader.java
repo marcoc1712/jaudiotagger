@@ -93,7 +93,7 @@ public class AiffInfoReader extends AiffChunkReader
         }
         else
         {
-            if(chunkHeader.getSize() < 0)
+            if(chunkHeader.getSize() <= 0)
             {
                 String msg = loggingName + ":Not a valid header, unable to read a sensible size:Header"
                         + chunkHeader.getID()+"Size:"+chunkHeader.getSize();
