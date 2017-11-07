@@ -276,7 +276,8 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
-//            assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
+            assertNotNull(af.getTag());
+            //assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"The Magic Whip");
         }
         catch(Exception e)
         {

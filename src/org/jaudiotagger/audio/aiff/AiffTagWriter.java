@@ -120,6 +120,7 @@ public class AiffTagWriter
                  )
                );
     }
+
     /**
      * Delete given {@link Tag} from file.
      *
@@ -270,7 +271,8 @@ public class AiffTagWriter
     public void write(final Tag tag, Path file) throws CannotWriteException
     {
         logger.severe(file + ":Writing Aiff tag to file");
-         AiffTag existingTag = null;
+
+        AiffTag existingTag = null;
         try
         {
             existingTag = getExistingMetadata(file);
@@ -282,6 +284,8 @@ public class AiffTagWriter
 
         try(FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
+            //Issue 227:HDtracks issue, if crap at end of file after length according to FORM then delete it
+
             long existingFileLength = fc.size();
 
             final AiffTag aiffTag = (AiffTag) tag;
@@ -421,7 +425,7 @@ public class AiffTagWriter
             //If existingTag is uneven size lets make it even
             if( existingTagSize > 0)
             {
-                if((existingTagSize & 1)!=0)
+                if(Utils.isOddLength(existingTagSize))
                 {
                     existingTagSize++;
                 }
@@ -432,7 +436,7 @@ public class AiffTagWriter
 
             //If the tag is now odd because we needed to increase size and the data made it odd sized
             //we redo adding a padding byte to make it even
-            if((baos.toByteArray().length & 1)!=0)
+            if(Utils.isOddLength(baos.toByteArray().length))
             {
                 int newSize = baos.toByteArray().length + 1;
                 baos = new ByteArrayOutputStream();

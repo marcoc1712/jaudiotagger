@@ -15,7 +15,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -47,8 +46,8 @@ public class AiffTagReader extends AiffChunkReader
             AiffAudioHeader aiffAudioHeader = new AiffAudioHeader();
             AiffTag aiffTag = new AiffTag();
 
-            final AiffFileHeader fileHeader = new AiffFileHeader();
-            long noOfBytes = fileHeader.readHeader(fc, aiffAudioHeader, file.toString());
+            final AiffFileHeader fileHeader = new AiffFileHeader(file.toString());
+            long noOfBytes = fileHeader.readHeader(fc, aiffAudioHeader);
             while (fc.position() < (noOfBytes + IffHeaderChunk.HEADER_LENGTH) && (fc.position() < fc.size()))
             {
                 if (!readChunk(fc, aiffTag))
