@@ -2,6 +2,8 @@ package org.jaudiotagger.audio.aiff;
 
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.generic.Utils;
+import org.jaudiotagger.audio.iff.ChunkHeader;
+import org.jaudiotagger.audio.iff.IffHeaderChunk;
 import org.jaudiotagger.logging.Hex;
 
 import java.io.IOException;
@@ -62,7 +64,8 @@ public class AiffFileHeader
         {
             // read chunk size
             final long chunkSize  = headerData.getInt();
-            logger.severe(loggingName + ":Reading AIFF header size:" + Hex.asDecAndHex(chunkSize));
+            logger.config(loggingName + ":Reading AIFF header size:" + Hex.asDecAndHex(chunkSize)
+                    +":File Size Should End At:"+ Hex.asDecAndHex(chunkSize + ChunkHeader.CHUNK_HEADER_SIZE));
 
             readFileType(headerData, aiffAudioHeader);
             return chunkSize;

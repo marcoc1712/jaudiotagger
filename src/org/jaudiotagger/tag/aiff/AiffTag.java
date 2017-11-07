@@ -30,8 +30,11 @@ public class AiffTag implements Tag, Id3SupportingTag
         return chunkSummaryList;
     }
 
+    private long    fileSize;
+
     private long    formSize;
 
+    private boolean lastChunkSizeExtendsPastFormSize = false;
 
     /**
      * Identifies when the ID3 tag is incorrectly aligned, one byte out either way, this alows us to fix
@@ -58,6 +61,13 @@ public class AiffTag implements Tag, Id3SupportingTag
     }
 
     private AbstractID3v2Tag id3Tag;
+
+    private String loggingFilename="";
+
+    public AiffTag(String loggingFilename)
+    {
+        this.loggingFilename = loggingFilename;
+    }
 
     public AiffTag()
     {
@@ -309,10 +319,20 @@ public class AiffTag implements Tag, Id3SupportingTag
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-
+        sb.append("FileSize:"      + Hex.asDecAndHex(fileSize) + "\n");
+        sb.append("FORMSize:"      + Hex.asDecAndHex(formSize + ChunkHeader.CHUNK_HEADER_SIZE) + "\n");
+        if(lastChunkSizeExtendsPastFormSize)
+        {
+            sb.append("Last Chunk extends past Form stated size\n");
+        }
+        if(fileSize > (formSize + ChunkHeader.CHUNK_HEADER_SIZE))
+        {
+            sb.append("Non Iff Data at End of File:"+(fileSize - (formSize + ChunkHeader.CHUNK_HEADER_SIZE)) + " bytes" + "\n");
+        }
+        sb.append("Chunks:\n");
         for(ChunkSummary cs:chunkSummaryList)
         {
-            sb.append(cs.toString()+"\n");
+            sb.append("\t"+cs.toString()+"\n");
         }
         if (id3Tag != null)
         {
@@ -323,6 +343,7 @@ public class AiffTag implements Tag, Id3SupportingTag
                 {
                     sb.append("\tincorrectly starts as odd byte\n");
                 }
+
                 sb.append("\tstartLocation:" + Hex.asDecAndHex(getStartLocationInFileOfId3Chunk()) + "\n");
                 sb.append("\tendLocation:"   + Hex.asDecAndHex(getEndLocationInFileOfId3Chunk()) + "\n");
             }
@@ -432,5 +453,33 @@ public class AiffTag implements Tag, Id3SupportingTag
     public void setFormSize(long formSize)
     {
         this.formSize = formSize;
+    }
+
+
+    /**
+     * If the file is larger than the size reported by the FORM size header and the last chunk
+     * extends into this area past the size reported by FORM header then indicates the FORM header is incorrect
+     * rather than just extra non iff data at file end
+     *
+     * @return true if last chunk extends past size reported by FORM header
+     */
+    public boolean isLastChunkSizeExtendsPastFormSize()
+    {
+        return lastChunkSizeExtendsPastFormSize;
+    }
+
+    public void setLastChunkSizeExtendsPastFormSize(boolean lastChunkSizeExtendsPastFormSize)
+    {
+        this.lastChunkSizeExtendsPastFormSize = lastChunkSizeExtendsPastFormSize;
+    }
+
+    public long getFileSize()
+    {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize)
+    {
+        this.fileSize = fileSize;
     }
 }

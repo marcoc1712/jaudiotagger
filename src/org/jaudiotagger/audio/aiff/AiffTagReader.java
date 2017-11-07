@@ -47,9 +47,11 @@ public class AiffTagReader extends AiffChunkReader
             AiffTag aiffTag = new AiffTag();
 
             final AiffFileHeader fileHeader = new AiffFileHeader(file.toString());
-            long noOfBytes = fileHeader.readHeader(fc, aiffAudioHeader);
-            aiffTag.setFormSize(noOfBytes);
-            while ((fc.position() < (noOfBytes + ChunkHeader.CHUNK_HEADER_SIZE)) && (fc.position() < fc.size()))
+            long  overallChunkSize = fileHeader.readHeader(fc, aiffAudioHeader);
+            aiffTag.setFormSize( overallChunkSize);
+            aiffTag.setFileSize(fc.size());
+            long  endLocationOfAiffData = overallChunkSize + ChunkHeader.CHUNK_HEADER_SIZE;
+            while ((fc.position() < endLocationOfAiffData) && (fc.position() < fc.size()))
             {
                 if (!readChunk(fc, aiffTag))
                 {
@@ -61,6 +63,12 @@ public class AiffTagReader extends AiffChunkReader
             if (aiffTag.getID3Tag() == null)
             {
                 aiffTag.setID3Tag(AiffTag.createDefaultID3Tag());
+            }
+            logger.severe("LastChunkPos:"+Hex.asDecAndHex(fc.position())
+                    +":OfficialEndLocation:"+Hex.asDecAndHex(endLocationOfAiffData));
+            if(fc.position() > endLocationOfAiffData)
+            {
+                aiffTag.setLastChunkSizeExtendsPastFormSize(true);
             }
             return aiffTag;
         }

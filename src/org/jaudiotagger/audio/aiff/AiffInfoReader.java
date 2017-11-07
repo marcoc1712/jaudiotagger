@@ -73,7 +73,6 @@ public class AiffInfoReader extends AiffChunkReader
      */
     private boolean readChunk(FileChannel fc, AiffAudioHeader aiffAudioHeader) throws IOException, CannotReadException
     {
-        logger.severe(loggingName + ":Reading Info Chunk");
         final Chunk chunk;
         final ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.BIG_ENDIAN);
         if (!chunkHeader.readHeader(fc))
@@ -81,7 +80,10 @@ public class AiffInfoReader extends AiffChunkReader
             return false;
         }
 
-        logger.severe(loggingName + ":Reading Next Chunk:" + chunkHeader.getID() + ":starting at:" + chunkHeader.getStartLocationInFile() + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+        logger.config(loggingName + ":Reading Next Chunk:" + chunkHeader.getID()
+                + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile())
+                + ":sizeIncHeader:" + Hex.asDecAndHex((chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE))
+                + ":ending at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile() + chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
         chunk = createChunk(fc, chunkHeader, aiffAudioHeader);
         if (chunk != null)
         {
