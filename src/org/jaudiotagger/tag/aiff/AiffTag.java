@@ -30,8 +30,18 @@ public class AiffTag implements Tag, Id3SupportingTag
         return chunkSummaryList;
     }
 
+    private long    formSize;
+
+
+    /**
+     * Identifies when the ID3 tag is incorrectly aligned, one byte out either way, this alows us to fix
+     * this.
+     */
     private boolean isIncorrectlyAlignedTag = false;
 
+    /**
+     * Is there an existing metadata tag
+     */
     private boolean isExistingId3Tag = false;
 
     /**
@@ -408,5 +418,19 @@ public class AiffTag implements Tag, Id3SupportingTag
         }
         //Default in case not set somehow
         return new ID3v23Tag();
+    }
+
+    /**
+     * Size returned by the FORM header, this lets us know where the enclosing FORM headeer
+     * thinks is the end of file, allowing us to identify bad data at end of file
+     */
+    public long getFormSize()
+    {
+        return formSize;
+    }
+
+    public void setFormSize(long formSize)
+    {
+        this.formSize = formSize;
     }
 }

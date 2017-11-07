@@ -42,7 +42,7 @@ public class AiffFileHeader
      *
      * @param fc random access file
      * @param aiffAudioHeader the {@link org.jaudiotagger.audio.AudioHeader} we set the read data to
-     * @return the number of bytes in the FORM chunk, i.e. the size of the payload
+     * @return the number of bytes in the FORM chunk, i.e. the size of the payload (not including the 8bit header)
      * @throws IOException
      * @throws CannotReadException if the file is not a valid AIFF file
      */
@@ -66,8 +66,7 @@ public class AiffFileHeader
             logger.severe(loggingName + ":Reading AIFF header size:" + Hex.asDecAndHex(chunkSize));
 
             readFileType(headerData, aiffAudioHeader);
-            // subtract the file type length from the chunk size to get remaining number of bytes
-            return chunkSize - TYPE_LENGTH;
+            return chunkSize;
         }
         else
         {

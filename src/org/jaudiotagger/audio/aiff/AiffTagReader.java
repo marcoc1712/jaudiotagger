@@ -48,6 +48,7 @@ public class AiffTagReader extends AiffChunkReader
 
             final AiffFileHeader fileHeader = new AiffFileHeader(file.toString());
             long noOfBytes = fileHeader.readHeader(fc, aiffAudioHeader);
+            aiffTag.setFormSize(noOfBytes);
             while (fc.position() < (noOfBytes + IffHeaderChunk.HEADER_LENGTH) && (fc.position() < fc.size()))
             {
                 if (!readChunk(fc, aiffTag))
