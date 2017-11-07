@@ -461,6 +461,7 @@ public class AiffAudioTagTest extends TestCase {
             AudioHeader ah = f.getAudioHeader();
             assertTrue(ah instanceof AiffAudioHeader);
             Tag tag = f.getTag();
+            System.out.println(f.getTag());
             assertEquals(10274L,((AiffTag) tag).getSizeOfID3TagIncludingChunkHeader());
             assertEquals(10266L,((AiffTag) tag).getSizeOfID3TagOnly());
             assertEquals(12L,((AiffTag) tag).getStartLocationInFileOfId3Chunk());

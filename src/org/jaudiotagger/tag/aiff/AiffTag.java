@@ -325,7 +325,7 @@ public class AiffTag implements Tag, Id3SupportingTag
         {
             sb.append("Last Chunk extends past Form stated size\n");
         }
-        if(fileSize > (formSize + ChunkHeader.CHUNK_HEADER_SIZE))
+        else if(fileSize > (formSize + ChunkHeader.CHUNK_HEADER_SIZE))
         {
             sb.append("Non Iff Data at End of File:"+(fileSize - (formSize + ChunkHeader.CHUNK_HEADER_SIZE)) + " bytes" + "\n");
         }
