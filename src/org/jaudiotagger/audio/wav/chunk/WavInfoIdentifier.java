@@ -29,7 +29,7 @@ public enum WavInfoIdentifier
     RATING("IRTD", FieldKey.RATING, 13),
     ISRC("ISRC", FieldKey.ISRC, 14),
     LABEL("ICMS", FieldKey.RECORD_LABEL, 15),
-    COPYRIGHT("ICOP", FieldKey.COPYRIGHT, 26),
+    COPYRIGHT("ICOP", FieldKey.COPYRIGHT, 16),
 
     QOBUZ_TRACKNO("IPRT", null, 17),
     QOBUZ_TRACK_TOTAL("IFRM", null, 18),

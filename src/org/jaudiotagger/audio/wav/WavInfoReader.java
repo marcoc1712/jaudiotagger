@@ -159,7 +159,7 @@ public class WavInfoReader
 
                 //Dont need to do anything with these just skip
                 default:
-                    logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize());
+                    logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize());
                     fc.position(fc.position() + chunkHeader.getSize());
             }
         }
