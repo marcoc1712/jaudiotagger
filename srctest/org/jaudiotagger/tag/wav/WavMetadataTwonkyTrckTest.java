@@ -735,7 +735,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
         {
             File testFile = AbstractTestCase.copyAudioToTmp("test123.wav", new File("test123ModifyMetadataSaveActive.wav"));
             AudioFile f = AudioFileIO.read(testFile);
-            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
             assertEquals("529", f.getAudioHeader().getBitRate());
             assertEquals("1", f.getAudioHeader().getChannels());
             assertEquals("22050", f.getAudioHeader().getSampleRate());
