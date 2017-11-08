@@ -1,21 +1,3 @@
-/*
- * Entagged Audio Tag library
- * Copyright (c) 2003-2005 Raphaël Slinckx <raphael@slinckx.net>
- * 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *  
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- */
 package org.jaudiotagger.audio.aiff;
 
 import org.jaudiotagger.audio.aiff.chunk.AiffChunkSummary;
@@ -28,6 +10,7 @@ import org.jaudiotagger.audio.iff.Chunk;
 import org.jaudiotagger.audio.iff.ChunkHeader;
 import org.jaudiotagger.audio.iff.ChunkSummary;
 import org.jaudiotagger.audio.iff.IffHeaderChunk;
+import org.jaudiotagger.logging.Hex;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagOptionSingleton;
 import org.jaudiotagger.tag.aiff.AiffTag;
@@ -45,7 +28,6 @@ import java.util.logging.Logger;
 
 import static org.jaudiotagger.audio.iff.IffHeaderChunk.SIGNATURE_LENGTH;
 import static org.jaudiotagger.audio.iff.IffHeaderChunk.SIZE_LENGTH;
-
 
 /**
  * Write Aiff Tag.
@@ -91,10 +73,9 @@ public class AiffTagWriter
         final ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.BIG_ENDIAN);
         chunkHeader.readHeader(fc);
         fc.position(fc.position() - ChunkHeader.CHUNK_HEADER_SIZE);
-
         if(!AiffChunkType.TAG.getCode().equals(chunkHeader.getID()))
         {
-            throw new CannotWriteException(fileName + " Unable to find ID3 chunk at expected location:"+existingTag.getStartLocationInFileOfId3Chunk());
+            throw new CannotWriteException(fileName + ":Unable to find ID3 chunk at expected location:"+existingTag.getStartLocationInFileOfId3Chunk());
         }
         return chunkHeader;
     }
@@ -103,14 +84,15 @@ public class AiffTagWriter
      *
      * @param existingTag
      * @param fc
-     * @return true if at end of file (also take into account padding byte)
+     * @return true if at end of file (also take into account padding byte), also allows for the header size being
+     * reported in ID3 tag is larger than the boundary returned by the FORM header
      * @throws IOException
      */
     private boolean isAtEndOfFileAllowingForPaddingByte(AiffTag existingTag, FileChannel fc) throws IOException
     {
         return (
                  (
-                   existingTag.getID3Tag().getEndLocationInFile() == fc.size()
+                   existingTag.getID3Tag().getEndLocationInFile() >= fc.size()
                  )
                  ||
                  (
@@ -120,6 +102,7 @@ public class AiffTagWriter
                  )
                );
     }
+
     /**
      * Delete given {@link Tag} from file.
      *
@@ -182,14 +165,18 @@ public class AiffTagWriter
             }
         }
         final long newLength = fc.size() - lengthTagChunk;
-        logger.config(fileName + ":Size of id3 chunk to delete is:"+lengthTagChunk+":Location:"+existingTag.getStartLocationInFileOfId3Chunk());
+        logger.config(fileName
+                + ":Size of id3 chunk to delete is:"+Hex.asDecAndHex(lengthTagChunk)
+                +":Location:"+Hex.asDecAndHex(existingTag.getStartLocationInFileOfId3Chunk()));
 
-        // position for reading after the id3 tag
+        //Position for reading after the id3 tag
         fc.position(existingTag.getStartLocationInFileOfId3Chunk() + lengthTagChunk);
+        logger.severe(fileName + ":Moved location to:" + Hex.asDecAndHex(newLength));
 
         deleteTagChunkUsingSmallByteBufferSegments(existingTag, fc, newLength, lengthTagChunk);
-        // truncate the file after the last chunk
-        logger.config(fileName + ":Setting new length to:" + newLength);
+
+        //Truncate the file after the last chunk
+        logger.config(fileName + ":Setting new length to:" + Hex.asDecAndHex(newLength));
         fc.truncate(newLength);
     }
 
@@ -236,7 +223,7 @@ public class AiffTagWriter
     }
 
     /**
-     * Use ByteBuffers to copy a 4mb chunk, write the chunk and repeat until the rest of the file after the ID3 tag
+     * Use ByteBuffers to copy a chunk, write the chunk and repeat until the rest of the file after the ID3 tag
      * is rewritten
      *
      * @param existingTag existing tag
@@ -270,7 +257,8 @@ public class AiffTagWriter
     public void write(final Tag tag, Path file) throws CannotWriteException
     {
         logger.severe(file + ":Writing Aiff tag to file");
-         AiffTag existingTag = null;
+
+        AiffTag existingTag = null;
         try
         {
             existingTag = getExistingMetadata(file);
@@ -282,8 +270,17 @@ public class AiffTagWriter
 
         try(FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
+            //Issue 227:HDtracks issue, if crap at end of file after length according to FORM then delete it
+            long formFileLength     = existingTag.getFormSize() + ChunkHeader.CHUNK_HEADER_SIZE;
+            long currentPos = fc.position();
+            if(formFileLength < fc.size() && !existingTag.isLastChunkSizeExtendsPastFormSize())
+            {
+                logger.warning(file+":Extra Non Chunk Data after end of FORM data length:"+(fc.size() - formFileLength));
+                fc.position(formFileLength);
+                fc.truncate(formFileLength);
+                fc.position(currentPos);
+            }
             long existingFileLength = fc.size();
-
             final AiffTag aiffTag = (AiffTag) tag;
             final ByteBuffer bb = convert(aiffTag, existingTag);
 
@@ -335,10 +332,8 @@ public class AiffTagWriter
                 writeDataToFile(fc, bb);
             }
 
-            if (existingFileLength != fc.size())
-            {
-                rewriteRiffHeaderSize(fc);
-            }
+            //Always rewrite header
+            rewriteRiffHeaderSize(fc);
         }
         catch(AccessDeniedException ade)
         {
@@ -350,7 +345,7 @@ public class AiffTagWriter
         }
     }
     /**
-     * Rewrite RAF header to reflect new file length
+     * Rewrite FORM header to reflect new file length
      *
      * @param fc
      * @throws IOException
@@ -360,7 +355,7 @@ public class AiffTagWriter
         fc.position(IffHeaderChunk.SIGNATURE_LENGTH);
         ByteBuffer bb = ByteBuffer.allocateDirect(IffHeaderChunk.SIZE_LENGTH);
         bb.order(ByteOrder.BIG_ENDIAN);
-        int size = ((int) fc.size()) - SIGNATURE_LENGTH - SIZE_LENGTH;
+        int size = ((int) fc.size()) - ChunkHeader.CHUNK_HEADER_SIZE;
         bb.putInt(size);
         bb.flip();
         fc.write(bb);
@@ -421,7 +416,7 @@ public class AiffTagWriter
             //If existingTag is uneven size lets make it even
             if( existingTagSize > 0)
             {
-                if((existingTagSize & 1)!=0)
+                if(Utils.isOddLength(existingTagSize))
                 {
                     existingTagSize++;
                 }
@@ -432,7 +427,7 @@ public class AiffTagWriter
 
             //If the tag is now odd because we needed to increase size and the data made it odd sized
             //we redo adding a padding byte to make it even
-            if((baos.toByteArray().length & 1)!=0)
+            if(Utils.isOddLength(baos.toByteArray().length))
             {
                 int newSize = baos.toByteArray().length + 1;
                 baos = new ByteArrayOutputStream();

@@ -117,7 +117,7 @@ public class WavInfoReader
         }
 
         String id = chunkHeader.getID();
-        logger.finer(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+        logger.fine(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
         final WavChunkType chunkType = WavChunkType.get(id);
 
         //If known chunkType
@@ -159,7 +159,6 @@ public class WavInfoReader
 
                 //Dont need to do anything with these just skip
                 default:
-                    logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize());
                     fc.position(fc.position() + chunkHeader.getSize());
             }
         }
@@ -185,7 +184,7 @@ public class WavInfoReader
                 logger.severe(msg);
                 throw new CannotReadException(msg);
             }
-            logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
+            logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
 
             fc.position(fc.position() + chunkHeader.getSize());
             if(fc.position()>fc.size())

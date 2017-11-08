@@ -190,7 +190,7 @@ public class Mp4InfoReader
                 throw new CannotReadException(ErrorMessage.MP4_FILE_NOT_AUDIO.getMsg());
             }
         }
-        mvhdBuffer.position(mvhdBuffer.position() + boxHeader.getDataLength());
+        mvhdBuffer.position(pos);
 
         //Level 5-Searching for "stbl within "minf"
         boxHeader = Mp4BoxHeader.seekWithinLevel(mvhdBuffer, Mp4AtomIdentifier.STBL.getFieldName());

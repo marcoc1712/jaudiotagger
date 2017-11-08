@@ -15,7 +15,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -47,9 +46,12 @@ public class AiffTagReader extends AiffChunkReader
             AiffAudioHeader aiffAudioHeader = new AiffAudioHeader();
             AiffTag aiffTag = new AiffTag();
 
-            final AiffFileHeader fileHeader = new AiffFileHeader();
-            fileHeader.readHeader(fc, aiffAudioHeader, file.toString());
-            while (fc.position() < fc.size())
+            final AiffFileHeader fileHeader = new AiffFileHeader(file.toString());
+            long  overallChunkSize = fileHeader.readHeader(fc, aiffAudioHeader);
+            aiffTag.setFormSize( overallChunkSize);
+            aiffTag.setFileSize(fc.size());
+            long  endLocationOfAiffData = overallChunkSize + ChunkHeader.CHUNK_HEADER_SIZE;
+            while ((fc.position() < endLocationOfAiffData) && (fc.position() < fc.size()))
             {
                 if (!readChunk(fc, aiffTag))
                 {
@@ -61,6 +63,12 @@ public class AiffTagReader extends AiffChunkReader
             if (aiffTag.getID3Tag() == null)
             {
                 aiffTag.setID3Tag(AiffTag.createDefaultID3Tag());
+            }
+            logger.severe("LastChunkPos:"+Hex.asDecAndHex(fc.position())
+                    +":OfficialEndLocation:"+Hex.asDecAndHex(endLocationOfAiffData));
+            if(fc.position() > endLocationOfAiffData)
+            {
+                aiffTag.setLastChunkSizeExtendsPastFormSize(true);
             }
             return aiffTag;
         }
