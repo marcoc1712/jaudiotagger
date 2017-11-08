@@ -41,7 +41,6 @@ public class ChunkHeader
         header.position(0);
         this.chunkId  = Utils.readFourBytesAsChars(header);
         this.size = header.getInt();
-
         return true;
     }
 

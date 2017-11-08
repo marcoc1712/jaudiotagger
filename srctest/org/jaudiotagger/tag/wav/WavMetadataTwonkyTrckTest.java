@@ -1011,6 +1011,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
 
             assertTrue(f.getTag() instanceof WavTag);
             WavTag tag = (WavTag) f.getTag();
+            System.out.println(tag);
 
             assertTrue(tag.isExistingInfoTag());
 
@@ -1032,7 +1033,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             f = AudioFileIO.read(testFile);
             assertTrue(f.getTag() instanceof WavTag);
             tag = (WavTag) f.getTag();
-            System.out.println(((WavTag) tag).getInfoTag());
+            System.out.println(tag);
             assertEquals("fred", tag.getFirst(FieldKey.ARTIST));
 
             assertTrue(tag.isInfoTag());
