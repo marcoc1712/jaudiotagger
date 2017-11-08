@@ -73,6 +73,8 @@ Summarise Changes
 #225:When writing DSF file with existing metadata chunk we dont rewrite DSDChunk filesize to reflect changes due to new metadata chunk
 #229:Read DFF header
 #226:getAudioHeader().isLossless() reports false for WAV files
+#227:Error with wavs containing INFO then ID3 chunks but not at end of file
+#221:Null pointer exception with mp4 files calling getFirst(FieldKey.ITUNES_GROUPING)
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
