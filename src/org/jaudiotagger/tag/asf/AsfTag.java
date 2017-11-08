@@ -536,7 +536,12 @@ public final class AsfTag extends AbstractTag
         {
             throw new KeyNotFoundException();
         }
-        return super.getFields(tagFieldToAsfField.get(fieldKey).getFieldName());
+        AsfFieldKey asfKey = tagFieldToAsfField.get(fieldKey);
+        if (asfKey == null)
+        {
+            throw new KeyNotFoundException();
+        }
+        return super.getFields(asfKey.getFieldName());
     }
 
     /**

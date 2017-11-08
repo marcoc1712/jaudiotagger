@@ -278,6 +278,11 @@ public class Mp4Tag extends AbstractTag
             throw new KeyNotFoundException();
         }
         Mp4FieldKey mp4FieldKey = tagFieldToMp4Field.get(genericKey);
+        if (mp4FieldKey == null)
+        {
+            throw new KeyNotFoundException();
+        }
+
         List<TagField> list = getFields(mp4FieldKey.getFieldName());
         List<TagField> filteredList = new ArrayList<TagField>();
 

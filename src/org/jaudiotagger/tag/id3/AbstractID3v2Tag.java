@@ -2857,6 +2857,11 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
         }
         FrameAndSubId formatKey = getFrameAndSubIdFromGenericKey(genericKey);
 
+        if (formatKey == null)
+        {
+            throw new KeyNotFoundException();
+        }
+
         //Get list of frames that this uses, as we are going to remove entries we don't want take a copy
         List<TagField> list = getFields(formatKey.getFrameId());
         List<TagField> filteredList = new ArrayList<TagField>();
