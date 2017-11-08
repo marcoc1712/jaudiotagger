@@ -142,7 +142,7 @@ public class WavTagWriter
      */
     public void delete (Tag tag, Path file) throws CannotWriteException
     {
-        logger.info(loggingName + " Deleting metadata from file");
+        logger.info(loggingName + ":Deleting metadata from file");
         try(FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
             WavTag existingTag = getExistingMetadata(file);
@@ -159,12 +159,10 @@ public class WavTagWriter
                     {
                         if (fs.isInfoTagFirst)
                         {
-                            logger.info(loggingName + ":Setting new length to:" + existingTag.getInfoTag().getStartLocationInFile());
                             fc.truncate(existingTag.getInfoTag().getStartLocationInFile());
                         }
                         else
                         {
-                            logger.info(loggingName + ":Setting new length to:" + existingTag.getStartLocationInFileOfId3Chunk());
                             fc.truncate(existingTag.getStartLocationInFileOfId3Chunk());
                         }
                     }
@@ -201,11 +199,16 @@ public class WavTagWriter
                         fc.truncate(existingTag.getStartLocationInFileOfId3Chunk());
                         deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
                     }
+                    //Id3 tag comes first so we must remove Info tag first
+                    else if(existingTag.getInfoTag().getStartLocationInFile() > existingTag.getStartLocationInFileOfId3Chunk())
+                    {
+                        deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
+                        deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
+                    }
+                    //Info tag comes first so we must remove Id3 tag first
                     else
                     {
                         deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
-                        //Reread then delete other tag
-                        existingTag = getExistingMetadata(file);
                         deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
                     }
                 }
@@ -218,7 +221,6 @@ public class WavTagWriter
                 //and it is at end of the file
                 if (existingInfoTag.getEndLocationInFile() == fc.size())
                 {
-                    logger.info(loggingName + ":Setting new length to:" + existingInfoTag.getStartLocationInFile());
                     fc.truncate(existingInfoTag.getStartLocationInFile());
                 }
                 else
@@ -232,7 +234,6 @@ public class WavTagWriter
                 //and it is at end of the file
                 if (isID3TagAtEndOfFileAllowingForPaddingByte(existingTag, fc))
                 {
-                    logger.info(loggingName + ":Setting new length to:" + existingTag.getStartLocationInFileOfId3Chunk());
                     fc.truncate(existingTag.getStartLocationInFileOfId3Chunk());
                 }
                 else
