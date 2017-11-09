@@ -48,7 +48,9 @@ public class Issue028Test extends AbstractTestCase
         assertFalse(mp3AudioHeader.isPrivate());
         assertFalse(mp3AudioHeader.isProtected());
         assertEquals("32", mp3AudioHeader.getBitRate());
-        assertEquals("mp3", mp3AudioHeader.getEncodingType());
+        assertEquals("MPEG-2 Layer 3", mp3AudioHeader.getEncodingType());
+        assertEquals("Mp3", mp3AudioHeader.getFormat());
+
 
     }
 }

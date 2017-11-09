@@ -75,6 +75,7 @@ Summarise Changes
 #226:getAudioHeader().isLossless() reports false for WAV files
 #227:Error with wavs containing INFO then ID3 chunks but not at end of file
 #221:Null pointer exception with mp4 files calling getFirst(FieldKey.ITUNES_GROUPING)
+#236:Add audioHeader.format field
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
