@@ -18,6 +18,7 @@
  */
 package org.jaudiotagger.audio.wav;
 
+import org.jaudiotagger.audio.SupportedFileFormat;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.generic.GenericAudioHeader;
 import org.jaudiotagger.audio.generic.Utils;
@@ -55,7 +56,7 @@ public class WavInfoReader
         GenericAudioHeader info = new GenericAudioHeader();
         try(FileChannel fc = FileChannel.open(path))
         {
-            if(WavRIFFHeader.isValidHeader(fc))
+            if(WavRIFFHeader.isValidHeader(loggingName, fc))
             {
                 while (fc.position() < fc.size())
                 {
@@ -70,6 +71,9 @@ public class WavInfoReader
                 throw new CannotReadException(loggingName + " Wav RIFF Header not valid");
             }
         }
+
+        info.setFormat(SupportedFileFormat.WAV.getDisplayName());
+        info.setLossless(true);
         calculateTrackLength(info);
         return info;
     }
@@ -115,7 +119,7 @@ public class WavInfoReader
         }
 
         String id = chunkHeader.getID();
-        logger.finer(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+        logger.fine(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
         final WavChunkType chunkType = WavChunkType.get(id);
 
         //If known chunkType
@@ -136,7 +140,7 @@ public class WavInfoReader
 
                 case DATA:
                 {
-                    //We just need this value from header dont actually need to read data itself
+                    //We just need this value from header dont actually need tonDsf read data itself
                     info.setAudioDataLength(chunkHeader.getSize());
                     info.setAudioDataStartPosition(fc.position());
                     info.setAudioDataEndPosition(fc.position() + chunkHeader.getSize());
@@ -157,7 +161,6 @@ public class WavInfoReader
 
                 //Dont need to do anything with these just skip
                 default:
-                    logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize());
                     fc.position(fc.position() + chunkHeader.getSize());
             }
         }
@@ -183,7 +186,7 @@ public class WavInfoReader
                 logger.severe(msg);
                 throw new CannotReadException(msg);
             }
-            logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
+            logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
 
             fc.position(fc.position() + chunkHeader.getSize());
             if(fc.position()>fc.size())

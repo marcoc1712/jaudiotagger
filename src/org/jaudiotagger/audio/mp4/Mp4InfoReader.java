@@ -21,6 +21,7 @@ package org.jaudiotagger.audio.mp4;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.CannotReadVideoException;
 import org.jaudiotagger.audio.generic.GenericAudioHeader;
+import org.jaudiotagger.audio.generic.Utils;
 import org.jaudiotagger.audio.mp4.atom.*;
 import org.jaudiotagger.logging.ErrorMessage;
 
@@ -190,7 +191,7 @@ public class Mp4InfoReader
                 throw new CannotReadException(ErrorMessage.MP4_FILE_NOT_AUDIO.getMsg());
             }
         }
-        mvhdBuffer.position(mvhdBuffer.position() + boxHeader.getDataLength());
+        mvhdBuffer.position(pos);
 
         //Level 5-Searching for "stbl within "minf"
         boxHeader = Mp4BoxHeader.seekWithinLevel(mvhdBuffer, Mp4AtomIdentifier.STBL.getFieldName());
@@ -225,7 +226,7 @@ public class Mp4InfoReader
                     Mp4EsdsBox esds = new Mp4EsdsBox(boxHeader, mp4aBuffer.slice());
 
                     //Set Bitrate in kbps
-                    info.setBitRate(esds.getAvgBitrate() / 1000);
+                    info.setBitRate(esds.getAvgBitrate() / Utils.KILOBYTE_MULTIPLIER);
 
                     //Set Number of Channels
                     info.setChannelNumber(esds.getNumberOfChannels());
@@ -253,7 +254,7 @@ public class Mp4InfoReader
                         Mp4EsdsBox esds = new Mp4EsdsBox(boxHeader, mvhdBuffer.slice());
 
                         //Set Bitrate in kbps
-                        info.setBitRate(esds.getAvgBitrate() / 1000);
+                        info.setBitRate(esds.getAvgBitrate() / Utils.KILOBYTE_MULTIPLIER);
 
                         //Set Number of Channels
                         info.setChannelNumber(esds.getNumberOfChannels());
@@ -283,7 +284,7 @@ public class Mp4InfoReader
                             alac.processData();
                             info.setEncodingType(EncoderType.APPLE_LOSSLESS.getDescription());
                             info.setChannelNumber(alac.getChannels());
-                            info.setBitRate(alac.getBitRate() / 1000);
+                            info.setBitRate(alac.getBitRate() / Utils.KILOBYTE_MULTIPLIER);
                             info.setBitsPerSample(alac.getSampleSize());
                         }
                     }
@@ -347,6 +348,9 @@ public class Mp4InfoReader
                 break;
             }
         }
+
+        //Because Mp4 is container format we set format to encoder
+        info.setFormat(info.getEncodingType());
 
         //Build AtomTree to ensure it is valid, this means we can detect any problems early on
         new Mp4AtomTree(raf,false);

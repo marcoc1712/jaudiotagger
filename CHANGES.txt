@@ -68,6 +68,14 @@ Summarise Changes
 #180:Support for ITunes GRP field
 #214:Remove checkFileExists()
 #216:Cannot read mp4s when Mdat length is described as 64bit length header
+#220:Add support for ISWC and IPI codes
+#213:LYRICIST_SORT field missing
+#225:When writing DSF file with existing metadata chunk we dont rewrite DSDChunk filesize to reflect changes due to new metadata chunk
+#229:Read DFF header
+#226:getAudioHeader().isLossless() reports false for WAV files
+#227:Error with wavs containing INFO then ID3 chunks but not at end of file
+#221:Null pointer exception with mp4 files calling getFirst(FieldKey.ITUNES_GROUPING)
+#236:Add audioHeader.format field
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

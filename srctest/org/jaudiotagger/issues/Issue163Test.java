@@ -13,19 +13,20 @@ import java.io.FileNotFoundException;
  */
 public class Issue163Test extends AbstractTestCase
 {
-    public void testReadProblemArtwork()    {
+    public void testReadNonexistentFIle()    {
         Exception e=null;
         try
         {
-            File orig = new File("testdata", "test163.mp3");
+            File orig = new File("testdata", "test188863.mp3");
             MP3File f = (MP3File)AudioFileIO.read(orig);
             System.out.println(f.displayStructureAsPlainText());
         }
         catch(Exception ex)
         {
+            ex.printStackTrace();
             e=ex;
         }
-        assertNull(e);
+        assertNotNull(e);
     }
 
 

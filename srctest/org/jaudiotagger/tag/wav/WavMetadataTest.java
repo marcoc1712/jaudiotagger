@@ -75,6 +75,10 @@ public class WavMetadataTest extends AbstractTestCase
             assertEquals(0L, ((WavTag) tag).getStartLocationInFileOfId3Chunk());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
 
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
+            assertEquals(24, f.getAudioHeader().getBitsPerSample());
+
         }
         catch (Exception e)
         {
@@ -1211,8 +1215,8 @@ public class WavMetadataTest extends AbstractTestCase
             assertEquals(236L, ((WavTag) tag).getSizeOfID3TagOnly());
             assertEquals(244L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
             assertEquals(926508L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
-            assertEquals(926682L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
-            assertEquals(166L, ((WavTag) tag).getInfoTag().getSizeOfTag());
+            assertEquals(926664L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
+            assertEquals(148L, ((WavTag) tag).getInfoTag().getSizeOfTag());
 
             tag.setField(FieldKey.ARTIST,"a nice long artist s");
             assertEquals("a nice long artist s", tag.getFirst(FieldKey.ARTIST));
@@ -1226,8 +1230,8 @@ public class WavMetadataTest extends AbstractTestCase
             assertEquals(236L, ((WavTag) tag).getSizeOfID3TagOnly());
             assertEquals(244L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
             assertEquals(926508L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
-            assertEquals(926678L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
-            assertEquals(162L, ((WavTag) tag).getInfoTag().getSizeOfTag());
+            assertEquals(926660L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
+            assertEquals(144L, ((WavTag) tag).getInfoTag().getSizeOfTag());
 
             assertEquals("a nice long artist s", tag.getFirst(FieldKey.ARTIST));
 
@@ -1301,7 +1305,7 @@ public class WavMetadataTest extends AbstractTestCase
             AudioFile f = AudioFileIO.read(testFile);
             System.out.println(f.getAudioHeader());
             System.out.println(f.getTag());
-
+            assertEquals(16, f.getAudioHeader().getBitsPerSample());
         }
         catch (Exception e)
         {

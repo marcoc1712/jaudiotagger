@@ -64,7 +64,8 @@ public class WavInfoTag extends GenericTag
                 FieldKey.LYRICIST,
                 FieldKey.ENCODER,
                 FieldKey.CONDUCTOR,
-                FieldKey.RATING);
+                FieldKey.RATING,
+                FieldKey.COPYRIGHT);
     }
     public String toString()
     {

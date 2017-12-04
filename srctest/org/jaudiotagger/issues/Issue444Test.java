@@ -173,6 +173,29 @@ public class Issue444Test extends AbstractTestCase
         assertNull(e);
     }
 
+    public void testZeroedDaysOnlyWrittenToID3v23()
+    {
+        Exception e=null;
+        try
+        {
+            TagOptionSingleton.getInstance().setID3V2Version(ID3V2Version.ID3_V23);
+            File testFile = AbstractTestCase.copyAudioToTmp("testV1vbrNew0.mp3");
+            AudioFile af = AudioFileIO.read(testFile);
+            af.getTagOrCreateAndSetDefault();
+            af.getTag().setField(FieldKey.YEAR, "2004-10-00");
+            assertEquals("2004-10-00", af.getTag().getFirst(FieldKey.YEAR));
+            af.commit();
+            af = AudioFileIO.read(testFile);
+            assertEquals("2004-10-00", af.getTag().getFirst(FieldKey.YEAR));
+
+        }
+        catch(Exception ex)
+        {
+            e=ex;
+        }
+        assertNull(e);
+    }
+
     public void testDuplicates()
     {
         File orig = new File("testdata", "test106.mp3");

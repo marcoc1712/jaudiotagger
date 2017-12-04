@@ -18,22 +18,21 @@
  */
 package org.jaudiotagger.audio.dsf;
 
-import org.jaudiotagger.audio.AudioFile;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
 import org.jaudiotagger.audio.exceptions.CannotWriteException;
 import org.jaudiotagger.audio.exceptions.NoWritePermissionsException;
-import org.jaudiotagger.audio.generic.AudioFileWriter;
 import org.jaudiotagger.audio.generic.AudioFileWriter2;
 import org.jaudiotagger.audio.generic.Utils;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.id3.AbstractID3v2Tag;
-
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.file.AccessDeniedException;
-import java.nio.file.OpenOption;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 /**
  * Write/delete tag info for Dsf file
@@ -55,8 +54,12 @@ public class DsfFileWriter extends AudioFileWriter2
                     {
                         //Remove Existing tag
                         fc.position(dsd.getMetadataOffset());
+                        fc.truncate(fc.position());
                         final ByteBuffer bb = convert((AbstractID3v2Tag) tag);
                         fc.write(bb);
+                        dsd.setFileLength(fc.size());
+                        fc.position(0);
+                        fc.write(dsd.write());
                     }
                     else
                     {
@@ -101,20 +104,16 @@ public class DsfFileWriter extends AudioFileWriter2
             long existingTagSize = tag.getSize();
 
             //If existingTag is uneven size lets make it even
-            if( existingTagSize > 0)
+            if((existingTagSize > 0)&& (Utils.isOddLength(existingTagSize)))
             {
-                if(Utils.isOddLength(existingTagSize))
-                {
-                    existingTagSize++;
-                }
+                existingTagSize++;
             }
 
-            //Write Tag to buffer
+            //Write Tag to buffer and use (amended) existingTagSize to set the ID3 header if originally odd sized
             tag.write(baos, (int) existingTagSize);
 
-            //If the tag is now odd because we needed to increase size and the data made it odd sized
-            //we redo adding a padding byte to make it even
-            if((baos.toByteArray().length & 1)!=0)
+            //If making the adjusstment caused written buffer to be odd then add byte and try again
+            if(Utils.isOddLength(baos.toByteArray().length))
             {
                 int newSize = baos.toByteArray().length + 1;
                 baos = new ByteArrayOutputStream();

@@ -96,13 +96,17 @@ public class VorbisCommentTag extends AbstractTag
         tagFieldToOggField.put(FieldKey.GROUPING, VorbisCommentFieldKey.GROUPING);
         tagFieldToOggField.put(FieldKey.INSTRUMENT, VorbisCommentFieldKey.INSTRUMENT);
         tagFieldToOggField.put(FieldKey.INVOLVED_PERSON, VorbisCommentFieldKey.INVOLVED_PERSON);
+        tagFieldToOggField.put(FieldKey.IPI, VorbisCommentFieldKey.IPI);
         tagFieldToOggField.put(FieldKey.ISRC, VorbisCommentFieldKey.ISRC);
+        tagFieldToOggField.put(FieldKey.ISWC, VorbisCommentFieldKey.ISWC);
         tagFieldToOggField.put(FieldKey.IS_CLASSICAL, VorbisCommentFieldKey.IS_CLASSICAL);
         tagFieldToOggField.put(FieldKey.IS_COMPILATION, VorbisCommentFieldKey.COMPILATION);
+        tagFieldToOggField.put(FieldKey.IS_HD, VorbisCommentFieldKey.IS_HD);
         tagFieldToOggField.put(FieldKey.IS_SOUNDTRACK, VorbisCommentFieldKey.IS_SOUNDTRACK);
         tagFieldToOggField.put(FieldKey.KEY, VorbisCommentFieldKey.KEY);
         tagFieldToOggField.put(FieldKey.LANGUAGE, VorbisCommentFieldKey.LANGUAGE);
         tagFieldToOggField.put(FieldKey.LYRICIST, VorbisCommentFieldKey.LYRICIST);
+        tagFieldToOggField.put(FieldKey.LYRICIST_SORT, VorbisCommentFieldKey.LYRICIST_SORT);
         tagFieldToOggField.put(FieldKey.LYRICS, VorbisCommentFieldKey.LYRICS);
         tagFieldToOggField.put(FieldKey.MEDIA, VorbisCommentFieldKey.MEDIA);
         tagFieldToOggField.put(FieldKey.MIXER, VorbisCommentFieldKey.MIXER);

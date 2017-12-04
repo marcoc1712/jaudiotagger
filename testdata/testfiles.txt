@@ -110,3 +110,12 @@ test210.m4a,no,210,NPE when reading a file with MP4 boxes of field type "genre"
 test218.mp4,yes,218,Corrupt files that apears to have 64bit mdat data length, but doesnt really
 test508.ogg, yes,183, flac with  part of ogg header and ogg suffix
 test509.wma, yes,184, corrupt wma file
+test515.wav, no,227, 24bit wav filw with incorrect data lenght value in header
+test516.wav, no,227, qobuz 24bit wav file
+test517.aiff, no,227, qobuz 24bit aif file
+test518.flac, no,227, qobuz 24bit flac file
+test519.m4a, no,227, qobuz 24bit m4a file
+test520.m4a, no,227, qobuz 24bit wma file
+test521.aif, no,227, hdtracks 24bit aif file (trailing 4 bytes)
+test522.aif, no,227, hdtracks 96/24bit aif file (trailing 4 bytes)
+test523.wav, no,235, ripped with audio hijack, info before id3 at start of file

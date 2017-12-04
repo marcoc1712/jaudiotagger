@@ -8,7 +8,7 @@ import java.text.MessageFormat;
 public enum ErrorMessage
 {
     GENERAL_READ("File {0} being read"),
-    MP4_FILE_NOT_CONTAINER("This file does not appear to be an Mp4  file"),
+    MP4_FILE_NOT_CONTAINER("This file does not appear to be an Mp4 file"),
     MP4_FILE_NOT_AUDIO("This file does not appear to be an Mp4 Audio file, could be corrupted or video "),
     MP4_FILE_IS_VIDEO("This file appears to be an Mp4 Video file, video files are not supported "),
     MP4_UNABLE_TO_PRIME_FILE_FOR_WRITE_SAFETLY("Unable to safetly check consistency in Mp4 file so cancelling save"),

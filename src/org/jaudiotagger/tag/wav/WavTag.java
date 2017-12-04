@@ -144,11 +144,12 @@ public class WavTag implements Tag, Id3SupportingTag
     {
         StringBuilder sb = new StringBuilder();
 
+        sb.append("Chunk Summary:\n");
         for(ChunkSummary cs:chunkSummaryList)
         {
-            sb.append(cs.toString()+"\n");
+            sb.append("\t"+cs.toString()+"\n");
         }
-
+        sb.append("\n");
         if (id3Tag != null)
         {
              sb.append("Wav ID3 Tag:\n");

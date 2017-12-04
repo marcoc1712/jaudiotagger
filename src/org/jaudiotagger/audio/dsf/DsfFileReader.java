@@ -67,6 +67,8 @@ public class DsfFileReader extends AudioFileReader2
             DsdChunk dsd = DsdChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, DsdChunk.DSD_HEADER_LENGTH));
             if (dsd != null)
             {
+                logger.config( file +":actualFileSize:" + fc.size()+":"+dsd.toString());
+
                 return readTag(fc, dsd, file.toString());
             }
             else
@@ -101,11 +103,11 @@ public class DsfFileReader extends AudioFileReader2
                     switch (version)
                     {
                         case ID3v22Tag.MAJOR_VERSION:
-                            return new ID3v22Tag(id3Chunk.getDataBuffer(), "");
+                            return new ID3v22Tag(id3Chunk.getDataBuffer(), fileName);
                         case ID3v23Tag.MAJOR_VERSION:
-                            return new ID3v23Tag(id3Chunk.getDataBuffer(), "");
+                            return new ID3v23Tag(id3Chunk.getDataBuffer(), fileName);
                         case ID3v24Tag.MAJOR_VERSION:
-                            return new ID3v24Tag(id3Chunk.getDataBuffer(), "");
+                            return new ID3v24Tag(id3Chunk.getDataBuffer(), fileName);
                         default:
                             logger.log(Level.WARNING,   fileName + " Unknown ID3v2 version " + version + ". Returning an empty ID3v2 Tag.");
                             return null;
