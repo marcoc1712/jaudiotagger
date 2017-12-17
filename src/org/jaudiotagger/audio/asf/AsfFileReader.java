@@ -19,6 +19,7 @@
 package org.jaudiotagger.audio.asf;
 
 import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.SupportedFileFormat;
 import org.jaudiotagger.audio.asf.data.AsfHeader;
 import org.jaudiotagger.audio.asf.data.AudioStreamChunk;
 import org.jaudiotagger.audio.asf.data.MetadataContainer;
@@ -121,6 +122,7 @@ public class AsfFileReader extends AudioFileReader
         }
         info.setBitRate(header.getAudioStreamChunk().getKbps());
         info.setChannelNumber((int) header.getAudioStreamChunk().getChannelCount());
+        info.setFormat(SupportedFileFormat.WMA.getDisplayName());
         info.setEncodingType("ASF (audio): " + header.getAudioStreamChunk().getCodecDescription());
         info.setLossless(header.getAudioStreamChunk().getCompressionFormat() == AudioStreamChunk.WMA_LOSSLESS);
         info.setPreciseLength(header.getFileHeader().getPreciseDuration());

@@ -1,6 +1,7 @@
 
 package org.jaudiotagger.audio.aiff;
 
+import org.jaudiotagger.audio.SupportedFileFormat;
 import org.jaudiotagger.audio.aiff.chunk.*;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.generic.GenericAudioHeader;
@@ -34,20 +35,29 @@ public class AiffInfoReader extends AiffChunkReader
         try(FileChannel fc = FileChannel.open(file))
         {
             logger.config(loggingName + ":Reading AIFF file size:" + Hex.asDecAndHex(fc.size()));
-            AiffAudioHeader aiffAudioHeader = new AiffAudioHeader();
+            AiffAudioHeader info = new AiffAudioHeader();
             final AiffFileHeader fileHeader = new AiffFileHeader(loggingName);
-            long noOfBytes = fileHeader.readHeader(fc, aiffAudioHeader);
+            long noOfBytes = fileHeader.readHeader(fc, info);
             while ((fc.position() < (noOfBytes + ChunkHeader.CHUNK_HEADER_SIZE)) && (fc.position() < fc.size()))
             {
-                boolean result = readChunk(fc, aiffAudioHeader);
+                boolean result = readChunk(fc, info);
                 if (!result)
                 {
                     logger.severe(file + ":UnableToReadProcessChunk");
                     break;
                 }
             }
-            calculateBitRate(aiffAudioHeader);
-            return aiffAudioHeader;
+
+            if(info.getFileType()==AiffType.AIFC)
+            {
+                info.setFormat(SupportedFileFormat.AIF.getDisplayName());
+            }
+            else
+            {
+                info.setFormat(SupportedFileFormat.AIF.getDisplayName());
+            }
+            calculateBitRate(info);
+            return info;
         }
     }
 

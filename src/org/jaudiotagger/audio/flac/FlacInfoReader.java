@@ -18,6 +18,7 @@
  */
 package org.jaudiotagger.audio.flac;
 
+import org.jaudiotagger.audio.SupportedFileFormat;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.flac.metadatablock.BlockType;
 import org.jaudiotagger.audio.flac.metadatablock.MetadataBlockDataStreamInfo;
@@ -88,6 +89,7 @@ public class FlacInfoReader
             info.setSamplingRate(mbdsi.getSamplingRate());
             info.setBitsPerSample(mbdsi.getBitsPerSample());
             info.setEncodingType(mbdsi.getEncodingType());
+            info.setFormat(SupportedFileFormat.FLAC.getDisplayName());
             info.setLossless(true);
             info.setMd5(mbdsi.getMD5Signature());
             info.setAudioDataLength(fc.size() - streamStart);

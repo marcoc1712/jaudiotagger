@@ -18,6 +18,7 @@
  */
 package org.jaudiotagger.audio.wav;
 
+import org.jaudiotagger.audio.SupportedFileFormat;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.generic.GenericAudioHeader;
 import org.jaudiotagger.audio.generic.Utils;
@@ -71,6 +72,7 @@ public class WavInfoReader
             }
         }
 
+        info.setFormat(SupportedFileFormat.WAV.getDisplayName());
         info.setLossless(true);
         calculateTrackLength(info);
         return info;

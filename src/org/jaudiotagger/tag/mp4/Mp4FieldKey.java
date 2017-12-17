@@ -96,6 +96,7 @@ public enum Mp4FieldKey
     ISWC("com.apple.iTunes", "ISWC", TEXT, Tagger.JAIKOZ),
     ISRC_MMBETA("isrc",Mp4TagFieldSubType.TEXT, TEXT, Tagger.MEDIA_MONKEY),
     IS_CLASSICAL("com.apple.iTunes", "IS_CLASSICAL", TEXT, Tagger.JAIKOZ),
+    IS_HD("com.apple.iTunes", "IS_HD", TEXT, Tagger.JAIKOZ),
     IS_SOUNDTRACK("com.apple.iTunes", "IS_SOUNDTRACK", TEXT, Tagger.JAIKOZ),
     ITUNES_NORM("com.apple.iTunes", "iTunNORM", TEXT),
     ITUNES_SMPB("com.apple.iTunes", "iTunSMPB", TEXT),

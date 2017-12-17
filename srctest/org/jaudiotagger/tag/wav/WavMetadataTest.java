@@ -75,6 +75,10 @@ public class WavMetadataTest extends AbstractTestCase
             assertEquals(0L, ((WavTag) tag).getStartLocationInFileOfId3Chunk());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
 
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
+            assertEquals(24, f.getAudioHeader().getBitsPerSample());
+
         }
         catch (Exception e)
         {
@@ -1301,7 +1305,7 @@ public class WavMetadataTest extends AbstractTestCase
             AudioFile f = AudioFileIO.read(testFile);
             System.out.println(f.getAudioHeader());
             System.out.println(f.getTag());
-
+            assertEquals(16, f.getAudioHeader().getBitsPerSample());
         }
         catch (Exception e)
         {

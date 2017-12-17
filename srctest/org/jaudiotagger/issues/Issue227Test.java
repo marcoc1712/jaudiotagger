@@ -55,7 +55,9 @@ public class Issue227Test extends AbstractTestCase
             File testFile = AbstractTestCase.copyAudioToTmp("test515.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
+            System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
         }
         catch(Exception e)
         {
@@ -92,6 +94,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
 
         }
         catch(Exception e)
@@ -129,6 +132,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
 
         }
         catch(Exception e)
@@ -165,6 +169,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
 
         }
         catch(Exception e)
@@ -201,6 +206,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
 
         }
         catch(Exception e)
@@ -237,6 +243,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
 
         }
         catch(Exception e)
@@ -276,6 +283,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
             assertNotNull(af.getTag());
             assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"Whipping");
         }
@@ -315,6 +323,7 @@ public class Issue227Test extends AbstractTestCase
             assertNotNull(af.getTag());
             System.out.println(af.getAudioHeader());
             System.out.println(af.getTag());
+            assertEquals(24, af.getAudioHeader().getBitsPerSample());
             assertEquals(af.getTag().getFirst(FieldKey.ALBUM),"Whipping");
         }
         catch(Exception e)

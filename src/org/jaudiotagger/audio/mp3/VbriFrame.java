@@ -184,6 +184,10 @@ public class VbriFrame
      */
     public String toString()
     {
-        return "VBRIheader" + " vbr:" + vbr + " frameCount:" + frameCount + " audioFileSize:" + audioSize + " encoder:" + getEncoder();
+        return "VBRIheader\n"
+                + "\tvbr:" + vbr +"\n"
+                + "\tframeCount:" + frameCount+"\n"
+                + "\taudioFileSize:" + audioSize +"\n"
+                + "\tencoder:" + getEncoder()+"\n" ;
     }
 }

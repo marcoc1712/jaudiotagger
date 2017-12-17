@@ -31,8 +31,9 @@ public class Issue225NewTest extends AbstractTestCase
         {
 
             AudioFile af = AudioFileIO.read(testFile);
-            assertNotNull(af.getTag());
+            assertNotNull(af.getAudioHeader());
             System.out.println("IDTAGSIZE:"+((AbstractID3v2Tag)af.getTag()).getSize());
+            System.out.println(af.getAudioHeader());
         }
         catch(Exception e)
         {
