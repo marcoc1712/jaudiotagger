@@ -1,0 +1,1060 @@
+From fe3686e3bca498e5d11848368bbe57febf74c016 Mon Sep 17 00:00:00 2001
+From: marcoc1712 <marcoc1712@gmail.com>
+Date: 21-ott-2017 20.02.22
+
+feature Read DFF Header.
+
+diff --git a/src/org/jaudiotagger/audio/AudioFileIO.java b/src/org/jaudiotagger/audio/AudioFileIO.java
+index cf284dc..af2288e 100644
+--- a/src/org/jaudiotagger/audio/AudioFileIO.java
++++ b/src/org/jaudiotagger/audio/AudioFileIO.java
+@@ -51,6 +51,7 @@
+ import java.util.Iterator;
+ import java.util.Map;
+ import java.util.logging.Logger;
++import org.jaudiotagger.audio.dff.DffFileReader;
+ 
+ /**
+  *
+@@ -304,6 +305,7 @@
+         readers.put(SupportedFileFormat.AIFC.getFilesuffix(), new AiffFileReader());
+         readers.put(SupportedFileFormat.AIFF.getFilesuffix(), new AiffFileReader());
+         readers.put(SupportedFileFormat.DSF.getFilesuffix(), new DsfFileReader());
++        readers.put(SupportedFileFormat.DFF.getFilesuffix(), new DffFileReader());
+         final RealFileReader realReader = new RealFileReader();
+         readers.put(SupportedFileFormat.RA.getFilesuffix(), realReader);
+         readers.put(SupportedFileFormat.RM.getFilesuffix(), realReader);
+diff --git a/src/org/jaudiotagger/audio/SupportedFileFormat.java b/src/org/jaudiotagger/audio/SupportedFileFormat.java
+index bee3dc3..6189f0f 100644
+--- a/src/org/jaudiotagger/audio/SupportedFileFormat.java
++++ b/src/org/jaudiotagger/audio/SupportedFileFormat.java
+@@ -20,7 +20,8 @@
+     AIF("aif"),
+     AIFF("aiff"),
+     AIFC("aifc"),
+-    DSF("dsf");
++    DSF("dsf"),
++    DFF("dff");
+ 
+     private String filesuffix;
+ 
+diff --git a/src/org/jaudiotagger/audio/dff/BaseChunk.java b/src/org/jaudiotagger/audio/dff/BaseChunk.java
+new file mode 100644
+index 0000000..8b932d8
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/BaseChunk.java
+@@ -0,0 +1,96 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++import org.jaudiotagger.audio.exceptions.InvalidChunkException;
++
++/**
++ * Base Chunk for all chuncks in the dff FRM8 Chunk.
++ */
++public class BaseChunk
++{
++
++    public static final int ID_LENGHT = 4;
++    private Long chunkSize;
++    private Long chunkStart;
++    
++    public static BaseChunk readIdChunk(ByteBuffer dataBuffer) throws InvalidChunkException {
++       
++        String type = Utils.readFourBytesAsChars(dataBuffer);
++        //System.out.println("BaseChunk.type: "+type);
++        
++        if (DffChunkType.FS.getCode().equals(type)) {
++            
++            return new FsChunk(dataBuffer);
++        
++        } else if (DffChunkType.CHNL.getCode().equals(type)) {
++            
++            return new ChnlChunk(dataBuffer);
++        
++        } else if (DffChunkType.CMPR.getCode().equals(type)) {
++            
++            return new CmprChunk(dataBuffer);
++            
++        } else if (DffChunkType.END.getCode().equals(type) || DffChunkType.DSD.getCode().equals(type)) {
++            
++            return new EndChunk(dataBuffer);
++     
++        } else if (DffChunkType.DST.getCode().equals(type)) {
++            
++            return new DstChunk(dataBuffer);
++             
++        } else if (DffChunkType.FRTE.getCode().equals(type)) {
++            
++            return new FrteChunk(dataBuffer);
++            
++        } else if (DffChunkType.ID3.getCode().equals(type)) {
++            
++            return new Id3Chunk(dataBuffer);
++            
++        } else {
++            
++            throw new InvalidChunkException( type+" is not recognized as a valid DFF chunk");
++        }
++    }
++    protected BaseChunk(ByteBuffer dataBuffer) {}
++    
++    protected void readDataChunch(FileChannel fc) throws IOException{
++        
++        ByteBuffer audioData = Utils.readFileDataIntoBufferLE(fc, 8);
++        chunkSize = Long.reverseBytes(audioData.getLong());
++        chunkStart = fc.position();
++                
++        //System.out.println("chunck: "+this+" size: "+this.getChunkSize()+" starts at: "+this.getChunkStart());
++    }
++    
++    protected void skipToChunkEnd(FileChannel fc) throws IOException{
++    
++        Long skip = (this.getChunkEnd()-fc.position());
++        
++        if (skip>0){
++            ByteBuffer audioData = Utils.readFileDataIntoBufferLE(fc, skip.intValue());
++            //System.out.println("New postion: "+fc.position());
++        }
++    }
++    /**
++     * @return the chunk Start position
++     */
++    public Long getChunkStart() {
++        return chunkStart;
++    }
++    /**
++     * @return the chunkSize
++     */
++    public Long getChunkSize() {
++        return chunkSize;
++    }
++    /**
++     * @return the chunk End position.
++     */
++    public Long getChunkEnd() {
++        return chunkStart + chunkSize;
++    }
++}
+diff --git a/src/org/jaudiotagger/audio/dff/ChnlChunk.java b/src/org/jaudiotagger/audio/dff/ChnlChunk.java
+new file mode 100644
+index 0000000..9b9035e
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/ChnlChunk.java
+@@ -0,0 +1,58 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++import java.util.Arrays;
++
++/**
++ * CHNL Chunk. Retrive channels info.
++ */
++public class ChnlChunk extends BaseChunk
++{
++    private short numChannels;
++    String IDs[];
++
++    public ChnlChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++        
++        ByteBuffer audioData = Utils.readFileDataIntoBufferLE(fc, 2);
++        numChannels = Short.reverseBytes(audioData.getShort());
++        //System.out.println(" numChannels: "+numChannels);
++
++        //System.out.println(" new postion: "+fc.position());
++        
++        IDs = new String[numChannels];
++        for (int i = 0; i < numChannels; i++) {
++				audioData = Utils.readFileDataIntoBufferLE(fc, 4);
++                IDs[i] = Utils.readFourBytesAsChars(audioData);
++        }
++        //System.out.printf("Channels %s%n\n", Arrays.toString(IDs));
++        //System.out.println(" new postion: "+fc.position());
++        
++        skipToChunkEnd(fc);
++    }
++   
++    /**
++     * @return the sampleRate
++     */
++    public Short getNumChannels() {
++        return numChannels;
++    }
++    
++    @Override
++    public String toString() {
++        return DffChunkType.CHNL.getCode();
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/CmprChunk.java b/src/org/jaudiotagger/audio/dff/CmprChunk.java
+new file mode 100644
+index 0000000..999e2f4
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/CmprChunk.java
+@@ -0,0 +1,65 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++import static java.nio.charset.StandardCharsets.ISO_8859_1;
++
++/**
++ * CMPR Chunk. Retrieve compression.
++ */
++public class CmprChunk extends BaseChunk
++{   
++    private String compression;
++    private String description;
++
++    public CmprChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++        
++        ByteBuffer audioData = Utils.readFileDataIntoBufferLE(fc, 4);
++        compression = Utils.readFourBytesAsChars(audioData);
++        
++        audioData = Utils.readFileDataIntoBufferLE(fc, 1);  
++
++        byte b = audioData.get();
++        int blen = b & 255;
++
++        audioData = Utils.readFileDataIntoBufferLE(fc, blen); 
++        byte[] buff = new byte[blen];
++        
++        audioData.get(buff);
++        description =new String(buff,ISO_8859_1);
++
++        //System.out.println(" new postion: "+fc.position());
++        
++        skipToChunkEnd(fc);
++    }
++   
++    /**
++     * @return the compression
++     */
++    public String getCompression() {
++        return compression;
++    }
++    /**
++     * @return the description
++     */
++    public String getDescription() {
++        return description;
++    }
++    @Override
++    public String toString() {
++        return DffChunkType.CMPR.getCode();
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/DffChunkType.java b/src/org/jaudiotagger/audio/dff/DffChunkType.java
+new file mode 100644
+index 0000000..ec5ecf0
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/DffChunkType.java
+@@ -0,0 +1,64 @@
++package org.jaudiotagger.audio.dff;
++
++import java.util.HashMap;
++import java.util.Map;
++
++/**
++ * Chunk types mark each {@link org.jaudiotagger.audio.iff.ChunkHeader}. They are <em>always</em> 4 ASCII chars long.
++ *
++ * @see org.jaudiotagger.audio.iff.Chunk
++ */
++public enum DffChunkType
++{
++    FRM8("FRM8"),
++    DSD("DSD "),
++    PROP("PROP"),
++    SND("SND "),
++    FS("FS  "),
++    CHNL("CHNL"),
++    CMPR("CMPR"),
++    DITI("DITI"), 
++    END("DSD "),
++    DST("DST "),
++    FRTE("FRTE"),
++    ID3("ID3 "),            
++    DATA("data"),
++    
++    ;
++
++    private static final Map<String, DffChunkType> CODE_TYPE_MAP = new HashMap<String, DffChunkType>();
++    private String code;
++
++    /**
++     * @param code 4 char string
++     */
++    DffChunkType(final String code)
++    {
++        this.code=code;
++    }
++
++    /**
++     * Get {@link org.jaudiotagger.audio.dsf.DsfChunkType} for code (e.g. "SSND").
++     *
++     * @param code chunk id
++     * @return chunk type or {@code null} if not registered
++     */
++    public synchronized static DffChunkType get(final String code) {
++        if (CODE_TYPE_MAP.isEmpty()) {
++            for (final DffChunkType type : values()) {
++                CODE_TYPE_MAP.put(type.getCode(), type);
++            }
++        }
++        return CODE_TYPE_MAP.get(code);
++    }
++
++    /**
++     * 4 char type code.
++     *
++     * @return 4 char type code, e.g. "SSND" for the sound chunk.
++     */
++    public String getCode()
++    {
++        return code;
++    }
++}
+diff --git a/src/org/jaudiotagger/audio/dff/DffFileReader.java b/src/org/jaudiotagger/audio/dff/DffFileReader.java
+new file mode 100644
+index 0000000..1fbc20d
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/DffFileReader.java
+@@ -0,0 +1,190 @@
++/*
++ * Created on 03.05.2015
++ * Author: Veselin Markov.
++ */
++package org.jaudiotagger.audio.dff;
++
++import org.jaudiotagger.audio.exceptions.CannotReadException;
++import org.jaudiotagger.audio.generic.AudioFileReader2;
++import org.jaudiotagger.audio.generic.GenericAudioHeader;
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.io.IOException;
++import java.nio.channels.FileChannel;
++import java.nio.file.Path;
++import java.util.logging.Level;
++import org.jaudiotagger.audio.exceptions.InvalidChunkException;
++
++import org.jaudiotagger.tag.Tag;
++
++public class DffFileReader extends AudioFileReader2
++{
++    @Override
++    protected GenericAudioHeader getEncodingInfo(Path file) throws CannotReadException, IOException {
++        
++        System.out.println("Directory: "+file.getParent());
++        System.out.println("File: "+file.getFileName());
++        
++        try(FileChannel fc = FileChannel.open(file)) { 
++            
++            System.out.println("File size: "+fc.size());
++            
++            Frm8Chunk frm8 = Frm8Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, Frm8Chunk.FRM8_HEADER_LENGTH));
++            if (frm8 != null) {
++                
++                DsdChunk dsd = DsdChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, DsdChunk.DSD_HEADER_LENGTH));
++                
++                if (dsd== null){
++                    throw new CannotReadException(file + " Not a valid dff file. Missing 'DSD '  after 'FRM8' ");
++                } 
++                PropChunk prop;
++                for (;;){
++                    prop = PropChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, PropChunk.PROP_HEADER_LENGTH));
++                    if (prop != null){
++                        break;
++                    }
++                }
++                
++                if (prop == null){
++                    
++                    throw new CannotReadException(file + " Not a valid dff file. Content does not have 'PROP'");
++                }
++                
++                SndChunk snd = SndChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, SndChunk.SND_HEADER_LENGTH));
++                if (snd== null){
++                    throw new CannotReadException(file + " Not a valid dff file. Missing 'SND '  after 'PROP' ");
++                } 
++                
++                BaseChunk chunk=null;
++                FsChunk fs=null;
++                ChnlChunk chnl=null;
++                CmprChunk cmpr=null;
++                DitiChunk diti=null;
++                EndChunk end=null;
++                DstChunk dst=null;
++                FrteChunk frte=null;
++                Id3Chunk id3=null;
++
++                for (;;){
++                    try{
++                        chunk =  BaseChunk.readIdChunk(Utils.readFileDataIntoBufferLE(fc, BaseChunk.ID_LENGHT));
++                    
++                    }catch (InvalidChunkException ex){
++                            
++                       continue;     
++                    }
++
++                    if (chunk instanceof FsChunk){
++                        fs = (FsChunk)chunk;
++                        fs.readDataChunch(fc);
++
++                    } else if(chunk instanceof ChnlChunk){
++                        chnl = (ChnlChunk)chunk;
++                        chnl.readDataChunch(fc);
++
++                    } else if(chunk instanceof CmprChunk){
++                        cmpr = (CmprChunk)chunk;
++                        cmpr.readDataChunch(fc);
++
++                    } else if(chunk instanceof DitiChunk){
++                        diti = (DitiChunk)chunk;
++                        diti.readDataChunch(fc);
++                        
++                    } else if(chunk instanceof EndChunk){
++                        end = (EndChunk)chunk;
++                        end.readDataChunch(fc);
++                        
++                        break; //no more data after the end.
++
++                    } else if(chunk instanceof DstChunk){
++                        dst = (DstChunk)chunk;
++                        dst.readDataChunch(fc);
++                        
++                        try {
++
++                            frte = (FrteChunk)BaseChunk.readIdChunk(Utils.readFileDataIntoBufferLE(fc, BaseChunk.ID_LENGHT));
++                        
++                        } catch (InvalidChunkException ex) {
++                            
++                            throw new CannotReadException(file + "Not a valid dft file. Missing 'FRTE' chunk");
++                        }
++                        
++                        if (frte != null){
++                            
++                            frte.readDataChunch(fc);
++    
++                        }
++                    
++                    } else if(chunk instanceof Id3Chunk){
++                        id3 = (Id3Chunk)chunk;
++                        id3.readDataChunch(fc);
++                        
++                        
++                    }
++                    
++                } //end for
++
++                if (chnl == null){
++                    throw new CannotReadException(file + " Not a valid dff file. Missing 'CHNL' chunk");
++                }
++                if (fs == null){
++                    throw new CannotReadException(file + " Not a valid dff file. Missing 'FS' chunk");
++                }
++                if (dst!= null && frte == null){
++                    throw new CannotReadException(file + " Not a valid dst file. Missing 'FRTE' chunk");
++                }
++                if (end == null && dst == null){
++                    throw new CannotReadException(file + " Not a valid dff file. Missing 'DSD' end chunk");
++                }
++                
++                int bitsPerSample=1;
++                int channelNumber  = chnl.getNumChannels();
++                int samplingFreqency = fs.getSampleRate();
++                long sampleCount;
++                
++                if (dst !=null){
++                    
++                    sampleCount = frte.getNumFrames() / frte.getRate()
++					* samplingFreqency;
++                    
++                } else {
++                    
++                    sampleCount =  (end.getDataEnd() - end.getDataStart())
++					* (8 / channelNumber);
++                
++                }
++                
++                return buildAudioHeader(channelNumber, samplingFreqency, sampleCount, bitsPerSample, (dst !=null));
++                
++            } else {
++                throw new CannotReadException(file + " Not a valid dff file. Content does not start with 'FRM8'");
++            
++            } //end if frm8
++            
++        } // end try.
++
++    }
++    
++    private GenericAudioHeader buildAudioHeader(int channelNumber, int samplingFreqency, long sampleCount, int bitsPerSample, boolean isDST)
++    {
++        GenericAudioHeader audioHeader = new GenericAudioHeader();
++
++        audioHeader.setEncodingType("DFF");
++        audioHeader.setBitRate(bitsPerSample * samplingFreqency * channelNumber);
++        audioHeader.setBitsPerSample(bitsPerSample);
++        audioHeader.setChannelNumber(channelNumber);
++        audioHeader.setSamplingRate(samplingFreqency);
++        audioHeader.setNoOfSamples(sampleCount);
++        audioHeader.setPreciseLength((float) sampleCount / samplingFreqency);
++        audioHeader.setVariableBitRate(isDST);   
++
++        logger.log(Level.FINE, "Created audio header: " + audioHeader);
++        return audioHeader;
++    }
++    
++    @Override
++    protected Tag getTag(Path path) throws CannotReadException, IOException {
++       return null;
++    }
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/DitiChunk.java b/src/org/jaudiotagger/audio/dff/DitiChunk.java
+new file mode 100644
+index 0000000..1837051
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/DitiChunk.java
+@@ -0,0 +1,33 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++
++/**
++ * DITI Chunk. Carry the Title.
++ */
++public class DitiChunk extends BaseChunk
++{
++
++    public DitiChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++                
++        //skipToChunkEnd(fc);
++    }
++       
++    @Override
++    public String toString() {
++        return DffChunkType.DITI.getCode();
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/DsdChunk.java b/src/org/jaudiotagger/audio/dff/DsdChunk.java
+new file mode 100644
+index 0000000..a2baac6
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/DsdChunk.java
+@@ -0,0 +1,37 @@
++package org.jaudiotagger.audio.dff;
++
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++import org.jaudiotagger.audio.dsf.DsfChunkType;
++
++/**
++ * DSD Chunk
++ */
++public class DsdChunk
++{
++    public static final int CHUNKSIZE_LENGTH = 8;
++    public static final int SIGNATURE_LENGTH = 4;
++
++    public static final int DSD_HEADER_LENGTH =  CHUNKSIZE_LENGTH;
++
++    public static DsdChunk readChunk(ByteBuffer dataBuffer)
++    {
++        String type = Utils.readFourBytesAsChars(dataBuffer);
++        if (DsfChunkType.DSD.getCode().equals(type))
++        {
++            return new DsdChunk(dataBuffer);
++        }
++        return null;
++    }
++
++    private DsdChunk(ByteBuffer dataBuffer)
++    {
++      
++    }
++
++    @Override
++    public String toString() {
++        return DffChunkType.DSD.getCode();
++    }
++}
+diff --git a/src/org/jaudiotagger/audio/dff/DstChunk.java b/src/org/jaudiotagger/audio/dff/DstChunk.java
+new file mode 100644
+index 0000000..db94eb6
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/DstChunk.java
+@@ -0,0 +1,33 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++
++/**
++ * DSD Chunk
++ */
++public class DstChunk extends BaseChunk
++{
++
++    public DstChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++        
++        skipToChunkEnd(fc);
++    }
++   
++    @Override
++    public String toString() {
++        return DffChunkType.ID3.getCode();
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/EndChunk.java b/src/org/jaudiotagger/audio/dff/EndChunk.java
+new file mode 100644
+index 0000000..f521d49
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/EndChunk.java
+@@ -0,0 +1,48 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++
++/**
++ * DSD Chunk
++ */
++public class EndChunk extends BaseChunk
++{
++    private Long dataEnd;
++    
++    public EndChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++        dataEnd=this.getChunkEnd();
++
++        //skipToChunkEnd(fc);
++        
++    }
++    /**
++     * @return the point where data starts
++     */
++    public Long getDataStart() {
++        return this.getChunkStart();
++    }
++    /**
++     * @return the dataEnd (should be the end of file)
++     */
++    public Long getDataEnd() {
++        return dataEnd;
++    }
++    
++    @Override
++    public String toString() {
++        return DffChunkType.END.getCode()+" (END)";
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/Frm8Chunk.java b/src/org/jaudiotagger/audio/dff/Frm8Chunk.java
+new file mode 100644
+index 0000000..1c62009
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/Frm8Chunk.java
+@@ -0,0 +1,37 @@
++package org.jaudiotagger.audio.dff;
++
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++
++/**
++ * DSD Chunk
++ */
++public class Frm8Chunk
++{
++    public static final int SIGNATURE_LENGTH = 4;
++    public static final int CHUNKSIZE_LENGTH = 8;
++
++    public static final int FRM8_HEADER_LENGTH = SIGNATURE_LENGTH+CHUNKSIZE_LENGTH;
++
++    public static Frm8Chunk readChunk(ByteBuffer dataBuffer)
++    {
++        String frm8Signature = Utils.readFourBytesAsChars(dataBuffer);
++
++        if (!DffChunkType.FRM8.getCode().equals(frm8Signature)){
++             
++             return null;
++        }
++       
++        return new Frm8Chunk(dataBuffer);
++    }
++        
++    private Frm8Chunk(ByteBuffer dataBuffer) {
++
++    }
++
++    @Override
++    public String toString() {
++        return DffChunkType.FRM8.getCode();
++    }
++}
+diff --git a/src/org/jaudiotagger/audio/dff/FrteChunk.java b/src/org/jaudiotagger/audio/dff/FrteChunk.java
+new file mode 100644
+index 0000000..aa407c0
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/FrteChunk.java
+@@ -0,0 +1,56 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++
++/**
++ * FS Chunk. Retrive samplerate.
++ */
++public class FrteChunk extends BaseChunk {
++
++    private int numFrames;
++    private Short rate;
++
++    public FrteChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++        
++        ByteBuffer audioData = Utils.readFileDataIntoBufferLE(fc, 4);
++        numFrames = Integer.reverseBytes(audioData.getInt());
++        
++        audioData = Utils.readFileDataIntoBufferLE(fc, 2);
++        rate = Short.reverseBytes(audioData.getShort());
++        
++        skipToChunkEnd(fc);
++ 
++    }
++   
++        /**
++     * @return the numFrames
++     */
++    public int getNumFrames() {
++        return numFrames;
++    }
++
++    /**
++     * @return the rate
++     */
++    public Short getRate() {
++        return rate;
++    }
++    
++    @Override
++    public String toString() {
++        return DffChunkType.FRTE.getCode();
++    }
++}
++
++    
+diff --git a/src/org/jaudiotagger/audio/dff/FsChunk.java b/src/org/jaudiotagger/audio/dff/FsChunk.java
+new file mode 100644
+index 0000000..3ee7695
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/FsChunk.java
+@@ -0,0 +1,46 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++
++/**
++ * FS Chunk. Retrive samplerate.
++ */
++public class FsChunk extends BaseChunk
++{
++    private int sampleRate;
++
++    public FsChunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++        
++        ByteBuffer audioData = Utils.readFileDataIntoBufferLE(fc, 4);
++        sampleRate = Integer.reverseBytes(audioData.getInt());
++        
++        skipToChunkEnd(fc);
++ 
++    }
++   
++    /**
++     * @return the sampleRate
++     */
++    public int getSampleRate() {
++        return sampleRate;
++    }
++    
++    @Override
++    public String toString() {
++        return DffChunkType.FS.getCode();
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/Id3Chunk.java b/src/org/jaudiotagger/audio/dff/Id3Chunk.java
+new file mode 100644
+index 0000000..6ca876f
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/Id3Chunk.java
+@@ -0,0 +1,32 @@
++package org.jaudiotagger.audio.dff;
++
++import java.io.IOException;
++
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++
++/**
++ * DSD Chunk
++ */
++public class Id3Chunk extends BaseChunk
++{
++    public Id3Chunk(ByteBuffer dataBuffer) {
++        super(dataBuffer);
++    }
++
++    @Override
++    public void readDataChunch(FileChannel fc) throws IOException{
++        
++        super.readDataChunch(fc);
++                
++        //skipToChunkEnd(fc);
++    }
++
++    @Override
++    public String toString() {
++        return DffChunkType.ID3.getCode();
++    }
++
++    
++
++}
+diff --git a/src/org/jaudiotagger/audio/dff/PropChunk.java b/src/org/jaudiotagger/audio/dff/PropChunk.java
+new file mode 100644
+index 0000000..07c483f
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/PropChunk.java
+@@ -0,0 +1,32 @@
++package org.jaudiotagger.audio.dff;
++
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++
++/**
++ * PROP Chunk.
++ */
++public class PropChunk
++{
++    public static final int CHUNKSIZE_LENGTH = 8;
++    public static final int SIGNATURE_LENGTH = 4;
++    public static final int PROP_HEADER_LENGTH =  SIGNATURE_LENGTH + CHUNKSIZE_LENGTH;
++
++    public static PropChunk readChunk(ByteBuffer dataBuffer)
++    {
++        String type = Utils.readFourBytesAsChars(dataBuffer);
++        if (DffChunkType.PROP.getCode().equals(type))
++        {
++            return new PropChunk(dataBuffer);
++        }
++        return null;
++    }
++
++    private PropChunk(ByteBuffer dataBuffer) {}
++
++    @Override
++    public String toString() {
++        return DffChunkType.PROP.getCode();
++    }
++}
+diff --git a/src/org/jaudiotagger/audio/dff/SndChunk.java b/src/org/jaudiotagger/audio/dff/SndChunk.java
+new file mode 100644
+index 0000000..465015e
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/dff/SndChunk.java
+@@ -0,0 +1,36 @@
++package org.jaudiotagger.audio.dff;
++
++import org.jaudiotagger.audio.generic.Utils;
++
++import java.nio.ByteBuffer;
++
++/**
++ * DSD Chunk
++ */
++public class SndChunk
++{
++    public static final int CHUNKSIZE_LENGTH = 0;
++    public static final int SIGNATURE_LENGTH = 4;
++    
++    public static final int SND_HEADER_LENGTH =  SIGNATURE_LENGTH + CHUNKSIZE_LENGTH;
++
++    public static SndChunk readChunk(ByteBuffer dataBuffer)
++    {
++        String type = Utils.readFourBytesAsChars(dataBuffer);
++        if (DffChunkType.SND.getCode().equals(type))
++        {
++            return new SndChunk(dataBuffer);
++        }
++        return null;
++    }
++
++    private SndChunk(ByteBuffer dataBuffer)
++    {
++      
++    }
++
++    @Override
++    public String toString() {
++        return DffChunkType.SND.getCode();
++    }
++}
+diff --git a/src/org/jaudiotagger/audio/exceptions/InvalidChunkException.java b/src/org/jaudiotagger/audio/exceptions/InvalidChunkException.java
+new file mode 100644
+index 0000000..0ca98bb
+--- /dev/null
++++ b/src/org/jaudiotagger/audio/exceptions/InvalidChunkException.java
+@@ -0,0 +1,61 @@
++/*
++ * Entagged Audio Tag library
++ * Copyright (c) 2003-2005 Raphaël Slinckx <raphael@slinckx.net>
++ * 
++ * This library is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU Lesser General Public
++ * License as published by the Free Software Foundation; either
++ * version 2.1 of the License, or (at your option) any later version.
++ *  
++ * This library is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * Lesser General Public License for more details.
++ * 
++ * You should have received a copy of the GNU Lesser General Public
++ * License along with this library; if not, write to the Free Software
++ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++ */
++package org.jaudiotagger.audio.exceptions;
++
++/**
++ * This exception is thrown if reading a dff fil ean invalid chuink is encountered.<br>
++ * 
++ * @author Marco Curti
++ */
++public class InvalidChunkException extends Exception
++{
++    /**
++     * Creates an instance.
++     */
++    public InvalidChunkException()
++    {
++        super();
++    }
++
++    public InvalidChunkException(Throwable ex)
++    {
++        super(ex);
++    }
++
++    /**
++     * Creates an instance.
++     *
++     * @param message The message.
++     */
++    public InvalidChunkException(String message)
++    {
++        super(message);
++    }
++
++    /**
++     * Creates an instance.
++     *
++     * @param message The error message.
++     * @param cause   The throwable causing this exception.
++     */
++    public InvalidChunkException(String message, Throwable cause)
++    {
++        super(message, cause);
++    }
++}

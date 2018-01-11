@@ -75,7 +75,7 @@ public class VorbisWriteTagTest extends AbstractTestCase
             tag.setField(tag.createField(FieldKey.ARTIST_SORT, "Sortartist\u01ff"));
             tag.setField(FieldKey.LYRICS, "lyrics");
             tag.setField(FieldKey.BPM, "200");
-            tag.setField(FieldKey.ALBUM_ARTIST, "Albumartist");
+            tag.setField(tag.createField(FieldKey.ALBUM_ARTIST, "Albumartist"));
             tag.setField(tag.createField(FieldKey.ALBUM_ARTIST_SORT, "Sortalbumartist"));
             tag.setField(tag.createField(FieldKey.ALBUM_SORT, "Sortalbum"));
             tag.setField(tag.createField(FieldKey.GROUPING, "GROUping"));
