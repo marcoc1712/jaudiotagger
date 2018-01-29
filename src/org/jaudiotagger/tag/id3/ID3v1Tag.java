@@ -190,6 +190,12 @@ public class ID3v1Tag extends AbstractID3v1Tag implements Tag
         ByteBuffer byteBuffer;
 
         fc = file.getChannel();
+
+        if(file.length() < TAG_LENGTH)
+        {
+            throw new IOException("File not large enough to contain a tag");
+        }
+
         fc.position(file.length() - TAG_LENGTH);
         byteBuffer = ByteBuffer.allocate(TAG_LENGTH);
         fc.read(byteBuffer);

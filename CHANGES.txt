@@ -78,6 +78,7 @@ Summarise Changes
 #236:Add audioHeader.format field
 #245:When using ID3v22 Conductor should be written to TP3
 #242:Problem with deprecated frames in ID3 tag conversion
+#238:Avoid crashes caused by corrupt mp3 files
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
