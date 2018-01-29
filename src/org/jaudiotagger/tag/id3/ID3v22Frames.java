@@ -40,7 +40,7 @@ public class ID3v22Frames extends ID3Frames
     public static final String FRAME_ID_V2_BPM = "TBP";
     public static final String FRAME_ID_V2_COMMENT = "COM";
     public static final String FRAME_ID_V2_COMPOSER = "TCM";
-    public static final String FRAME_ID_V2_CONDUCTOR = "TPE";
+    public static final String FRAME_ID_V2_CONDUCTOR = "TP3";
     public static final String FRAME_ID_V2_CONTENT_GROUP_DESC = "TT1";
     public static final String FRAME_ID_V2_COPYRIGHTINFO = "TCR";
     public static final String FRAME_ID_V2_ENCODEDBY = "TEN";
