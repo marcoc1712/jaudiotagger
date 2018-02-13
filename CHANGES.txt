@@ -64,7 +64,7 @@ Summarise Changes
 #204:Wav with corrupt ID3/LIST placement should not cause complete Read fail
 #205:WAV files can have additional itrk fields added to RIFF chunk
 #181:Null characters are included in WavTag.toString
-#208:Add new OVERALL_WORK field to store the top level work
+#208:Add new OVERALL_WORK field to store tnhe top level work
 #180:Support for ITunes GRP field
 #214:Remove checkFileExists()
 #216:Cannot read mp4s when Mdat length is described as 64bit length header
