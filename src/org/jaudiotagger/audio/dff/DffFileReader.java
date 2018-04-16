@@ -76,8 +76,8 @@ public class DffFileReader extends AudioFileReader2
                     }
                     catch (InvalidChunkException ex)
                     {
-
-                        continue;
+						System.out.println("INVALID");
+						continue;
                     }
 
                     if (chunk instanceof FsChunk)
@@ -144,6 +144,11 @@ public class DffFileReader extends AudioFileReader2
 
 
                     }
+					else {
+						
+						((GenericChunk) chunk).readDataChunch(fc);
+						
+					}
 
                 } //end for
 

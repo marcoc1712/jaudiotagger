@@ -23,7 +23,7 @@ public class BaseChunk
     {
 
         String type = Utils.readFourBytesAsChars(dataBuffer);
-        //System.out.println("BaseChunk.type: "+type);
+        System.out.println("BaseChunk.type: "+type);
 
         if (DffChunkType.FS.getCode().equals(type))
         {
@@ -69,15 +69,15 @@ public class BaseChunk
         }
         else
         {
-
-            throw new InvalidChunkException(type + " is not recognized as a valid DFF chunk");
+			return new GenericChunk(dataBuffer);
+            //throw new InvalidChunkException(type + " is not recognized as a valid DFF chunk");
         }
     }
 
     protected BaseChunk(ByteBuffer dataBuffer)
     {
     }
-
+	
     protected void readDataChunch(FileChannel fc) throws IOException
     {
 
