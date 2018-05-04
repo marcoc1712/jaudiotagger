@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jaudiotagger.audio.exceptions.InvalidChunkException;
 
@@ -20,7 +21,9 @@ import org.jaudiotagger.tag.Tag;
 
 public class DffFileReader extends AudioFileReader2
 {
-    @Override
+    public static Logger logger = Logger.getLogger("org.jaudiotagger.audio.dff");
+	
+	@Override
     protected GenericAudioHeader getEncodingInfo(Path file) throws CannotReadException, IOException
     {
         try (FileChannel fc = FileChannel.open(file))
@@ -28,7 +31,6 @@ public class DffFileReader extends AudioFileReader2
             Frm8Chunk frm8 = Frm8Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, Frm8Chunk.FRM8_HEADER_LENGTH));
             if (frm8 != null)
             {
-
                 DsdChunk dsd = DsdChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, DsdChunk.DSD_HEADER_LENGTH));
 
                 if (dsd == null)
@@ -76,8 +78,8 @@ public class DffFileReader extends AudioFileReader2
                     }
                     catch (InvalidChunkException ex)
                     {
-						System.out.println("INVALID");
-						continue;
+						logger.log(Level.FINE, "INVALID {0}", fc.position());
+						break;
                     }
 
                     if (chunk instanceof FsChunk)
@@ -164,10 +166,10 @@ public class DffFileReader extends AudioFileReader2
                 {
                     throw new CannotReadException(file + " Not a valid dst file. Missing 'FRTE' chunk");
                 }
-                if (end == null && dst == null)
+                /*if (end == null && dst == null)
                 {
                     throw new CannotReadException(file + " Not a valid dff file. Missing 'DSD' end chunk");
-                }
+                }*/
 
                 int bitsPerSample = 1;
                 int channelNumber = chnl.getNumChannels();
@@ -181,14 +183,17 @@ public class DffFileReader extends AudioFileReader2
                             * samplingFreqency;
 
                 }
-                else
+				else if (end != null)
                 {
 
                     sampleCount = (end.getDataEnd() - end.getDataStart())
                             * (8 / channelNumber);
 
-                }
-
+                } else {
+					sampleCount = (frm8.getChunkSizeLength().longValue() - fc.position())
+							* (8 / channelNumber);
+				}
+	 
                 return buildAudioHeader(channelNumber, samplingFreqency, sampleCount, bitsPerSample, (dst != null));
 
             }

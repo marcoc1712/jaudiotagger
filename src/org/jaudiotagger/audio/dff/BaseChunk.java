@@ -6,6 +6,8 @@ import org.jaudiotagger.audio.generic.Utils;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jaudiotagger.audio.exceptions.InvalidChunkException;
 
@@ -14,7 +16,8 @@ import org.jaudiotagger.audio.exceptions.InvalidChunkException;
  */
 public class BaseChunk
 {
-
+	public static Logger logger = Logger.getLogger("org.jaudiotagger.audio.dff");
+	
     public static final int ID_LENGHT = 4;
     private Long chunkSize;
     private Long chunkStart;
@@ -23,8 +26,8 @@ public class BaseChunk
     {
 
         String type = Utils.readFourBytesAsChars(dataBuffer);
-        System.out.println("BaseChunk.type: "+type);
-
+		logger.log(Level.FINE, "BaseChunk.type: {0}", type);
+       
         if (DffChunkType.FS.getCode().equals(type))
         {
 
