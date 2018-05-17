@@ -112,7 +112,10 @@ public class TextEncodedStringSizeTerminated extends AbstractString
         //for multiple values, BOM could be Big Endian or Little Endian
         if (StandardCharsets.UTF_16.equals(getTextEncodingCharSet()))
         {
+            //Remove addtional bom
             value = outBuffer.toString().replace("\ufeff","").replace("\ufffe","");
+            //Remove unmappable chars caused by problem with decoding
+            value = ((String)value).replace("\ufdff","").replace("\ufffd","");
         }
         else
         {

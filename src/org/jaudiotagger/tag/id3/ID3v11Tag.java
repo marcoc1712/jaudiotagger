@@ -235,7 +235,10 @@ public class ID3v11Tag extends ID3v1Tag
         setLoggingFilename(loggingFilename);
         FileChannel fc;
         ByteBuffer byteBuffer = ByteBuffer.allocate(TAG_LENGTH);
-
+        if(file.length() < TAG_LENGTH)
+        {
+            throw new IOException("File not large enough to contain a tag");
+        }
         fc = file.getChannel();
         fc.position(file.length() - TAG_LENGTH);
 

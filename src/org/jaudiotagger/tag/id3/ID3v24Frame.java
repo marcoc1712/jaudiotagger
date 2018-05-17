@@ -179,16 +179,26 @@ public class ID3v24Frame extends AbstractID3v2Frame
         // Unknown Frame e.g NCON or TDRL (because TDRL unknown to V23)
         else
         {
-            this.frameBody = new FrameBodyUnsupported((FrameBodyUnsupported) frame.getBody());
-            this.frameBody.setHeader(this);
-            identifier = frame.getIdentifier();
-            logger.finer("V3:Unknown:Orig id is:" + frame.getIdentifier() + ":New id is:" + identifier);
+            if (frame.getBody() instanceof FrameBodyUnsupported)
+            {
+                this.frameBody = new FrameBodyUnsupported((FrameBodyUnsupported) frame.getBody());
+                this.frameBody.setHeader(this);
+                identifier = frame.getIdentifier();
+                logger.finer("V3:Unknown:Orig id is:" + frame.getIdentifier() + ":New id is:" + identifier);
+            }
+            else if (frame.getBody() instanceof FrameBodyDeprecated)
+            {
+                this.frameBody = new FrameBodyDeprecated((FrameBodyDeprecated) frame.getBody());
+                this.frameBody.setHeader(this);
+                identifier = frame.getIdentifier();
+                logger.finer("V3:Deprecated:Orig id is:" + frame.getIdentifier() + ":New id is:" + identifier);
+            }
         }
     }
 
     /**
      * Partially construct ID3v24 Frame form an IS3v23Frame
-     *
+     * <p>
      * Used for Special Cases
      *
      * @param frame
@@ -197,7 +207,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
      */
     protected ID3v24Frame(ID3v23Frame frame, String identifier) throws InvalidFrameException
     {
-        this.identifier=identifier;
+        this.identifier = identifier;
         statusFlags = new StatusFlags((ID3v23Frame.StatusFlags) frame.getStatusFlags());
         encodingFlags = new EncodingFlags(frame.getEncodingFlags().getFlags());
     }
@@ -209,7 +219,6 @@ public class ID3v24Frame extends AbstractID3v2Frame
      *
      * @param frame to construct a new frame from
      * @throws org.jaudiotagger.tag.InvalidFrameException
-     *
      */
     public ID3v24Frame(AbstractID3v2Frame frame) throws InvalidFrameException
     {
@@ -244,7 +253,6 @@ public class ID3v24Frame extends AbstractID3v2Frame
         }
         this.frameBody.setHeader(this);
     }
-
 
 
     /**
@@ -342,7 +350,6 @@ public class ID3v24Frame extends AbstractID3v2Frame
      * @param byteBuffer      to read from
      * @param loggingFilename
      * @throws org.jaudiotagger.tag.InvalidFrameException
-     *
      */
     public ID3v24Frame(ByteBuffer byteBuffer, String loggingFilename) throws InvalidFrameException, InvalidDataTypeException
     {
@@ -355,8 +362,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
      *
      * @param byteBuffer to read from
      * @throws org.jaudiotagger.tag.InvalidFrameException
-     *
-     * @deprecated use {@link #ID3v24Frame(ByteBuffer,String)} instead
+     * @deprecated use {@link #ID3v24Frame(ByteBuffer, String)} instead
      */
     public ID3v24Frame(ByteBuffer byteBuffer) throws InvalidFrameException, InvalidDataTypeException
     {
@@ -548,7 +554,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
     private void getFrameSize(ByteBuffer byteBuffer)
             throws InvalidFrameException
     {
-         //Read frame size as syncsafe integer
+        //Read frame size as syncsafe integer
         frameSize = ID3SyncSafeInteger.bufferToValue(byteBuffer);
 
         if (frameSize < 0)
@@ -609,14 +615,14 @@ public class ID3v24Frame extends AbstractID3v2Frame
         if (((EncodingFlags) encodingFlags).isGrouping())
         {
             extraHeaderBytesCount = ID3v24Frame.FRAME_GROUPING_INDICATOR_SIZE;
-            groupIdentifier=byteBuffer.get();
+            groupIdentifier = byteBuffer.get();
         }
 
         if (((EncodingFlags) encodingFlags).isEncryption())
         {
             //Read the Encryption byte, but do nothing with it
             extraHeaderBytesCount += ID3v24Frame.FRAME_ENCRYPTION_INDICATOR_SIZE;
-            encryptionMethod=byteBuffer.get();
+            encryptionMethod = byteBuffer.get();
         }
 
         if (((EncodingFlags) encodingFlags).isDataLengthIndicator())
@@ -654,7 +660,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
             if (((EncodingFlags) encodingFlags).isCompression())
             {
                 frameBodyBuffer = ID3Compression.uncompress(identifier, getLoggingFilename(), byteBuffer, dataLengthSize, realFrameSize);
-                if(((EncodingFlags) encodingFlags).isEncryption())
+                if (((EncodingFlags) encodingFlags).isEncryption())
                 {
                     frameBody = readEncryptedBody(identifier, frameBodyBuffer, dataLengthSize);
                 }
@@ -667,7 +673,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
             {
                 frameBodyBuffer = byteBuffer.slice();
                 frameBodyBuffer.limit(realFrameSize);
-                frameBody = readEncryptedBody(identifier, byteBuffer,frameSize);
+                frameBody = readEncryptedBody(identifier, byteBuffer, frameSize);
             }
             else
             {
@@ -689,7 +695,6 @@ public class ID3v24Frame extends AbstractID3v2Frame
     /**
      * Write the frame. Writes the frame header but writing the data is delegated to the
      * frame body.
-     *
      */
     public void write(ByteArrayOutputStream tagBuffer)
     {
@@ -735,7 +740,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
 
         //Remove any non standard flags
         ((ID3v24Frame.EncodingFlags) encodingFlags).unsetNonStandardFlags();
-                
+
         //Encoding we only support unsynchronization
         if (unsynchronization)
         {
@@ -757,7 +762,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
 
             if (((EncodingFlags) encodingFlags).isEncryption())
             {
-               tagBuffer.write(encryptionMethod);
+                tagBuffer.write(encryptionMethod);
             }
 
             if (((EncodingFlags) encodingFlags).isGrouping())
@@ -966,9 +971,9 @@ public class ID3v24Frame extends AbstractID3v2Frame
 
         public void logEnabledFlags()
         {
-            if(isNonStandardFlags())
+            if (isNonStandardFlags())
             {
-                logger.warning(getLoggingFilename() + ":" + identifier + ":Unknown Encoding Flags:"+ Hex.asHex(flags));
+                logger.warning(getLoggingFilename() + ":" + identifier + ":Unknown Encoding Flags:" + Hex.asHex(flags));
             }
             if (isCompression())
             {
@@ -1036,7 +1041,7 @@ public class ID3v24Frame extends AbstractID3v2Frame
             flags |= MASK_ENCRYPTION;
         }
 
-         public void setGrouping()
+        public void setGrouping()
         {
             flags |= MASK_GROUPING_IDENTITY;
         }
@@ -1079,15 +1084,15 @@ public class ID3v24Frame extends AbstractID3v2Frame
         public boolean isNonStandardFlags()
         {
             return ((flags & FileConstants.BIT7) > 0) ||
-                   ((flags & FileConstants.BIT5) > 0) ||
-                   ((flags & FileConstants.BIT4) > 0);
+                    ((flags & FileConstants.BIT5) > 0) ||
+                    ((flags & FileConstants.BIT4) > 0);
         }
 
         public void unsetNonStandardFlags()
         {
-            if(isNonStandardFlags())
+            if (isNonStandardFlags())
             {
-                logger.warning(getLoggingFilename() + ":" + getIdentifier() + ":Unsetting Unknown Encoding Flags:"+  Hex.asHex(flags));
+                logger.warning(getLoggingFilename() + ":" + getIdentifier() + ":Unsetting Unknown Encoding Flags:" + Hex.asHex(flags));
                 flags &= (byte) ~FileConstants.BIT7;
                 flags &= (byte) ~FileConstants.BIT5;
                 flags &= (byte) ~FileConstants.BIT4;
@@ -1148,17 +1153,17 @@ public class ID3v24Frame extends AbstractID3v2Frame
         return ID3v24Frames.getInstanceOf().isBinary(getId());
     }
 
-     /**
+    /**
      * Sets the charset encoding used by the field.
      *
-      * @param encoding charset.
-      */
+     * @param encoding charset.
+     */
     public void setEncoding(final Charset encoding)
     {
         Integer encodingId = TextEncoding.getInstanceOf().getIdForCharset(encoding);
-        if(encodingId!=null)
+        if (encodingId != null)
         {
-            if(encodingId <4)
+            if (encodingId < 4)
             {
                 this.getBody().setTextEncoding(encodingId.byteValue());
             }
