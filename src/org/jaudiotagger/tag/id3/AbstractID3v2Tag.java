@@ -1501,12 +1501,7 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
                 for (long pos=audioLength; pos>0;)
                 {
                     // chunk size
-                    final int chunkSize;
-                    if (pos - buf.length < audioStart) {
-                        chunkSize = (int)(pos - audioStart);
-                    } else {
-                        chunkSize = buf.length;
-                    }
+                    final int chunkSize = Math.min((int)pos, buf.length);
                     // read chunk
                     randomAccessFile.seek(pos - chunkSize + audioStart);
                     int read = 0;
