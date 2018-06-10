@@ -205,6 +205,7 @@ public class FlacTag implements Tag
                 {
                     TagField tagfield = createField(genericKey, value);
                     addField(tagfield);
+                    return;
                 }
 
                 case WRITE_JRIVER_ALBUMARTIST:
