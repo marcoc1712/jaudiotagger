@@ -55,7 +55,7 @@ import java.util.logging.Level;
 public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
 {
     //Start location of this chunk
-    //TODO currently only used by ID3 embedded into Wav/Aiff but shoudl be extended to mp3s
+    //TODO currently only used by ID3 embedded into Wav/Aiff but should be extended to mp3s
     private Long startLocationInFile = null;
 
     //End location of this chunk
@@ -86,6 +86,8 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
 
     //The max size we try to write in one go to avoid out of memory errors (10mb)
     private static final long MAXIMUM_WRITABLE_CHUNK_SIZE = 10000000;
+    //The max size we try to write in one go during "in place" operations to avoid memory issues
+    private static final int IN_PLACE_CHUNK_SIZE = 1024 * 1024;
 
     /**
      * Map of all frames for this tag
@@ -1295,8 +1297,8 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
      * A new file will be created with enough size to fit the <code>ID3v2</code> tag.
      * The old file will be deleted, and the new file renamed.
      *
-     * @param paddingSize This is total size required to store tag before audio
-     * @param audioStart
+     * @param paddingSize This is the (new) total size required to store tag before audio
+     * @param audioStart  Start of the audio data in the file
      * @param file        The file to adjust the padding length of
      * @throws FileNotFoundException if the file exists but is a directory
      *                               rather than a regular file or cannot be opened for any other
@@ -1306,13 +1308,22 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
     public void adjustPadding(File file, int paddingSize, long audioStart) throws FileNotFoundException, IOException
     {
         logger.finer("Need to move audio file to accommodate tag");
+        if (TagOptionSingleton.getInstance().isPreserveFileIdentity()) {
+            adjustPaddingInPlace(file, paddingSize, audioStart);
+        } else {
+            adjustPaddingWithTempFile(file, paddingSize, audioStart);
+        }
+    }
+
+    private void adjustPaddingWithTempFile(final File file, final int paddingSize, final long audioStart) throws IOException {
+        logger.finer("Adjusting padding with temp file.");
         FileChannel fcIn = null;
         FileChannel fcOut;
 
         //Create buffer holds the necessary padding
         ByteBuffer paddingBuffer = ByteBuffer.wrap(new byte[paddingSize]);
 
-        //Create Temporary File and write channel, make sure it is locked        
+        //Create Temporary File and write channel, make sure it is locked
         File paddedFile;
 
         try
@@ -1446,6 +1457,106 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
             catch (Exception e)
             {
                 logger.log(Level.WARNING, "Problem closing channels and locks:" + e.getMessage(), e);
+            }
+        }
+    }
+
+    /**
+     * Adjust the padding "in place", i.e. without creating a temp file. This is useful in order
+     * to preserver file identity. See {@link TagOptionSingleton#isPreserveFileIdentity()}.
+     *
+     * @param file file
+     * @param paddingSize size we need for the tags
+     * @param audioStart position where the audio starts (before adjustment)
+     * @throws IOException if something goes wrong
+     */
+    private void adjustPaddingInPlace(final File file, final int paddingSize, final long audioStart) throws IOException {
+        if (paddingSize == audioStart)
+        {
+            // nothing to do
+            logger.finest("padding not required. nothing to do.");
+            return;
+        }
+        logger.finer("Adjusting padding in place.");
+        // we cannot use channels because of bugs in the macOS implementation
+        // when moving data within the same file
+        RandomAccessFile randomAccessFile = null;
+        try
+        {
+            final long originalFileLength = file.length();
+            final long audioLength = originalFileLength - audioStart;
+            randomAccessFile = new RandomAccessFile(file, "rw");
+            final long toOffset = -paddingSize;
+            final long fromOffset = -audioStart;
+            final byte[] buf = new byte[IN_PLACE_CHUNK_SIZE];
+            if (paddingSize > audioStart)
+            {
+                // we have to shift the audio to the back
+                // that means we have to start with the back in order not to overwrite any good data
+
+                // increase file size
+                randomAccessFile.setLength(paddingSize + audioLength);
+                long shift = paddingSize - audioStart;
+
+                for (long pos=audioLength; pos>0;)
+                {
+                    // chunk size
+                    final int chunkSize = Math.min((int)pos, buf.length);
+                    // read chunk
+                    randomAccessFile.seek(pos - chunkSize + audioStart);
+                    int read = 0;
+                    while (read != chunkSize) {
+                        final int justRead = randomAccessFile.read(buf, read, chunkSize - read);
+                        if (justRead > 0) read += justRead;
+                        else break;
+                    }
+                    // write chunk
+                    if (read == chunkSize) {
+                        randomAccessFile.seek(pos - chunkSize + shift + audioStart);
+                        randomAccessFile.write(buf, 0, chunkSize);
+                        pos -= chunkSize;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            else {
+
+                // currently this part is not called, as jaudiotagger does not support
+                // shrinking of the ID3 file portion
+
+                // we have to shift the audio to the front
+                // that means we have to start with the front in order not to overwrite any good data
+
+                for (long pos = 0; pos<audioLength;)
+                {
+                    // read chunk
+                    randomAccessFile.seek(pos + fromOffset);
+                    final int justRead = randomAccessFile.read(buf);
+                    if (justRead > 0) {
+                        randomAccessFile.seek(pos + toOffset);
+                        randomAccessFile.write(buf, 0, justRead);
+                        pos += justRead;
+                    } else {
+                        break;
+                    }
+                }
+                // decrease file size
+                randomAccessFile.setLength(paddingSize + audioLength);
+            }
+        }
+        finally
+        {
+            try
+            {
+                if (randomAccessFile != null)
+                {
+                    randomAccessFile.close();
+                }
+            }
+            catch (Exception e)
+            {
+                logger.log(Level.WARNING, "Problem closing random access file:" + e.getMessage(), e);
             }
         }
     }

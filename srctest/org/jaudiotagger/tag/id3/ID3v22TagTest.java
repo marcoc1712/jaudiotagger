@@ -6,13 +6,22 @@ import junit.framework.TestSuite;
 import org.jaudiotagger.AbstractTestCase;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.audio.mp3.MP3AudioHeader;
 import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.TagField;
 import org.jaudiotagger.tag.TagOptionSingleton;
 import org.jaudiotagger.tag.id3.framebody.*;
+import org.jaudiotagger.tag.images.Artwork;
+import org.jaudiotagger.tag.images.StandardArtwork;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -147,6 +156,55 @@ public class ID3v22TagTest extends TestCase
             exception = e;
         }
         assertNull(exception);
+    }
+
+    public void testCreateExtraLargeIDv22TagAndSave() throws Exception {
+        TagOptionSingleton.getInstance().setPreserveFileIdentity(false);
+        checkPadding();
+    }
+
+    public void testCreateExtraLargeIDv22TagAndSavePreserveIdentity() throws Exception {
+        TagOptionSingleton.getInstance().setPreserveFileIdentity(true);
+        checkPadding();
+    }
+
+    private void checkPadding() throws IOException, TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException {
+        final File modifiedFile = AbstractTestCase.copyAudioToTmp("testV1.mp3");
+        // keep a copy with different name
+        final File origFile = new File(modifiedFile.getParentFile(), "testV1_copy.mp3");
+        AbstractTestCase.copy(modifiedFile, origFile);
+
+        final MP3File mp3File = new MP3File(modifiedFile);
+        final ID3v22Tag v2Tag = new ID3v22Tag();
+
+        // add extra large artwork to force shift of audio part
+        final StandardArtwork artwork = new StandardArtwork();
+        artwork.setMimeType("image/jpeg");
+        artwork.setPictureType(0);
+        final byte[] binaryData = new byte[1024 * 1024];
+        artwork.setBinaryData(binaryData);
+        v2Tag.setField(artwork);
+        v2Tag.setField(FieldKey.TITLE,"fred");
+        mp3File.setID3v2Tag(v2Tag);
+        mp3File.save();
+
+        final AudioFile v22File = AudioFileIO.read(modifiedFile);
+        final Artwork firstArtwork = v22File.getTag().getFirstArtwork();
+        assertTrue(Arrays.equals(firstArtwork.getBinaryData(), binaryData));
+        assertEquals("fred", v22File.getTag().getFirst(FieldKey.TITLE));
+
+        // make sure the audio portion of the file is still identical
+        final AudioFile mp3OrigFile = AudioFileIO.read(origFile);
+        final MP3AudioHeader origAudioHeader = (MP3AudioHeader)mp3OrigFile.getAudioHeader();
+        final MP3AudioHeader modifiedAudioHeader = (MP3AudioHeader)v22File.getAudioHeader();
+
+        // confirm shift
+        assertTrue(origAudioHeader.getMp3StartByte() < modifiedAudioHeader.getMp3StartByte());
+
+        // compare audio parts
+        final byte[] origAudio = new byte[(int) (origFile.length() - origAudioHeader.getMp3StartByte())];
+        final byte[] modifiedAudio = new byte[(int) (modifiedFile.length() - modifiedAudioHeader.getMp3StartByte())];
+        assertTrue(Arrays.equals(origAudio, modifiedAudio));
     }
 
     public void testv22TagWithUnneccessaryTrailingNulls()
