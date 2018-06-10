@@ -1239,7 +1239,7 @@ public class ID3v23Tag extends AbstractID3v2Tag
             if(frame.getContent().length()==0)
             {
                 //Discard not useful to complicate by trying to map it
-                logger.warning("TDAT is empty so just ignoring");
+                logger.warning(getLoggingFilename() + ":TDAT is empty so just ignoring");
                 return;
             }
         }
