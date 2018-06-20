@@ -82,6 +82,7 @@ Summarise Changes
 #250:Multi-value TXXX frames encoded as UTF-16 not read properly
 #254:Missing filename in log message in ID3v23Tag
 #255:Possible missing return in addField in FlacTag after case WRITE_ALBUMARTIST
+#258:setToDefault() should set preserveFileIdentity = true
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

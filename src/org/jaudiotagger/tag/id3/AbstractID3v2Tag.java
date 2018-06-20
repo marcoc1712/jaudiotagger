@@ -1463,7 +1463,7 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
 
     /**
      * Adjust the padding "in place", i.e. without creating a temp file. This is useful in order
-     * to preserver file identity. See {@link TagOptionSingleton#isPreserveFileIdentity()}.
+     * to preserve file identity. See {@link TagOptionSingleton#isPreserveFileIdentity()}.
      *
      * @param file file
      * @param paddingSize size we need for the tags
