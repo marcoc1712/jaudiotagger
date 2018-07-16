@@ -533,7 +533,7 @@ public class MP3AudioHeader implements AudioHeader
 
     public int getTrackLength()
     {
-        return (int) getPreciseTrackLength();
+        return (int) Math.round(getPreciseTrackLength());
     }
 
     /**

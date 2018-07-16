@@ -83,6 +83,7 @@ Summarise Changes
 #254:Missing filename in log message in ID3v23Tag
 #255:Possible missing return in addField in FlacTag after case WRITE_ALBUMARTIST
 #258:setToDefault() should set preserveFileIdentity = true
+#260:MP3Audio getTrackLength() is truncated , all other formats are rounded up
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
