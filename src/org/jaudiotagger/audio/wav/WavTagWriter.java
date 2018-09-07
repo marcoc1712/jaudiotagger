@@ -123,7 +123,6 @@ public class WavTagWriter
         fc.position(existingTag.getStartLocationInFileOfId3Chunk());
         final ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.LITTLE_ENDIAN);
         chunkHeader.readHeader(fc);
-        logger.severe(chunkHeader.getID()+":"+chunkHeader.getSize());
         fc.position(fc.position() - ChunkHeader.CHUNK_HEADER_SIZE);
         if (!WavChunkType.ID3.getCode().equals(chunkHeader.getID()))
         {
