@@ -2732,6 +2732,11 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
             {
                 AbstractID3v2Frame frame = (AbstractID3v2Frame) this.getFrame(formatKey.getFrameId());
                 AbstractFrameBodyNumberTotal frameBody = (AbstractFrameBodyNumberTotal) frame.getBody();
+                if(frameBody.getTotal()==0)
+                {
+                    doDeleteTagField(formatKey);
+                    return;
+                }
                 frameBody.setNumber(0);
                 return;
             }
@@ -2748,6 +2753,11 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
             {
                 AbstractID3v2Frame frame = (AbstractID3v2Frame) this.getFrame(formatKey.getFrameId());
                 AbstractFrameBodyNumberTotal frameBody = (AbstractFrameBodyNumberTotal) frame.getBody();
+                if(frameBody.getNumber()==0)
+                {
+                    doDeleteTagField(formatKey);
+                    return;
+                }
                 frameBody.setTotal(0);
                 return;
             }
