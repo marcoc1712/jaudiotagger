@@ -16,6 +16,7 @@ public enum WavChunkType
     LIST("LIST", "List chunk, wraps round other chunks"),
     INFO("INFO", "Original metadata implementation"),
     ID3("id3 ", "Stores metadata in ID3 chunk"),
+    ID3_UPPERCASE("ID3 ", "Stores metadata in ID3 chunk, should be lowefcase id"),
     CORRUPT_ID3_LATE("d3 \u0000", "Stores metadata in ID3 chunk"),
     CORRUPT_ID3_EARLY("\u0000id3", "Stores metadata in ID3 chunk");
     ;

@@ -84,6 +84,7 @@ Summarise Changes
 #255:Possible missing return in addField in FlacTag after case WRITE_ALBUMARTIST
 #258:setToDefault() should set preserveFileIdentity = true
 #260:MP3Audio getTrackLength() is truncated , all other formats are rounded up
+#265:Fix reading and writing Wavs using 'ID3 ' instead of 'id3, also better handled files with multiple ID3 tags
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

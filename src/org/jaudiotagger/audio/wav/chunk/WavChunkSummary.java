@@ -25,24 +25,24 @@ public class WavChunkSummary
     public static long getStartLocationOfFirstMetadataChunk(WavTag tag)
     {
         //Work out the location of the first metadata tag (could be id3 or LIST tag)
-        long startLocationOfMetadatTag = -1;
+        long startLocationOfMetadataTag = -1;
         if(tag.getInfoTag()!=null)
         {
-            startLocationOfMetadatTag = tag.getInfoTag().getStartLocationInFile();
+            startLocationOfMetadataTag = tag.getInfoTag().getStartLocationInFile();
 
             if(tag.getID3Tag()!=null)
             {
-                if(tag.getStartLocationInFileOfId3Chunk() < startLocationOfMetadatTag)
+                if(tag.getStartLocationInFileOfId3Chunk() < startLocationOfMetadataTag)
                 {
-                    startLocationOfMetadatTag = tag.getStartLocationInFileOfId3Chunk();
+                    startLocationOfMetadataTag = tag.getStartLocationInFileOfId3Chunk();
                 }
             }
         }
         else if(tag.getID3Tag()!=null)
         {
-            startLocationOfMetadatTag = tag.getStartLocationInFileOfId3Chunk();
+            startLocationOfMetadataTag = tag.getStartLocationInFileOfId3Chunk();
         }
-        return startLocationOfMetadatTag;
+        return startLocationOfMetadataTag;
     }
 
     /**
@@ -68,6 +68,7 @@ public class WavChunkSummary
             {
                 if(
                         !cs.getChunkId().equals(WavChunkType.ID3.getCode()) &&
+                        !cs.getChunkId().equals(WavChunkType.ID3_UPPERCASE.getCode()) &&
                         !cs.getChunkId().equals(WavChunkType.LIST.getCode()) &&
                         !cs.getChunkId().equals(WavChunkType.INFO.getCode())
                   )

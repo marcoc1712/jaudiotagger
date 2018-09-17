@@ -147,6 +147,29 @@ public class WavTagReader
                     }
                     break;
 
+                case ID3_UPPERCASE:
+                    tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
+                    if(tag.getID3Tag()==null)
+                    {
+                        chunk = new WavId3Chunk(Utils.readFileDataIntoBufferLE(fc, (int) chunkHeader.getSize()), chunkHeader, tag, loggingName);
+                        if (!chunk.readChunk())
+                        {
+                            return false;
+                        }
+
+                        logger.severe(loggingName + " ID3 chunk should be id3:" + chunkHeader.getID() + ":"
+                                + Hex.asDecAndHex(chunkHeader.getStartLocationInFile())
+                                + ":sizeIncHeader:"+ (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                    }
+                    else
+                    {
+                        fc.position(fc.position() + chunkHeader.getSize());
+                        logger.warning(loggingName + " Ignoring id3 chunk because already have one:" + chunkHeader.getID() + ":"
+                                + Hex.asDecAndHex(chunkHeader.getStartLocationInFile())
+                                + ":sizeIncHeader:"+ (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                    }
+                    break;
+
                 case ID3:
                     tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
                     if(tag.getID3Tag()==null)
@@ -159,6 +182,7 @@ public class WavTagReader
                     }
                     else
                     {
+                        fc.position(fc.position() + chunkHeader.getSize());
                         logger.warning(loggingName + " Ignoring id3 chunk because already have one:" + chunkHeader.getID() + ":"
                                 + Hex.asDecAndHex(chunkHeader.getStartLocationInFile())
                                 + ":sizeIncHeader:"+ (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
