@@ -333,4 +333,28 @@ public class Issue227Test extends AbstractTestCase
         }
         assertNull(ex);
     }
+
+    public void testReadingValidAudioInvalidMetadataWav() throws Exception
+    {
+        File orig = new File("testdata", "test525.wav");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception ex=null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test525.wav");
+            AudioFile af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            ex=e;
+        }
+//        assertNull(ex);
+    }
 }

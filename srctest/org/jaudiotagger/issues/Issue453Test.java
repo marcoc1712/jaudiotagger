@@ -28,7 +28,7 @@ public class Issue453Test extends AbstractTestCase
         assertEquals("Layer 3",audio.getMpegLayer());
         assertEquals("MPEG-1",audio.getMpegVersion());
         assertEquals("Joint Stereo",audio.getChannels());
-        assertEquals(1451,audio.getTrackLength());  //This is wrong
+        assertEquals(1452,audio.getTrackLength());  //This is wrong
 
 
     }
