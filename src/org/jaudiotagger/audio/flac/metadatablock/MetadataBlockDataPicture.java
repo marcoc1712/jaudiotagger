@@ -47,7 +47,7 @@ public class MetadataBlockDataPicture implements MetadataBlockData, TagField
 
     private int pictureType;
     private String mimeType ="";
-    private String description;
+    private String description = "";
     private int width;
     private int height;
     private int colourDepth;
