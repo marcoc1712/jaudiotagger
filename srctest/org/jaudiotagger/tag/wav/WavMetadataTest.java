@@ -1445,7 +1445,7 @@ public class WavMetadataTest extends AbstractTestCase
     }
 
     /**
-     *  When chunk header has negative size we know something has gone wrong and should throw exception accordingly
+     *  When chunk header has negative size we know something has gone wrong but if
      *
      */
     public void testWavWithCorruptDataAfterDataChunkHeaderSize()

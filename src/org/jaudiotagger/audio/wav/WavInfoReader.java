@@ -43,9 +43,12 @@ import java.util.logging.Logger;
 public class WavInfoReader
 {
     public static Logger logger = Logger.getLogger("org.jaudiotagger.audio.wav");
-
-
     private String loggingName;
+
+    //So if we encounter bad chunk we know if we have managed to find good audio chunks first
+    private boolean isFoundAudio   = false;
+    private boolean isFoundFormat  = false;
+
     public WavInfoReader(String loggingName)
     {
         this.loggingName = loggingName;
@@ -60,6 +63,7 @@ public class WavInfoReader
             {
                 while (fc.position() < fc.size())
                 {
+                    //Problem reading chunk and no way to workround it so exit loop
                     if (!readChunk(fc, info))
                     {
                         break;
@@ -72,10 +76,17 @@ public class WavInfoReader
             }
         }
 
-        info.setFormat(SupportedFileFormat.WAV.getDisplayName());
-        info.setLossless(true);
-        calculateTrackLength(info);
-        return info;
+        if(isFoundFormat && isFoundAudio)
+        {
+            info.setFormat(SupportedFileFormat.WAV.getDisplayName());
+            info.setLossless(true);
+            calculateTrackLength(info);
+            return info;
+        }
+        else
+        {
+            throw new CannotReadException(loggingName + " Unable to safetly read chunks for this file, appears to be corrupt");
+        }
     }
 
     /**
@@ -119,7 +130,7 @@ public class WavInfoReader
         }
 
         String id = chunkHeader.getID();
-        logger.fine(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+        logger.severe(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
         final WavChunkType chunkType = WavChunkType.get(id);
 
         //If known chunkType
@@ -140,11 +151,12 @@ public class WavInfoReader
 
                 case DATA:
                 {
-                    //We just need this value from header dont actually need tonDsf read data itself
+                    //We just need this value from header dont actually need to read data itself
                     info.setAudioDataLength(chunkHeader.getSize());
                     info.setAudioDataStartPosition(fc.position());
                     info.setAudioDataEndPosition(fc.position() + chunkHeader.getSize());
                     fc.position(fc.position() + chunkHeader.getSize());
+                    isFoundAudio = true;
                     break;
                 }
 
@@ -156,20 +168,39 @@ public class WavInfoReader
                     {
                         return false;
                     }
+                    isFoundFormat = true;
                     break;
                 }
 
                 //Dont need to do anything with these just skip
                 default:
-                    fc.position(fc.position() + chunkHeader.getSize());
+                    if(fc.position() + chunkHeader.getSize() <= fc.size())
+                    {
+                        fc.position(fc.position() + chunkHeader.getSize());
+                    }
+                    else
+                    {
+                        if(isFoundAudio && isFoundFormat)
+                        {
+                            logger.severe(loggingName + " Size of Chunk Header larger than data, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                            fc.position(fc.size());
+                        }
+                        else
+                        {
+                            logger.severe(loggingName + " Size of Chunk Header larger than data, cannot read file");
+                            throw new CannotReadException(loggingName + " Size of Chunk Header larger than data, cannot read file");
+                        }
+                    }
             }
         }
+        //Alignment problem that we can workround by going back one and retrying
         else if(id.substring(1,4).equals(WavCorruptChunkType.CORRUPT_LIST_EARLY.getCode()))
         {
             logger.severe(loggingName + " Found Corrupt LIST Chunk, starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
             fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE - 1));
             return true;
         }
+        //Alignment problem that we can workround by going forward one and retrying
         else if(id.substring(0,3).equals(WavCorruptChunkType.CORRUPT_LIST_LATE.getCode()))
         {
             logger.severe(loggingName + " Found Corrupt LIST Chunk (2), starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
@@ -181,20 +212,38 @@ public class WavInfoReader
         {
             if(chunkHeader.getSize() < 0)
             {
-                String msg = loggingName + " Not a valid header, unable to read a sensible size:Header"
-                        + chunkHeader.getID()+"Size:"+chunkHeader.getSize();
-                logger.severe(msg);
-                throw new CannotReadException(msg);
+                //As long as we have found audio data and info we can just skip to the end
+                if(isFoundAudio && isFoundFormat)
+                {
+                    logger.severe(loggingName + " Size of Chunk Header larger than data, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                    fc.position(fc.size());
+                }
+                else
+                {
+                    String msg = loggingName + " Not a valid header, unable to read a sensible size:Header"
+                            + chunkHeader.getID()+"Size:"+chunkHeader.getSize();
+                    logger.severe(msg);
+                    throw new CannotReadException(msg);
+                }
             }
-            logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
-
-            fc.position(fc.position() + chunkHeader.getSize());
-            if(fc.position()>fc.size())
+            else if(fc.position() + chunkHeader.getSize() <= fc.size())
             {
-                String msg = loggingName + " Failed to move to invalid position to " + fc.position() + " because file length is only " + fc.size()
-                        + " indicates invalid chunk:"+id;
-                logger.severe(msg);
-                throw new CannotReadException(msg);
+                logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
+                fc.position(fc.position() + chunkHeader.getSize());
+            }
+            else
+            {
+                //As long as we have found audio data and info we can just skip to the end
+                if(isFoundAudio && isFoundFormat)
+                {
+                    logger.severe(loggingName + " Size of Chunk Header larger than data, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                    fc.position(fc.size());
+                }
+                else
+                {
+                    logger.severe(loggingName + " Size of Chunk Header larger than data, cannot read file");
+                    throw new CannotReadException(loggingName + " Size of Chunk Header larger than data, cannot read file");
+                }
             }
         }
         IffHeaderChunk.ensureOnEqualBoundary(fc, chunkHeader);
