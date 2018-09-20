@@ -130,7 +130,7 @@ public class WavInfoReader
         }
 
         String id = chunkHeader.getID();
-        logger.severe(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+        logger.info(loggingName + " Reading Chunk:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
         final WavChunkType chunkType = WavChunkType.get(id);
 
         //If known chunkType
@@ -205,6 +205,22 @@ public class WavInfoReader
         {
             logger.severe(loggingName + " Found Corrupt LIST Chunk (2), starting at Odd Location:"+chunkHeader.getID()+":"+chunkHeader.getSize());
             fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE + 1));
+            return true;
+        }
+        //Null Padding Detection (strictly invalid but seems to happen some time
+        else if(id.equals("\0\0\0\0") && chunkHeader.getSize() == 0)
+        {
+            //Carry on reading until not null (TODO check not long)
+            int fileRemainder = (int)((fc.size() - fc.position()));
+            ByteBuffer restOfFile = ByteBuffer.allocate(fileRemainder);
+            int result = fc.read(restOfFile);
+            restOfFile.flip();
+            while(restOfFile.get()==0)
+            {
+                ;
+            }
+            logger.severe(loggingName + "Found Null Padding, starting at " + chunkHeader.getStartLocationInFile()+ ", size:" + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE);
+            fc.position(chunkHeader.getStartLocationInFile() + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE - 1);
             return true;
         }
         //Unknown chunk type just skip

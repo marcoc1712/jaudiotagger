@@ -20,10 +20,7 @@ package org.jaudiotagger.audio.wav;
 
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.generic.Utils;
-import org.jaudiotagger.audio.iff.Chunk;
-import org.jaudiotagger.audio.iff.ChunkHeader;
-import org.jaudiotagger.audio.iff.ChunkSummary;
-import org.jaudiotagger.audio.iff.IffHeaderChunk;
+import org.jaudiotagger.audio.iff.*;
 import org.jaudiotagger.audio.wav.chunk.WavCorruptChunkType;
 import org.jaudiotagger.audio.wav.chunk.WavId3Chunk;
 import org.jaudiotagger.audio.wav.chunk.WavListChunk;
@@ -33,6 +30,7 @@ import org.jaudiotagger.tag.wav.WavInfoTag;
 import org.jaudiotagger.tag.wav.WavTag;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
@@ -233,24 +231,30 @@ public class WavTagReader
             fc.position(fc.position() -  (ChunkHeader.CHUNK_HEADER_SIZE + 1));
             return true;
         }
+        //Null Padding Detection (strictly invalid but seems to happen some time
+        else if(id.equals("\0\0\0\0") && chunkHeader.getSize() == 0)
+        {
+            //Carry on reading until not null (TODO check not long)
+            int fileRemainder = (int)((fc.size() - fc.position()));
+            ByteBuffer restOfFile = ByteBuffer.allocate(fileRemainder);
+            int result = fc.read(restOfFile);
+            restOfFile.flip();
+            while(restOfFile.get()==0)
+            {
+                ;
+            }
+            logger.severe(loggingName + "Found Null Padding, starting at " + chunkHeader.getStartLocationInFile()+ ", size:" + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE);
+            fc.position(chunkHeader.getStartLocationInFile() + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE - 1);
+            tag.addChunkSummary(new PaddingChunkSummary(chunkHeader.getStartLocationInFile(), restOfFile.position() - 1));
+            return true;
+        }
         //Unknown chunk type just skip
         else
         {
-            if(chunkHeader.getSize() < 0)
+            if(chunkHeader.getSize() < 0 || fc.position() + chunkHeader.getSize() <= fc.size())
             {
-                String msg = loggingName + " Not a valid header, unable to read a sensible size:Header"
-                        + chunkHeader.getID()+"Size:"+chunkHeader.getSize();
-                logger.severe(msg);
-                throw new CannotReadException(msg);
-            }
-            logger.config(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() +"for"+chunkHeader.getID());
-            fc.position(fc.position() + chunkHeader.getSize());
-            if(fc.position()>fc.size())
-            {
-                String msg = loggingName + " Failed to move to invalid position to " + fc.position() + " because file length is only " + fc.size()
-                        + " indicates invalid chunk";
-                logger.severe(msg);
-                throw new CannotReadException(msg);
+                logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
+                fc.position(fc.position() + chunkHeader.getSize());
             }
         }
         IffHeaderChunk.ensureOnEqualBoundary(fc, chunkHeader);
