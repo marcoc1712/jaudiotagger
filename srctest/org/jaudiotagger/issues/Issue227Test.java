@@ -30,14 +30,13 @@ public class Issue227Test extends AbstractTestCase
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
             System.out.println(af.getTag());
-            assertEquals("1968",(af.getTag().getFirst(FieldKey.YEAR)));
         }
         catch(Exception e)
         {
             e.printStackTrace();
             ex=e;
         }
-//        assertNull(ex);
+        assertNull(ex);
     }
 
     public void testReadingHiRefWavFromQobuz() throws Exception

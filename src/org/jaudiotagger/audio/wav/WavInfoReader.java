@@ -231,7 +231,7 @@ public class WavInfoReader
                 //As long as we have found audio data and info we can just skip to the end
                 if(isFoundAudio && isFoundFormat)
                 {
-                    logger.severe(loggingName + " Size of Chunk Header larger than data, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                    logger.severe(loggingName + " Size of Chunk Header is negative, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
                     fc.position(fc.size());
                 }
                 else

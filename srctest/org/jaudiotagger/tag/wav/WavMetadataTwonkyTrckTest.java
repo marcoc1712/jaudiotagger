@@ -5,6 +5,7 @@ import org.jaudiotagger.FilePermissionsTest;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.CannotWriteException;
 import org.jaudiotagger.audio.wav.WavCleaner;
 import org.jaudiotagger.audio.wav.WavOptions;
 import org.jaudiotagger.audio.wav.WavSaveOptions;
@@ -1490,7 +1491,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             System.out.println(f.getAudioHeader());
             System.out.println(f.getTag());
 
-
+            assertTrue(((WavTag)f.getTag()).isBadChunkData());
 
         }
         catch (Exception e)
@@ -1498,7 +1499,8 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assert(exceptionCaught instanceof CannotReadException);
+
+        assertNull(exceptionCaught);
     }
 
     public void testCleanAndThenWriteWavWithCorruptDataChunkHeaderSize()
@@ -1614,7 +1616,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertTrue(exceptionCaught instanceof CannotWriteException);
     }
 
     public void testWriteWriteProtectedFileWithCheckDisabled() throws Exception {
@@ -1712,6 +1714,6 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertNull(exceptionCaught);
     }
 }

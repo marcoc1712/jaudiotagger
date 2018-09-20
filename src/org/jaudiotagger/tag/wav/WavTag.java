@@ -59,6 +59,13 @@ public class WavTag implements Tag, Id3SupportingTag
         return chunkSummaryList;
     }
 
+    //(Read audio okay) but was unable to read all chunks because of bad data chunks
+    private boolean isBadChunkData = false;
+
+    //Found null bytes not part of any chunk
+    private boolean isNonStandadrdPadding = false;
+
+    //Metadata tag is incorrectly aligned
     private boolean isIncorrectlyAlignedTag = false;
 
     private boolean isExistingId3Tag = false;
@@ -654,5 +661,25 @@ public class WavTag implements Tag, Id3SupportingTag
         }
         //Default in case not set somehow
         return new ID3v23Tag();
+    }
+
+    public boolean isBadChunkData()
+    {
+        return isBadChunkData;
+    }
+
+    public void setBadChunkData(boolean badChunkData)
+    {
+        isBadChunkData = badChunkData;
+    }
+
+    public boolean isNonStandadrdPadding()
+    {
+        return isNonStandadrdPadding;
+    }
+
+    public void setNonStandadrdPadding(boolean nonStandadrdPadding)
+    {
+        isNonStandadrdPadding = nonStandadrdPadding;
     }
 }

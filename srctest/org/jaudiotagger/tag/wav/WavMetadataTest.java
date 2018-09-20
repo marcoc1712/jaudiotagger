@@ -5,6 +5,7 @@ import org.jaudiotagger.FilePermissionsTest;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.CannotWriteException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.audio.wav.WavCleaner;
@@ -1469,15 +1470,20 @@ public class WavMetadataTest extends AbstractTestCase
             System.out.println(f.getAudioHeader());
             System.out.println(f.getTag());
 
-
-
+            f.getTag().setField(FieldKey.ALBUM, "Album");
+            f.commit();
+            f = AudioFileIO.read(testFile);
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
+            assertEquals(f.getTag().getFirst(FieldKey.ALBUM), "album");
         }
         catch (Exception e)
         {
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assert(exceptionCaught instanceof CannotReadException);
+
+        assertTrue(exceptionCaught instanceof CannotWriteException);
     }
 
     public void testCleanAndThenWriteWavWithCorruptDataChunkHeaderSize()
@@ -1584,14 +1590,15 @@ public class WavMetadataTest extends AbstractTestCase
             f.getTag().setField(FieldKey.ARTIST, "artist");
             f.commit();
             f = AudioFileIO.read(testFile);
-
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
         }
         catch (Exception e)
         {
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertTrue(exceptionCaught instanceof CannotWriteException);
     }
 
     public void testWriteWriteProtectedFileWithCheckDisabled() throws Exception {
@@ -1681,14 +1688,15 @@ public class WavMetadataTest extends AbstractTestCase
 
             f.commit();
             f = AudioFileIO.read(testFile);
-
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
         }
         catch (Exception e)
         {
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertNull(exceptionCaught);
     }
 
     public void testWavRead3()

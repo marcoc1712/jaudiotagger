@@ -246,15 +246,31 @@ public class WavTagReader
             logger.severe(loggingName + "Found Null Padding, starting at " + chunkHeader.getStartLocationInFile()+ ", size:" + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE);
             fc.position(chunkHeader.getStartLocationInFile() + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE - 1);
             tag.addChunkSummary(new PaddingChunkSummary(chunkHeader.getStartLocationInFile(), restOfFile.position() - 1));
+            tag.setNonStandadrdPadding(true);
             return true;
         }
         //Unknown chunk type just skip
         else
         {
-            if(chunkHeader.getSize() < 0 || fc.position() + chunkHeader.getSize() <= fc.size())
+            if(chunkHeader.getSize() < 0)
+            {
+                logger.severe(loggingName + " Size of Chunk Header is negative, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                tag.addChunkSummary(new BadChunkSummary(chunkHeader.getStartLocationInFile(), fc.size() - fc.position()));
+                tag.setBadChunkData(true);
+                fc.position(fc.size());
+            }
+            else if(fc.position() + chunkHeader.getSize() <= fc.size())
             {
                 logger.severe(loggingName + " Skipping chunk bytes:" + chunkHeader.getSize() + " for " + chunkHeader.getID());
+                tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
                 fc.position(fc.position() + chunkHeader.getSize());
+            }
+            else
+            {
+                logger.severe(loggingName + " Size of Chunk Header larger than data, skipping to file end:" + id + ":starting at:" + Hex.asDecAndHex(chunkHeader.getStartLocationInFile()) + ":sizeIncHeader:" + (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
+                tag.addChunkSummary(new BadChunkSummary(chunkHeader.getStartLocationInFile(), fc.size() - fc.position()));
+                tag.setBadChunkData(true);
+                fc.position(fc.size());
             }
         }
         IffHeaderChunk.ensureOnEqualBoundary(fc, chunkHeader);

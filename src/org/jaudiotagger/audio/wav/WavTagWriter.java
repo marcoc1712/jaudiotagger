@@ -353,6 +353,13 @@ public class WavTagWriter
             throw new CannotWriteException(file + ":" + ioe.getMessage());
         }
 
+        //TODO in some case we can fix the files, as we can only open the file if we have successfully
+        //retrived audio data
+        if(existingTag.isBadChunkData())
+        {
+            throw new CannotWriteException("Unable to make changes to this file because contains bad chunk data");
+        }
+
         try(FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
 
