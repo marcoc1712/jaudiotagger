@@ -63,7 +63,7 @@ public class WavTag implements Tag, Id3SupportingTag
     private boolean isBadChunkData = false;
 
     //Found null bytes not part of any chunk
-    private boolean isNonStandadrdPadding = false;
+    private boolean isNonStandardPadding = false;
 
     //Metadata tag is incorrectly aligned
     private boolean isIncorrectlyAlignedTag = false;
@@ -673,13 +673,13 @@ public class WavTag implements Tag, Id3SupportingTag
         isBadChunkData = badChunkData;
     }
 
-    public boolean isNonStandadrdPadding()
+    public boolean isNonStandardPadding()
     {
-        return isNonStandadrdPadding;
+        return isNonStandardPadding;
     }
 
-    public void setNonStandadrdPadding(boolean nonStandadrdPadding)
+    public void setNonStandardPadding(boolean nonStandardPadding)
     {
-        isNonStandadrdPadding = nonStandadrdPadding;
+        isNonStandardPadding = nonStandardPadding;
     }
 }

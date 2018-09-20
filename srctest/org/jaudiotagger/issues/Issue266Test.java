@@ -3,7 +3,10 @@ package org.jaudiotagger.issues;
 import org.jaudiotagger.AbstractTestCase;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.wav.WavSaveOptions;
 import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.TagOptionSingleton;
+import org.jaudiotagger.tag.wav.WavTag;
 
 import java.io.File;
 
@@ -28,6 +31,8 @@ public class Issue266Test extends AbstractTestCase
             File testFile = AbstractTestCase.copyAudioToTmp("test534.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertTrue(((WavTag)af.getTag()).isNonStandardPadding());
             System.out.println(af.getTag());
         }
         catch(Exception e)
@@ -38,7 +43,7 @@ public class Issue266Test extends AbstractTestCase
         assertNull(ex);
     }
 
-    public void testWriteWavWithPaddingBeforeMetadataChunk() throws Exception
+    public void testWriteWavWithPaddingBeforeMetadataChunkSaveActive() throws Exception
     {
         File orig = new File("testdata", "test534.wav");
         if (!orig.isFile())
@@ -53,14 +58,141 @@ public class Issue266Test extends AbstractTestCase
             File testFile = AbstractTestCase.copyAudioToTmp("test534.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertTrue(((WavTag)af.getTag()).isNonStandardPadding());
             System.out.println(af.getTag());
 
             af.getTag().setField(FieldKey.ALBUM, "Album");
             System.out.println(af.getTag());
+            TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_ACTIVE);
             af.commit();
 
             af = AudioFileIO.read(testFile);
             System.out.println(af.getTag());
+            assertEquals(af.getTag().getFirst(FieldKey.ALBUM), "Album");
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertFalse(((WavTag)af.getTag()).isNonStandardPadding());
+
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            ex=e;
+        }
+        assertNull(ex);
+    }
+
+    public void testWriteWavWithPaddingBeforeMetadataChunkSaveBoth() throws Exception
+    {
+        File orig = new File("testdata", "test534.wav");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception ex=null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test534.wav");
+            AudioFile af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertTrue(((WavTag)af.getTag()).isNonStandardPadding());
+            System.out.println(af.getTag());
+
+            af.getTag().setField(FieldKey.ALBUM, "Album");
+            System.out.println(af.getTag());
+            TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_BOTH);
+            af.commit();
+
+            af = AudioFileIO.read(testFile);
+            System.out.println(af.getTag());
+            assertEquals(af.getTag().getFirst(FieldKey.ALBUM), "Album");
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertFalse(((WavTag)af.getTag()).isNonStandardPadding());
+
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            ex=e;
+        }
+        assertNull(ex);
+    }
+
+    public void testWriteWavWithPaddingBeforeMetadataChunkSaveExistingAndActive() throws Exception
+    {
+        File orig = new File("testdata", "test534.wav");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception ex=null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test534.wav");
+            AudioFile af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertTrue(((WavTag)af.getTag()).isNonStandardPadding());
+            System.out.println(af.getTag());
+
+            af.getTag().setField(FieldKey.ALBUM, "Album");
+            System.out.println(af.getTag());
+            TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_EXISTING_AND_ACTIVE);
+            af.commit();
+
+            af = AudioFileIO.read(testFile);
+            System.out.println(af.getTag());
+            assertEquals(af.getTag().getFirst(FieldKey.ALBUM), "Album");
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertFalse(((WavTag)af.getTag()).isNonStandardPadding());
+
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            ex=e;
+        }
+        assertNull(ex);
+    }
+
+    public void testWriteWavWithPaddingBeforeMetadataChunkSaveExisitingActiveSync() throws Exception
+    {
+        File orig = new File("testdata", "test534.wav");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception ex=null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test534.wav");
+            AudioFile af = AudioFileIO.read(testFile);
+            assertNotNull(af.getTag());
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertTrue(((WavTag)af.getTag()).isNonStandardPadding());
+            System.out.println(af.getTag());
+
+            af.getTag().setField(FieldKey.ALBUM, "Album");
+            System.out.println(af.getTag());
+            TagOptionSingleton.getInstance().setWavSaveOptions(WavSaveOptions.SAVE_EXISTING_AND_ACTIVE_AND_SYNC);
+            af.commit();
+
+            af = AudioFileIO.read(testFile);
+            System.out.println(af.getTag());
+            assertEquals(af.getTag().getFirst(FieldKey.ALBUM), "Album");
+            assertFalse(((WavTag)af.getTag()).isBadChunkData());
+            assertFalse(((WavTag)af.getTag()).isNonStandardPadding());
+
 
         }
         catch(Exception e)

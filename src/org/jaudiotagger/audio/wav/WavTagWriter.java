@@ -25,6 +25,7 @@ import org.jaudiotagger.audio.generic.Utils;
 import org.jaudiotagger.audio.iff.ChunkHeader;
 import org.jaudiotagger.audio.iff.ChunkSummary;
 import org.jaudiotagger.audio.iff.IffHeaderChunk;
+import org.jaudiotagger.audio.iff.PaddingChunkSummary;
 import org.jaudiotagger.audio.wav.chunk.WavChunkSummary;
 import org.jaudiotagger.audio.wav.chunk.WavInfoIdentifier;
 import org.jaudiotagger.tag.*;
@@ -362,7 +363,6 @@ public class WavTagWriter
 
         try(FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE, StandardOpenOption.READ))
         {
-
             final WavTag wavTag = (WavTag) tag;
             if (wso == WavSaveOptions.SAVE_BOTH)
             {
@@ -391,6 +391,37 @@ public class WavTagWriter
             {
                 throw new RuntimeException(loggingName + " No setting for:WavSaveOptions");
             }
+
+            //If we had non-standard padding check it still exists and if so remove it
+            if(existingTag.isNonStandardPadding())
+            {
+                for(ChunkSummary cs: existingTag.getChunkSummaryList())
+                {
+                    //Note, can only delete a single padding section
+                    if(cs instanceof PaddingChunkSummary)
+                    {
+                        boolean isPaddingData = true;
+                        fc.position(cs.getFileStartLocation());
+                        ByteBuffer paddingData = ByteBuffer.allocate((int)cs.getChunkSize());
+                        int result = fc.read(paddingData);
+                        paddingData.flip();
+                        while(paddingData.position() < paddingData.limit())
+                        {
+                            if(paddingData.get()!=0)
+                            {
+                                isPaddingData =false;
+                            }
+                        }
+
+                        if(isPaddingData)
+                        {
+                            fc.position(cs.getFileStartLocation());
+                            deletePaddingChunk(fc, (int)cs.getEndLocation(), (int)cs.getChunkSize() + ChunkHeader.CHUNK_HEADER_SIZE);
+                        }
+                        break;
+                    }
+                }
+            }
             rewriteRiffHeaderSize(fc);
         }
         catch(AccessDeniedException ade)
@@ -401,6 +432,27 @@ public class WavTagWriter
         {
             throw new CannotWriteException(file + ":" + ioe.getMessage());
         }
+    }
+
+    private void deletePaddingChunk(final FileChannel fc, int endOfExistingChunk, final int lengthTagChunk) throws IOException
+    {
+        //Position for reading after the tag
+        fc.position(endOfExistingChunk);
+
+        final ByteBuffer buffer = ByteBuffer.allocate((int) TagOptionSingleton.getInstance().getWriteChunkSize());
+        while (fc.read(buffer) >= 0 || buffer.position() != 0)
+        {
+            buffer.flip();
+            final long readPosition = fc.position();
+            fc.position(readPosition - lengthTagChunk - buffer.limit());
+            fc.write(buffer);
+            fc.position(readPosition);
+            buffer.compact();
+        }
+        //Truncate the file after the last chunk
+        final long newLength = fc.size() - lengthTagChunk;
+        logger.config(loggingName + "-------------Setting new length to:" + newLength);
+        fc.truncate(newLength);
     }
 
     /**
@@ -1134,6 +1186,7 @@ public class WavTagWriter
     private void saveId3(WavTag wavTag, FileChannel fc,  final WavTag existingTag )
             throws CannotWriteException, IOException
     {
+        logger.severe("saveId3");
         final ByteBuffer id3TagBuffer = convertID3Chunk(wavTag, existingTag);
         //Correctly aligned
         if(!existingTag.isIncorrectlyAlignedTag())
@@ -1144,6 +1197,7 @@ public class WavTagWriter
                 //Metadata Chunks contiguous replace as a block
                 if (fs.isContiguous)
                 {
+                    logger.severe("isCOntiguous");
                     //Id3 Tag comes first so we can delete Info tag without it affecting Id3 tag
                     if (existingTag.getInfoTag().getStartLocationInFile() > existingTag.getStartLocationInFileOfId3Chunk())
                     {
@@ -1162,6 +1216,7 @@ public class WavTagWriter
                 }
                 else if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
                 {
+                    logger.severe("isOnlyMetadata");
                     deleteExistingMetadataTagsToEndOfFile(fc, existingTag);
                     fc.position(fc.size());
                     writeId3DataToFile(fc, id3TagBuffer);

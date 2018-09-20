@@ -246,7 +246,7 @@ public class WavTagReader
             logger.severe(loggingName + "Found Null Padding, starting at " + chunkHeader.getStartLocationInFile()+ ", size:" + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE);
             fc.position(chunkHeader.getStartLocationInFile() + restOfFile.position() + ChunkHeader.CHUNK_HEADER_SIZE - 1);
             tag.addChunkSummary(new PaddingChunkSummary(chunkHeader.getStartLocationInFile(), restOfFile.position() - 1));
-            tag.setNonStandadrdPadding(true);
+            tag.setNonStandardPadding(true);
             return true;
         }
         //Unknown chunk type just skip
