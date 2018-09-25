@@ -120,7 +120,7 @@ public class WavTagWriter
      */
     private ChunkHeader seekToStartOfId3Metadata(FileChannel fc, WavTag existingTag) throws IOException, CannotWriteException
     {
-        logger.severe(loggingName+":seekToStartOfIdMetadata:"+existingTag.getStartLocationInFileOfId3Chunk());
+        logger.info(loggingName+":seekToStartOfIdMetadata:"+existingTag.getStartLocationInFileOfId3Chunk());
         fc.position(existingTag.getStartLocationInFileOfId3Chunk());
         final ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.LITTLE_ENDIAN);
         chunkHeader.readHeader(fc);
