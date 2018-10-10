@@ -94,39 +94,47 @@ public class DsfFileReader extends AudioFileReader2
         if(dsd.getMetadataOffset() > 0)
         {
             fc.position(dsd.getMetadataOffset());
-            ID3Chunk id3Chunk = ID3Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, (int) (fc.size() - fc.position())));
-            if(id3Chunk!=null)
+            if(((int)fc.size() - fc.position())>=DsfChunkType.ID3.getCode().length())
             {
-                int version = id3Chunk.getDataBuffer().get(AbstractID3v2Tag.FIELD_TAG_MAJOR_VERSION_POS);
-                try
+                ID3Chunk id3Chunk = ID3Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, (int) (fc.size() - fc.position())));
+                if (id3Chunk != null)
                 {
-                    switch (version)
+                    int version = id3Chunk.getDataBuffer().get(AbstractID3v2Tag.FIELD_TAG_MAJOR_VERSION_POS);
+                    try
                     {
-                        case ID3v22Tag.MAJOR_VERSION:
-                            return new ID3v22Tag(id3Chunk.getDataBuffer(), fileName);
-                        case ID3v23Tag.MAJOR_VERSION:
-                            return new ID3v23Tag(id3Chunk.getDataBuffer(), fileName);
-                        case ID3v24Tag.MAJOR_VERSION:
-                            return new ID3v24Tag(id3Chunk.getDataBuffer(), fileName);
-                        default:
-                            logger.log(Level.WARNING,   fileName + " Unknown ID3v2 version " + version + ". Returning an empty ID3v2 Tag.");
-                            return null;
+                        switch (version)
+                        {
+                            case ID3v22Tag.MAJOR_VERSION:
+                                return new ID3v22Tag(id3Chunk.getDataBuffer(), fileName);
+                            case ID3v23Tag.MAJOR_VERSION:
+                                return new ID3v23Tag(id3Chunk.getDataBuffer(), fileName);
+                            case ID3v24Tag.MAJOR_VERSION:
+                                return new ID3v24Tag(id3Chunk.getDataBuffer(), fileName);
+                            default:
+                                logger.log(Level.WARNING, fileName + " Unknown ID3v2 version " + version + ". Returning an empty ID3v2 Tag.");
+                                return null;
+                        }
+                    }
+                    catch (TagException e)
+                    {
+                        throw new CannotReadException(fileName + " Could not read ID3v2 tag:corruption");
                     }
                 }
-                catch (TagException e)
+                else
                 {
-                    throw new CannotReadException(fileName + " Could not read ID3v2 tag:corruption");
+                    logger.log(Level.WARNING, fileName + " No existing ID3 tag(1)");
+                    return null;
                 }
             }
             else
             {
-                logger.log(Level.WARNING, fileName + " No existing ID3 tag(1)");
+                logger.log(Level.WARNING, fileName + " No existing ID3 tag(2)");
                 return null;
             }
-          }
+        }
         else
         {
-            logger.log(Level.WARNING, fileName + " No existing ID3 tag(2)");
+            logger.log(Level.WARNING, fileName + " No existing ID3 tag(3)");
             return   null;
         }
     }
