@@ -86,6 +86,7 @@ Summarise Changes
 #260:MP3Audio getTrackLength() is truncated , all other formats are rounded up
 #265:Fix reading and writing Wavs using 'ID3 ' instead of 'id3, also better handled files with multiple ID3 tags
 #266:Read and remove arbitary null padding sections
+#253:MetadataBlockDataStreamInfo exception when bytes length is 0
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

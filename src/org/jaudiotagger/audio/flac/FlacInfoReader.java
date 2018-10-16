@@ -61,6 +61,12 @@ public class FlacInfoReader
                 logger.info(path.toString() + " "  + mbh.toString());
                 if (mbh.getBlockType() == BlockType.STREAMINFO)
                 {
+                    //See #253:MetadataBlockDataStreamInfo exception when bytes length is 0
+                    if(mbh.getDataLength()==0)
+                    {
+                        throw new CannotReadException(path + ":FLAC StreamInfo has zeo data length");
+                    }
+
                     mbdsi = new MetadataBlockDataStreamInfo(mbh, fc);
                     if (!mbdsi.isValid())
                     {
