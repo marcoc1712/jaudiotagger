@@ -90,6 +90,7 @@ Summarise Changes
 #272:For ID3 rename TXXX:Script to TXXX:SCRIPT
 #273:For WM use WM/ComposerSortOrder rather than WM/ComposerSort
 #271:Mp4 Out of Bounds Exception
+#269:NoSuchMethodError on Java 10
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
