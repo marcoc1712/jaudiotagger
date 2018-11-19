@@ -156,7 +156,11 @@ public class Mp4TrackField extends Mp4TagTextNumberField
      */
     public Short getTrackNo()
     {
-        return numbers.get(TRACK_NO_INDEX);
+        if(numbers.get(TRACK_NO_INDEX)!=null)
+        {
+            return numbers.get(TRACK_NO_INDEX);
+        }
+        return 0;
     }
 
     /**
@@ -164,11 +168,11 @@ public class Mp4TrackField extends Mp4TagTextNumberField
      */
     public Short getTrackTotal()
     {
-        if(numbers.size()<=TRACK_TOTAL_INDEX)
+        if(numbers.get(TRACK_TOTAL_INDEX)!=null)
         {
-            return 0;
+            return numbers.get(TRACK_TOTAL_INDEX);
         }
-        return numbers.get(TRACK_TOTAL_INDEX);
+        return 0;
     }
 
      /**
