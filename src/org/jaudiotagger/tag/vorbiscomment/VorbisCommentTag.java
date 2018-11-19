@@ -137,8 +137,8 @@ public class VorbisCommentTag extends AbstractTag
         tagFieldToOggField.put(FieldKey.MUSICBRAINZ_RELEASE_TYPE, VorbisCommentFieldKey.MUSICBRAINZ_ALBUMTYPE);
         tagFieldToOggField.put(FieldKey.MUSICBRAINZ_TRACK_ID, VorbisCommentFieldKey.MUSICBRAINZ_TRACKID);
         tagFieldToOggField.put(FieldKey.MUSICBRAINZ_WORK, VorbisCommentFieldKey.MUSICBRAINZ_WORK);
-        tagFieldToOggField.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION, VorbisCommentFieldKey.MUSICBRAINZ_WORK_COMPOSITION);
-        tagFieldToOggField.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID, VorbisCommentFieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID);
+        tagFieldToOggField.put(FieldKey.MUSICBRAINZ_RECORDING_WORK, VorbisCommentFieldKey.MUSICBRAINZ_RECORDING_WORK);
+        tagFieldToOggField.put(FieldKey.MUSICBRAINZ_RECORDING_WORK_ID, VorbisCommentFieldKey.MUSICBRAINZ_RECORDING_WORK_ID);
         tagFieldToOggField.put(FieldKey.MUSICBRAINZ_WORK_ID, VorbisCommentFieldKey.MUSICBRAINZ_WORKID);
         tagFieldToOggField.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1, VorbisCommentFieldKey.MUSICBRAINZ_WORK_PART_LEVEL1);
         tagFieldToOggField.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID, VorbisCommentFieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID);

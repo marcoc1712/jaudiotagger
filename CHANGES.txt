@@ -91,6 +91,7 @@ Summarise Changes
 #273:For WM use WM/ComposerSortOrder rather than WM/ComposerSort
 #271:Mp4 Out of Bounds Exception
 #269:NoSuchMethodError on Java 10
+#SONGKONG-1211:Rename MUSICBRAINZ_WORK_COMPOSITION to MUSICBRAINZ_TRACK_WORK
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
