@@ -84,7 +84,7 @@ public enum AsfFieldKey
     CLASSICAL_CATALOG("CLASSICAL_CATALOG", true),
     CLASSICAL_NICKNAME("CLASSICAL_NICKNAME", true),
     COMPOSER("WM/Composer", true),
-    COMPOSER_SORT("WM/ComposerSort", false),
+    COMPOSER_SORT("WM/ComposerSortOrder", false),
     CONDUCTOR("WM/Conductor", true),
     CONDUCTOR_SORT("CONDUCTOR_SORT",true),
     COUNTRY("WM/Country", false),
