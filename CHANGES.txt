@@ -88,7 +88,7 @@ Summarise Changes
 #266:Read and remove arbitary null padding sections
 #253:MetadataBlockDataStreamInfo exception when bytes length is 0
 #272:For ID3 rename TXXX:Script to TXXX:SCRIPT
-#273:For WM use WM/ComposerSortOrder rather than WM/ComposerSort
+#273:For WM use WM/ComposerSortOnrder rather than WM/ComposerSort
 #271:Mp4 Out of Bounds Exception
 #269:NoSuchMethodError on Java 10
 #SONGKONG-1211:Rename MUSICBRAINZ_WORK_COMPOSITION to MUSICBRAINZ_TRACK_WORK
