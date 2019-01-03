@@ -41,6 +41,8 @@ public class ID3v23Frames extends ID3Frames
     public static final String FRAME_ID_V3_ATTACHED_PICTURE = "APIC";
     public static final String FRAME_ID_V3_AUDIO_ENCRYPTION = "AENC";
     public static final String FRAME_ID_V3_BPM = "TBPM";
+    public static final String FRAME_ID_V3_CHAPTER = ID3v2ChapterFrames.FRAME_ID_CHAPTER;
+    public static final String FRAME_ID_V3_CHAPTER_TOC = ID3v2ChapterFrames.FRAME_ID_TABLE_OF_CONTENT;
     public static final String FRAME_ID_V3_COMMENT = "COMM";
     public static final String FRAME_ID_V3_COMMERCIAL_FRAME = "COMR";
     public static final String FRAME_ID_V3_COMPOSER = "TCOM";
@@ -155,6 +157,8 @@ public class ID3v23Frames extends ID3Frames
         supportedFrames.add(FRAME_ID_V3_ATTACHED_PICTURE);
         supportedFrames.add(FRAME_ID_V3_AUDIO_ENCRYPTION);
         supportedFrames.add(FRAME_ID_V3_BPM);
+        supportedFrames.add(FRAME_ID_V3_CHAPTER);
+        supportedFrames.add(FRAME_ID_V3_CHAPTER_TOC);
         supportedFrames.add(FRAME_ID_V3_COMMENT);
         supportedFrames.add(FRAME_ID_V3_COMMERCIAL_FRAME);
         supportedFrames.add(FRAME_ID_V3_COMPOSER);
@@ -266,6 +270,8 @@ public class ID3v23Frames extends ID3Frames
         idToValue.put(FRAME_ID_V3_ATTACHED_PICTURE, "Attached picture");
         idToValue.put(FRAME_ID_V3_AUDIO_ENCRYPTION, "Audio encryption");
         idToValue.put(FRAME_ID_V3_BPM, "Text: BPM (Beats Per Minute)");
+        idToValue.put(FRAME_ID_V3_CHAPTER, "Chapter");
+        idToValue.put(FRAME_ID_V3_CHAPTER_TOC, "Chapter TOC");
         idToValue.put(FRAME_ID_V3_COMMENT, "Comments");
         idToValue.put(FRAME_ID_V3_COMMERCIAL_FRAME, "");
         idToValue.put(FRAME_ID_V3_COMPOSER, "Text: Composer");

@@ -119,3 +119,4 @@ test520.m4a, no,227, qobuz 24bit wma file
 test521.aif, no,227, hdtracks 24bit aif file (trailing 4 bytes)
 test522.aif, no,227, hdtracks 96/24bit aif file (trailing 4 bytes)
 test523.wav, no,235, ripped with audio hijack, info before id3 at start of file
+test566.mp3, no, 276,mp3 id3v24 with dupliciate CHAP frames
