@@ -79,6 +79,7 @@ public enum VorbisCommentFieldKey
     ISRC("ISRC",EnumSet.of(Tagger.XIPH,Tagger.PICARD,Tagger.JAIKOZ)),
     ISWC("ISWC",EnumSet.of(Tagger.XIPH,Tagger.PICARD,Tagger.JAIKOZ)),
     IS_CLASSICAL("IS_CLASSICAL",EnumSet.of(Tagger.PICARD,Tagger.JAIKOZ)),
+    IS_GREATEST_HITS("IS_GREATEST_HITS",EnumSet.of(Tagger.JAIKOZ)),
     IS_HD("IS_HD",EnumSet.of(Tagger.PICARD,Tagger.JAIKOZ)),
     IS_SOUNDTRACK("IS_SOUNDTRACK",EnumSet.of(Tagger.PICARD,Tagger.JAIKOZ)),
     KEY("KEY"),

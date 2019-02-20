@@ -437,6 +437,7 @@ public class ID3v24Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v24FieldKey.IS_CLASSICAL);
         tagFieldToId3.put(FieldKey.IS_COMPILATION, ID3v24FieldKey.IS_COMPILATION);
         tagFieldToId3.put(FieldKey.IS_SOUNDTRACK, ID3v24FieldKey.IS_SOUNDTRACK);
+        tagFieldToId3.put(FieldKey.IS_GREATEST_HITS, ID3v24FieldKey.IS_GREATEST_HITS);
         tagFieldToId3.put(FieldKey.IS_HD, ID3v24FieldKey.IS_HD);
         tagFieldToId3.put(FieldKey.ITUNES_GROUPING, ID3v24FieldKey.ITUNES_GROUPING);
         tagFieldToId3.put(FieldKey.KEY, ID3v24FieldKey.KEY);

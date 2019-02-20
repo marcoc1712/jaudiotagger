@@ -119,6 +119,7 @@ public enum AsfFieldKey
     ISVBR("IsVBR", true),
     IS_CLASSICAL("IS_CLASSICAL", false),
     IS_COMPILATION("WM/IsCompilation", false),
+    IS_GREATEST_HITS("IS_GREATEST_HITS", false),
     IS_HD("IS_HD", false),
     IS_SOUNDTRACK("IS_SOUNDTRACK", false),
     LANGUAGE("WM/Language", true),

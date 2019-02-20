@@ -63,6 +63,7 @@ public enum FieldKey
     ISRC,
     ISWC,
     IS_CLASSICAL,
+    IS_GREATEST_HITS,
     IS_HD,
     IS_SOUNDTRACK,
     IS_COMPILATION,

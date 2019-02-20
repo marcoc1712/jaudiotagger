@@ -78,6 +78,7 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String IPI                          = "IPI";
     public static final String INSTRUMENT                   = "INSTRUMENT";
     public static final String IS_CLASSICAL                 = "IS_CLASSICAL";
+    public static final String IS_GREATEST_HITS             = "IS_GREATEST_HITS";
     public static final String IS_HD                        = "IS_HD";
     public static final String IS_SOUNDTRACK                = "IS_SOUNDTRACK";
     public static final String ISWC                         = "ISWC";
