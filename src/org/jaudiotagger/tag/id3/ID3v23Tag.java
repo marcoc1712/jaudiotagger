@@ -1370,4 +1370,25 @@ public class ID3v23Tag extends AbstractID3v2Tag
         }
     }
 
+    /**
+     * Remove frame(s) with this identifier from tag
+     *
+     * @param identifier frameId to look for
+     */
+    public void removeFrame(String identifier)
+    {
+        logger.config("Removing frame with identifier:" + identifier);
+        frameMap.remove(identifier);
+
+        if(identifier.equals(ID3v23Frames.FRAME_ID_V3_TYER))
+        {
+            frameMap.remove(ID3v23Frames.FRAME_ID_V3_TYER);
+            frameMap.remove(TyerTdatAggregatedFrame.ID_TYER_TDAT);
+        }
+        else
+        {
+            frameMap.remove(identifier);
+        }
+    }
+
 }

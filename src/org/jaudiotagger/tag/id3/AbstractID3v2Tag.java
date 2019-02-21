@@ -1010,7 +1010,7 @@ public abstract class AbstractID3v2Tag extends AbstractID3Tag implements Tag
      */
     public void removeFrame(String identifier)
     {
-        logger.finest("Removing frame with identifier:" + identifier);
+        logger.config("Removing frame with identifier:" + identifier);
         frameMap.remove(identifier);
     }
 
