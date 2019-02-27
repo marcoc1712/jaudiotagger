@@ -126,7 +126,7 @@ public class Mp4InfoReader
         }
         ByteBuffer mvhdBuffer = moovBuffer.slice();
         Mp4MvhdBox mvhd = new Mp4MvhdBox(boxHeader, mvhdBuffer);
-        info.setPreciseLength(mvhd.getLength());
+        info.setPreciseLength(mvhd.getPreciseLength());
         //Advance position, TODO should we put this in box code ?
         mvhdBuffer.position(mvhdBuffer.position() + boxHeader.getDataLength());
 

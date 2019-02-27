@@ -194,7 +194,7 @@ public class M4aWriteDatatoMultTrackAudioTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(30, f.getAudioHeader().getTrackLength());
+            assertEquals(31, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Stereo thing doesnt work
@@ -279,7 +279,7 @@ public class M4aWriteDatatoMultTrackAudioTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(30, f.getAudioHeader().getTrackLength());
+            assertEquals(31, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Stereo thing doesnt work
@@ -375,7 +375,7 @@ public class M4aWriteDatatoMultTrackAudioTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(30, f.getAudioHeader().getTrackLength());
+            assertEquals(31, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Stereo thing doesnt work
