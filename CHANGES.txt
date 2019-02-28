@@ -96,6 +96,7 @@ Summarise Changes
 #278:Add IS_GREATEST_HITS field for single artist compilations instead of seeting IS_COMPILATION
 #279:Full Date added to IDv23Tag not deleted with deleteField(YEAR)
 #280:MP4 truncated track length
+#282:Flac:Problem saving files where Image description contains text characters that require more than one byte
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

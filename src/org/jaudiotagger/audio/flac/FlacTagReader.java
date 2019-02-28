@@ -62,9 +62,9 @@ public class FlacTagReader
             boolean isLastBlock = false;
             while (!isLastBlock)
             {
-                if (logger.isLoggable(Level.CONFIG))
+                if (logger.isLoggable(Level.SEVERE))
                 {
-                    logger.config(path + " Looking for MetaBlockHeader at:" + fc.position());
+                    logger.severe(path + " Looking for MetaBlockHeader at:" + fc.position());
                 }
 
                 //Read the header
@@ -74,9 +74,9 @@ public class FlacTagReader
                     break;
                 }
 
-                if (logger.isLoggable(Level.CONFIG))
+                if (logger.isLoggable(Level.SEVERE))
                 {
-                    logger.config(path + " Reading MetadataBlockHeader:" + mbh.toString() + " ending at " + fc.position());
+                    logger.severe(path + " Reading MetadataBlockHeader:" + mbh.toString() + " ending at " + fc.position());
                 }
 
                 //Is it one containing some sort of metadata, therefore interested in it?

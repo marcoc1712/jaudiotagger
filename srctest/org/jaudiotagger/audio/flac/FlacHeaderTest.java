@@ -254,4 +254,61 @@ public class FlacHeaderTest extends TestCase
         }
         assertNull(exceptionCaught);
     }
+
+    public void testSaveFileWithMulitByteCharsInImageDescription()
+    {
+        File orig = new File("testdata", "test537.flac");
+        if (!orig.isFile())
+        {
+            System.err.println("Unable to test file - not available");
+            return;
+        }
+
+        Exception exceptionCaught = null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("test537.flac");
+            AudioFile f = AudioFileIO.read(testFile);
+            System.out.println(f.getAudioHeader());
+
+
+            assertEquals("2614", f.getAudioHeader().getBitRate());
+            assertEquals("FLAC 24 bits", f.getAudioHeader().getEncodingType());
+            assertEquals("2", f.getAudioHeader().getChannels());
+            assertEquals("96000", f.getAudioHeader().getSampleRate());
+            assertEquals(301, f.getAudioHeader().getTrackLength());
+
+            assertTrue(f.getTag() instanceof FlacTag);
+            FlacTag tag = (FlacTag) f.getTag();
+            FlacInfoReader infoReader = new FlacInfoReader();
+            assertEquals(4, infoReader.countMetaBlocks(f.getFile()));
+            assertEquals(1, tag.getImages().size());
+            assertEquals(3, tag.getImages().get(0).getPictureType());
+            assertEquals("Hejira (Édition StudioMasters) (Édition StudioMasters)", tag.getImages().get(0).getDescription());
+            assertEquals(57839, tag.getImages().get(0).getImageData().length);
+            assertEquals(0, tag.getImages().get(0).getHeight());
+            assertEquals(0, tag.getImages().get(0).getWidth());
+            System.out.println(tag);
+
+            tag.setField(FieldKey.ALBUM, "albums");
+            System.out.println(tag);
+            f.commit();
+            f = AudioFileIO.read(testFile);
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
+            assertEquals(4, infoReader.countMetaBlocks(f.getFile()));
+            assertEquals(1, tag.getImages().size());
+            assertEquals(3, tag.getImages().get(0).getPictureType());
+            assertEquals("Hejira (Édition StudioMasters) (Édition StudioMasters)", tag.getImages().get(0).getDescription());
+            assertEquals(57839, tag.getImages().get(0).getImageData().length);
+            assertEquals(0, tag.getImages().get(0).getHeight());
+            assertEquals(0, tag.getImages().get(0).getWidth());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            exceptionCaught = e;
+        }
+        assertNull(exceptionCaught);
+    }
 }
