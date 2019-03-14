@@ -692,7 +692,7 @@ public class Mp4Tag extends AbstractTag
             }
             catch(NumberFormatException nfe)
             {
-                //If not number we want to convert to an expected exception (which is not a RuntimeException)
+                //If not number we want to convertMetadata to an expected exception (which is not a RuntimeException)
                 //so can be handled properly by calling program
                 throw new FieldDataInvalidException("Value "+value + " is not a number as required",nfe);
             }

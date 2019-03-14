@@ -117,7 +117,7 @@ public class FrameTDATTest extends AbstractTestCase
             assertEquals("0106",v23tag.getFirst("TDAT"));
 
             tag = new ID3v24Tag(v23tag);
-            //But because is MonthOnly flag set dd gets lost when convert back to v24
+            //But because is MonthOnly flag set dd gets lost when convertMetadata back to v24
             assertEquals("2006-06",tag.getFirst("TDRC"));
 
         }

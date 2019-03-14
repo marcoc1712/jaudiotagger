@@ -40,12 +40,12 @@ public class VorbisCommentCreator extends AbstractTagCreator
      * Convert tagdata to rawdata ready for writing to file
      *
      * @param tag
-     * @param padding
+     * @param isLastBlock
      * @return
      * @throws UnsupportedEncodingException
      */
     //TODO padding parameter currently ignored
-    public ByteBuffer convert(Tag tag, int padding) throws UnsupportedEncodingException
+    public ByteBuffer convertMetadata(Tag tag, boolean isLastBlock) throws UnsupportedEncodingException
     {
         try
         {

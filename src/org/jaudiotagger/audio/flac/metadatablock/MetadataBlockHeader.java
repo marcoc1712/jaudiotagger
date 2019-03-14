@@ -35,11 +35,11 @@ public class MetadataBlockHeader
     public static final int BLOCK_LENGTH        = 3;
     public static final int HEADER_LENGTH       = BLOCK_TYPE_LENGTH + BLOCK_LENGTH;
 
-    private long    startByte; //for debugging
-    private boolean isLastBlock;
-    private int dataLength;
-    private byte[] bytes;
-    private BlockType blockType;
+    private long        startByte; //for debugging
+    private boolean     isLastBlock;
+    private int         dataLength;
+    private byte[]      bytes;
+    private BlockType   blockType;
 
     public static Logger logger = Logger.getLogger("org.jaudiotagger.audio.flac");
     /**
@@ -156,6 +156,11 @@ public class MetadataBlockHeader
         return bytes;
     }
 
+    public byte[] getBytesWithLastBlockFlag()
+    {
+        bytes[0] = (byte) (bytes[0] | 0x80);
+        return bytes;
+    }
     public byte[] getBytes()
     {
         return bytes;

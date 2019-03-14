@@ -172,7 +172,7 @@ public class NewInterfaceTest extends TestCase
         //Create v1 tag (old method)
         ID3v11Tag v1tag = new ID3v11Tag();
         v1tag.setField(FieldKey.ARTIST,V1_ARTIST);
-        v1tag.setField(FieldKey.ALBUM,"V1ALBUM" + "\u01ff");         //Note always convert to single byte so will be written as FF
+        v1tag.setField(FieldKey.ALBUM,"V1ALBUM" + "\u01ff");         //Note always convertMetadata to single byte so will be written as FF
         v1tag.setField(v1tag.createField(FieldKey.TITLE, "title"));
         v1tag.setField(FieldKey.GENRE,"Rock");
         v1tag.setField(v1tag.createField(FieldKey.TRACK, "12"));

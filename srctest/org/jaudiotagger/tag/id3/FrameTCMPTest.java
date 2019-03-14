@@ -144,7 +144,7 @@ public class FrameTCMPTest extends AbstractTestCase
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         mp3File.setID3v2TagOnly(new ID3v23Tag(mp3File.getID3v2TagAsv24()));
         mp3File.save();
@@ -168,7 +168,7 @@ public class FrameTCMPTest extends AbstractTestCase
         mp3File.setID3v2TagOnly(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         mp3File.setID3v2TagOnly(new ID3v24Tag(mp3File.getID3v2Tag()));
         mp3File.save();

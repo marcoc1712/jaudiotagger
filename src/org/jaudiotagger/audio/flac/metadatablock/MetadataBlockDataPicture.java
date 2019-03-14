@@ -302,7 +302,7 @@ public class MetadataBlockDataPicture implements MetadataBlockData, TagField
      * @return Binary data representing the current tag field.<br>
      * @throws java.io.UnsupportedEncodingException
      *          Most tag data represents text. In some cases the underlying
-     *          implementation will need to convert the text data in java to
+     *          implementation will need to convertMetadata the text data in java to
      *          a specific charset encoding. In these cases an
      *          {@link java.io.UnsupportedEncodingException} may occur.
      */
