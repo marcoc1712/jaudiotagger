@@ -121,3 +121,5 @@ test522.aif, no,227, hdtracks 96/24bit aif file (trailing 4 bytes)
 test523.wav, no,235, ripped with audio hijack, info before id3 at start of file
 test566.mp3, no, 276,mp3 id3v24 with dupliciate CHAP frames
 test537.flac, no, 282, flac from quobuz with multibyte chars in image description
+test600.flac, no,, flac from user seektable 2nd block
+test601.flac, no,, flac from user after songkong process seektable now 4th block, no longer plays in winamp, ok in vlc

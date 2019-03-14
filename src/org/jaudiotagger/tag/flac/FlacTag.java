@@ -629,7 +629,7 @@ public class FlacTag implements Tag
         StringBuilder sb = new StringBuilder("FLAC " + getVorbisCommentTag());
         if(images.size()>0)
         {
-            sb.append("\tImages\n");
+            sb.append("\n\tImages\n");
             for (MetadataBlockDataPicture next : images)
             {
                 sb.append(next);

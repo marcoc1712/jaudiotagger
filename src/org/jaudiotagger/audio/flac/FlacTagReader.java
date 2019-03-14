@@ -20,6 +20,7 @@ package org.jaudiotagger.audio.flac;
 
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.flac.metadatablock.MetadataBlockDataPicture;
+import org.jaudiotagger.audio.flac.metadatablock.MetadataBlockDataSeekTable;
 import org.jaudiotagger.audio.flac.metadatablock.MetadataBlockHeader;
 import org.jaudiotagger.logging.Hex;
 import org.jaudiotagger.tag.InvalidFrameException;
@@ -108,6 +109,20 @@ public class FlacTagReader
                                 logger.warning(path + "Unable to read picture metablock, ignoring" + ive.getMessage());
                             }
 
+                            break;
+
+
+                        case SEEKTABLE:
+                            try
+                            {
+                                long pos = fc.position();
+                                MetadataBlockDataSeekTable mbdp = new MetadataBlockDataSeekTable(mbh, fc);
+                                fc.position(pos + mbh.getDataLength());
+                            }
+                            catch (IOException ioe)
+                            {
+                                logger.warning(path + "Unable to readseek metablock, ignoring:" + ioe.getMessage());
+                            }
                             break;
 
                         //This is not a metadata block we are interested in so we skip to next block

@@ -188,4 +188,51 @@ public class FlacReadTest extends TestCase
         }
         assertNull(exceptionCaught);
     }
+
+    /**
+     * Test Flac file before and after conversion by SongKong
+     * Seems okay, notice SEEKTALE now before VORBIS_COMMENT, oritnally after
+     * VORBIS_COMMENT block is larger, but padding correspondingly shorter to compensate
+     */
+    public void testReadProblemFlac()
+    {
+        Exception exceptionCaught = null;
+        try
+        {
+            File orig = new File("testdata", "test600.flac");
+            if (!orig.isFile())
+            {
+                System.out.println("Test cannot be run because test file not available");
+                return;
+            }
+            File testFile = AbstractTestCase.copyAudioToTmp("test600.flac", new File("test600.flac"));
+            AudioFile f = AudioFileIO.read(testFile);
+            System.out.println(f);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            exceptionCaught = e;
+        }
+        assertNull(exceptionCaught);
+
+         exceptionCaught = null;
+        try
+        {
+            File orig = new File("testdata", "test601.flac");
+            if (!orig.isFile())
+            {
+                System.out.println("Test cannot be run because test file not available");
+                return;
+            }
+            File testFile = AbstractTestCase.copyAudioToTmp("test601.flac", new File("test601.flac"));
+            AudioFile f = AudioFileIO.read(testFile);
+            System.out.println(f);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            exceptionCaught = e;
+        }
+    }
 }
