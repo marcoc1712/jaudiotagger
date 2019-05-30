@@ -99,6 +99,7 @@ Summarise Changes
 #282:Flac:Problem saving files where Image description contains text characters that require more than one byte
 #285:Change order that block types are written to FLAC
 #288:APIC frames not saving description for ID3 based formats
+#291:Dont throw error if unable to decode subframe frames, just log error
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
