@@ -144,6 +144,7 @@ public class WavTagReader
                     }
                     else
                     {
+                        fc.position(fc.position() + chunkHeader.getSize());
                         logger.warning(loggingName + " Ignoring LIST chunk because already have one:" + chunkHeader.getID()
                                 + ":"  + Hex.asDecAndHex(chunkHeader.getStartLocationInFile() - 1)
                                 + ":sizeIncHeader:"+ (chunkHeader.getSize() + ChunkHeader.CHUNK_HEADER_SIZE));
