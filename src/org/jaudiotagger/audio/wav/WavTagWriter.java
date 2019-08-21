@@ -922,10 +922,11 @@ public class WavTagWriter
                     fc.position(fc.size());
                     writeBothTags(fc, infoTagBuffer, id3TagBuffer);
                 }
-                //Cannot write to non-standard file (at least at moment)
+                //Remove in order
                 else
                 {
-                    throw new CannotWriteException(loggingName + " Metadata tags are interspersed with unknown tags cannot be fixed.");
+                    removeAllMetadata(fc,existingTag);
+                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
                 }
             }
             //Existing metadata tag is incorrectly aligned so if we can lets delete it and any subsequentially added
@@ -1010,6 +1011,36 @@ public class WavTagWriter
             //Go to end of file
             fc.position(fc.size());
             writeBothTags(fc, infoTagBuffer, id3TagBuffer);
+        }
+    }
+
+    /**
+     * Remove id3 and list chunk if exist
+     *
+     * TODO What about if file has multiple id3 or list chunks
+     *
+     * @param fc
+     * @param existingTag
+     * @throws CannotWriteException
+     * @throws IOException
+     */
+    private void removeAllMetadata(FileChannel fc,WavTag existingTag)
+            throws CannotWriteException, IOException
+    {
+        if (existingTag.getStartLocationInFileOfId3Chunk() > existingTag.getInfoTag().getStartLocationInFile())
+        {
+            ChunkHeader id3ChunkHeader = seekToStartOfId3Metadata(fc, existingTag);
+            deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
+            ChunkHeader infoChunkHeader = seekToStartOfListInfoMetadata(fc, existingTag);
+            deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
+        }
+        //Not contiguous, delete last (info) tag first than add new id3 tag
+        else if (existingTag.getInfoTag().getStartLocationInFile() > existingTag.getStartLocationInFileOfId3Chunk())
+        {
+            ChunkHeader infoChunkHeader = seekToStartOfListInfoMetadata(fc, existingTag);
+            deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
+            ChunkHeader id3ChunkHeader = seekToStartOfId3Metadata(fc, existingTag);
+            deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
         }
     }
 
@@ -1188,16 +1219,18 @@ public class WavTagWriter
     {
         logger.severe("saveId3");
         final ByteBuffer id3TagBuffer = convertID3Chunk(wavTag, existingTag);
+
         //Correctly aligned
         if(!existingTag.isIncorrectlyAlignedTag())
         {
             if (existingTag.isExistingInfoTag() && existingTag.isExistingId3Tag())
             {
                 BothTagsFileStructure fs = checkExistingLocations(existingTag, fc);
+
                 //Metadata Chunks contiguous replace as a block
                 if (fs.isContiguous)
                 {
-                    logger.severe("isCOntiguous");
+                    logger.severe("isContiguous");
                     //Id3 Tag comes first so we can delete Info tag without it affecting Id3 tag
                     if (existingTag.getInfoTag().getStartLocationInFile() > existingTag.getStartLocationInFileOfId3Chunk())
                     {
@@ -1214,6 +1247,7 @@ public class WavTagWriter
                         writeId3DataToFile(fc, id3TagBuffer);
                     }
                 }
+                //Just delete all metadata
                 else if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
                 {
                     logger.severe("isOnlyMetadata");
@@ -1221,10 +1255,11 @@ public class WavTagWriter
                     fc.position(fc.size());
                     writeId3DataToFile(fc, id3TagBuffer);
                 }
-                //Cannot write to non-standard file (at least at moment)
+                //Remove in order
                 else
                 {
-                    throw new CannotWriteException(loggingName + " Metadata tags are interspersed with unknown tags cannot be fixed.");
+                    removeAllMetadata(fc,existingTag);
+                    writeId3DataToFile(fc, id3TagBuffer);
                 }
             }
             //Only have Info Tag
