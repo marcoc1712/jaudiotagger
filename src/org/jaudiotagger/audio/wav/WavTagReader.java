@@ -60,7 +60,7 @@ public class WavTagReader
      */
     public WavTag read(Path path) throws CannotReadException, IOException
     {
-        logger.config(loggingName + " Read Tag:start");
+        logger.severe(loggingName + " Read Tag:start");
         WavTag tag = new WavTag(TagOptionSingleton.getInstance().getWavOptions());
         try(FileChannel fc = FileChannel.open(path))
         {
@@ -115,6 +115,7 @@ public class WavTagReader
     {
         Chunk chunk;
         ChunkHeader chunkHeader = new ChunkHeader(ByteOrder.LITTLE_ENDIAN);
+        ChunkSummary cs;
         if (!chunkHeader.readHeader(fc))
         {
             return false;
@@ -128,12 +129,16 @@ public class WavTagReader
             switch (chunkType)
             {
                 case LIST:
-                    tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
+                    cs = new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize());
+                    tag.addChunkSummary(cs);
+                    tag.addMetadataChunkSummary(cs);
+
                     if(tag.getInfoTag()==null)
                     {
                         chunk = new WavListChunk(loggingName, Utils.readFileDataIntoBufferLE(fc, (int) chunkHeader.getSize()), chunkHeader, tag);
                         if (!chunk.readChunk())
                         {
+                            logger.severe(loggingName + " LIST readChunkFailed");
                             return false;
                         }
                     }
@@ -146,12 +151,15 @@ public class WavTagReader
                     break;
 
                 case ID3_UPPERCASE:
-                    tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
+                    cs = new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize());
+                    tag.addChunkSummary(cs);
+                    tag.addMetadataChunkSummary(cs);
                     if(tag.getID3Tag()==null)
                     {
                         chunk = new WavId3Chunk(Utils.readFileDataIntoBufferLE(fc, (int) chunkHeader.getSize()), chunkHeader, tag, loggingName);
                         if (!chunk.readChunk())
                         {
+                            logger.severe(loggingName + " ID3 readChunkFailed");
                             return false;
                         }
 
@@ -169,12 +177,15 @@ public class WavTagReader
                     break;
 
                 case ID3:
-                    tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
+                    cs = new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize());
+                    tag.addChunkSummary(cs);
+                    tag.addMetadataChunkSummary(cs);
                     if(tag.getID3Tag()==null)
                     {
                         chunk = new WavId3Chunk(Utils.readFileDataIntoBufferLE(fc, (int) chunkHeader.getSize()), chunkHeader, tag, loggingName);
                         if (!chunk.readChunk())
                         {
+                            logger.severe(loggingName + " id3 readChunkFailed");
                             return false;
                         }
                     }
@@ -208,6 +219,7 @@ public class WavTagReader
                 default:
                     tag.addChunkSummary(new ChunkSummary(chunkHeader.getID(), chunkHeader.getStartLocationInFile(), chunkHeader.getSize()));
                     fc.position(fc.position() + chunkHeader.getSize());
+
             }
         }
         else if(id.substring(1,4).equals(WavCorruptChunkType.CORRUPT_LIST_EARLY.getCode()))

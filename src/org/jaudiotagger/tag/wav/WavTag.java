@@ -47,7 +47,8 @@ public class WavTag implements Tag, Id3SupportingTag
     
     private static final String NULL = "\0";
 
-	private List<ChunkSummary> chunkSummaryList = new ArrayList<ChunkSummary>();
+	private List<ChunkSummary> chunkSummaryList  = new ArrayList<ChunkSummary>();
+    private List<ChunkSummary> metadataChunkList = new ArrayList<ChunkSummary>();
 
     public void addChunkSummary(ChunkSummary cs)
     {
@@ -58,6 +59,17 @@ public class WavTag implements Tag, Id3SupportingTag
     {
         return chunkSummaryList;
     }
+
+    public void addMetadataChunkSummary(ChunkSummary cs)
+    {
+        metadataChunkList.add(cs);
+    }
+
+    public List<ChunkSummary> getMetadataChunkSummaryList()
+    {
+        return metadataChunkList;
+    }
+
 
     //(Read audio okay) but was unable to read all chunks because of bad data chunks
     private boolean isBadChunkData = false;
