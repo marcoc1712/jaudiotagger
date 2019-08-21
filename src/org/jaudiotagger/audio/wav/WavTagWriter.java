@@ -913,146 +913,62 @@ public class WavTagWriter
     private void saveBoth(WavTag wavTag, FileChannel fc,  final WavTag existingTag )
             throws CannotWriteException, IOException
     {
-        //Convert both tags and get existing ones
         final ByteBuffer infoTagBuffer = convertInfoChunk(wavTag);
-        final ByteBuffer id3TagBuffer  = convertID3Chunk(wavTag, existingTag);
+        final long newInfoTagSize = infoTagBuffer.limit();
 
-        //If both tags already exist in file
-        if(existingTag.isExistingInfoTag() && existingTag.isExistingId3Tag())
+        final ByteBuffer id3TagBuffer = convertID3Chunk(wavTag, existingTag);
+
+        //Easiest just to delete all metadata (gets rid of duplicates)
+        if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
         {
-            if(!existingTag.isIncorrectlyAlignedTag())
+            deleteExistingMetadataTagsToEndOfFile(fc, existingTag);
+
+            if(TagOptionSingleton.getInstance().getWavSaveOrder()==WavSaveOrder.INFO_THEN_ID3)
             {
-                BothTagsFileStructure fs = checkExistingLocations(existingTag, fc);
-                //We can write both chunks without affecting anything else
-                if (fs.isContiguous && fs.isAtEnd)
+                writeInfoChunkAtFileEnd(fc, infoTagBuffer, newInfoTagSize);
+                writeId3ChunkAtFileEnd(fc, id3TagBuffer);
+            }
+            else
+            {
+                writeId3ChunkAtFileEnd(fc, id3TagBuffer);
+                writeInfoChunkAtFileEnd(fc, infoTagBuffer, newInfoTagSize);
+            }
+        }
+        //Correctly aligned so we can delete each one in turn
+        else if(!existingTag.isIncorrectlyAlignedTag())
+        {
+            if(existingTag.getMetadataChunkSummaryList().size()>0)
+            {
+                ListIterator<ChunkSummary> li = existingTag.getMetadataChunkSummaryList().listIterator(existingTag.getMetadataChunkSummaryList().size());
+                while (li.hasPrevious())
                 {
-                    if (fs.isInfoTagFirst)
+                    ChunkSummary next = li.previous();
+                    logger.config(">>>>Deleting--"+next.getChunkId()+"---"+next.getFileStartLocation()+"--"+next.getEndLocation());
+                    if (Utils.isOddLength(next.getEndLocation()))
                     {
-                        seekToStartOfListInfoMetadata(fc, existingTag);
-                        writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                        fc.truncate(fc.position());
+                        deleteTagChunk(fc, (int) next.getEndLocation(), (int) ((next.getEndLocation() + 1) - next.getFileStartLocation()));
                     }
                     else
                     {
-                        seekToStartOfId3MetadataForChunkSummaryHeader(fc, existingTag);
-                        writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                        fc.truncate(fc.position());
+                        deleteTagChunk(fc, (int) next.getEndLocation(), (int) (next.getEndLocation() - next.getFileStartLocation()));
                     }
-                }
-                //Both chunks are together but there is another chunk after them
-                else if (fs.isContiguous && !fs.isAtEnd)
-                {
-                    ChunkHeader infoChunkHeader = seekToStartOfListInfoMetadata(fc, existingTag);
-                    ChunkHeader id3ChunkHeader = seekToStartOfId3MetadataForChunkSummaryHeader(fc, existingTag);
-                    if(infoChunkHeader.getStartLocationInFile() > id3ChunkHeader.getStartLocationInFile())
-                    {
-                        deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
-                        deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
-                    }
-                    else
-                    {
-                        deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
-                        deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
-                    }
-                    fc.position(fc.size());
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                }
-                //Have both chunks but other chunk(s) between them.
-                else if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
-                {
-                    deleteExistingMetadataTagsToEndOfFile(fc, existingTag);
-                    fc.position(fc.size());
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                }
-                //Remove in order
-                else
-                {
-                    removeAllMetadata(fc,existingTag);
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
                 }
             }
-            //Existing metadata tag is incorrectly aligned so if we can lets delete it and any subsequentially added
-            //tags and start again
-            else if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
+            if(TagOptionSingleton.getInstance().getWavSaveOrder()==WavSaveOrder.INFO_THEN_ID3)
             {
-                deleteExistingMetadataTagsToEndOfFile(fc, existingTag);
-                fc.position(fc.size());
-                writeBothTags(fc, infoTagBuffer, id3TagBuffer);
+                writeInfoChunkAtFileEnd(fc, infoTagBuffer, newInfoTagSize);
+                writeId3ChunkAtFileEnd(fc, id3TagBuffer);
             }
             else
             {
-                throw new CannotWriteException(loggingName + " Metadata tags are corrupted and not at end of file so cannot be fixed");
+                writeId3ChunkAtFileEnd(fc, id3TagBuffer);
+                writeInfoChunkAtFileEnd(fc, infoTagBuffer, newInfoTagSize);
             }
-        }
-        //If only INFO chunk exists
-        else if(existingTag.isExistingInfoTag() && !existingTag.isExistingId3Tag())
-        {
-            if(!existingTag.isIncorrectlyAlignedTag())
-            {
-                ChunkHeader infoChunkHeader = seekToStartOfListInfoMetadata(fc, existingTag);
-                if (isInfoTagAtEndOfFileAllowingForPaddingByte(existingTag, fc))
-                {
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                    fc.truncate(fc.position());
-                }
-                else
-                {
-                    deleteInfoTagChunk(fc, existingTag, infoChunkHeader);
-                    fc.position(fc.size());
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                }
-            }
-            //Existing metadata tag is incorrectly aligned so if we can lets delete it and any subsequentially added
-            //tags and start again
-            else if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
-            {
-                deleteExistingMetadataTagsToEndOfFile(fc, existingTag);
-                fc.position(fc.size());
-                writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-            }
-            else
-            {
-                throw new CannotWriteException(loggingName + " Metadata tags are corrupted and not at end of file so cannot be fixed");
-            }
-        }
-        //If only ID3 chunk exists
-        else if(existingTag.isExistingId3Tag() && !existingTag.isExistingInfoTag())
-        {
-            if(!existingTag.isIncorrectlyAlignedTag())
-            {
-                ChunkHeader id3ChunkHeader = seekToStartOfId3MetadataForChunkSummaryHeader(fc, existingTag);
-                if (isID3TagAtEndOfFileAllowingForPaddingByte(existingTag, fc))
-                {
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                    fc.truncate(fc.position());
-                }
-                else
-                {
-                    deleteId3TagChunk(fc, existingTag, id3ChunkHeader);
-                    fc.position(fc.size());
-                    writeBothTags(fc, infoTagBuffer, id3TagBuffer);
-                }
-            }
-            //Existing metadata tag is incorrectly aligned so if we can lets delete it and any subsequentially added
-            //tags and start again
-            else if(WavChunkSummary.isOnlyMetadataTagsAfterStartingMetadataTag(existingTag))
-            {
-                deleteExistingMetadataTagsToEndOfFile(fc, existingTag);
-                fc.position(fc.size());
-                writeBothTags(fc, infoTagBuffer, id3TagBuffer);
 
-            }
-            else
-            {
-                throw new CannotWriteException(loggingName + " Metadata tags are corrupted and not at end of file so cannot be fixed");
-            }
         }
-        //No existing tags so write both to the end (or existing tag but couldnt not be written)
         else
         {
-            //Go to end of file
-            fc.position(fc.size());
-            writeBothTags(fc, infoTagBuffer, id3TagBuffer);
+            throw new CannotWriteException(loggingName + " Metadata tags are corrupted and not at end of file so cannot be fixed");
         }
     }
 
