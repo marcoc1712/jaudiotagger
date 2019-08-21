@@ -705,6 +705,12 @@ public class WavTagWriter
                 }
             }
 
+            //#270
+            if (tag.getID3Tag() == null)
+            {
+                tag.setID3Tag(WavTag.createDefaultID3Tag());
+            }
+
             //Write Tag to buffer
             tag.getID3Tag().write(baos, (int)existingTagSize);
 

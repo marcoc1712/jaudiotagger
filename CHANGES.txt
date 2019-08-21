@@ -101,6 +101,7 @@ Summarise Changes
 #288:APIC frames not saving description for ID3 based formats
 #291:Do not throw error if unable to decode subframe frames, just log error
 #290:Unable to save Wav files if has existing non-contiguous metadata chunks separated by data chunk
+#270:NullPointerException with some WAV tag conversion
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats
