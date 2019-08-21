@@ -1,17 +1,20 @@
-package org.jaudiotagger.audio.wav;
+package org.jaudiotagger.tag.wav;
 
 import org.jaudiotagger.AbstractTestCase;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.wav.WavOptions;
+import org.jaudiotagger.audio.wav.WavSaveOptions;
+import org.jaudiotagger.audio.wav.WavSaveOrder;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.TagOptionSingleton;
 
 import java.io.File;
 
 /**
- * Tests for Issue 209, wav with non contiguous existing metadata
+ * Tests for Issue 295, wav with many LIST/ID3 existing metadata, want to remove the excess as aprt of save.
  */
-public class WavNonContiguousMetadataTest extends AbstractTestCase
+public class WavManyMetadataChunksTest extends AbstractTestCase
 {
     public void testWriteFileId3Only() throws Exception
     {
@@ -20,7 +23,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         tagOptions.setWavOptions(WavOptions.READ_ID3_ONLY);
         tagOptions.setWavSaveOptions(WavSaveOptions.SAVE_ACTIVE);
 
-        File orig = new File("testdata", "test602.wav");
+        File orig = new File("testdata", "test605.wav");
         if (!orig.isFile())
         {
             System.err.println("Unable to test file - not available");
@@ -30,7 +33,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         Exception ex=null;
         try
         {
-            File testFile = AbstractTestCase.copyAudioToTmp("test602.wav");
+            File testFile = AbstractTestCase.copyAudioToTmp("test605.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
             System.out.println(af.getTag());
@@ -57,7 +60,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         tagOptions.setWavOptions(WavOptions.READ_INFO_ONLY);
         tagOptions.setWavSaveOptions(WavSaveOptions.SAVE_ACTIVE);
 
-        File orig = new File("testdata", "test602.wav");
+        File orig = new File("testdata", "test605.wav");
         if (!orig.isFile())
         {
             System.err.println("Unable to test file - not available");
@@ -67,7 +70,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         Exception ex=null;
         try
         {
-            File testFile = AbstractTestCase.copyAudioToTmp("test602.wav");
+            File testFile = AbstractTestCase.copyAudioToTmp("test605.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
             System.out.println(af.getTag());
@@ -94,7 +97,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         tagOptions.setWavOptions(WavOptions.READ_ID3_ONLY);
         tagOptions.setWavSaveOptions(WavSaveOptions.SAVE_EXISTING_AND_ACTIVE);
 
-        File orig = new File("testdata", "test602.wav");
+        File orig = new File("testdata", "test605.wav");
         if (!orig.isFile())
         {
             System.err.println("Unable to test file - not available");
@@ -104,7 +107,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         Exception ex=null;
         try
         {
-            File testFile = AbstractTestCase.copyAudioToTmp("test602.wav");
+            File testFile = AbstractTestCase.copyAudioToTmp("test605.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
             System.out.println(af.getTag());
@@ -131,7 +134,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         tagOptions.setWavSaveOrder(WavSaveOrder.ID3_THEN_INFO);
         tagOptions.setWavSaveOptions(WavSaveOptions.SAVE_BOTH);
 
-        File orig = new File("testdata", "test602.wav");
+        File orig = new File("testdata", "test605.wav");
         if (!orig.isFile())
         {
             System.err.println("Unable to test file - not available");
@@ -141,7 +144,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         Exception ex=null;
         try
         {
-            File testFile = AbstractTestCase.copyAudioToTmp("test602.wav");
+            File testFile = AbstractTestCase.copyAudioToTmp("test605.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
             System.out.println(af.getTag());
@@ -168,7 +171,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         tagOptions.setWavSaveOrder(WavSaveOrder.INFO_THEN_ID3);
         tagOptions.setWavSaveOptions(WavSaveOptions.SAVE_BOTH);
 
-        File orig = new File("testdata", "test602.wav");
+        File orig = new File("testdata", "test605.wav");
         if (!orig.isFile())
         {
             System.err.println("Unable to test file - not available");
@@ -178,7 +181,7 @@ public class WavNonContiguousMetadataTest extends AbstractTestCase
         Exception ex=null;
         try
         {
-            File testFile = AbstractTestCase.copyAudioToTmp("test602.wav");
+            File testFile = AbstractTestCase.copyAudioToTmp("test605.wav");
             AudioFile af = AudioFileIO.read(testFile);
             assertNotNull(af.getTag());
             System.out.println(af.getTag());

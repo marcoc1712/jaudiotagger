@@ -25,28 +25,15 @@ public class WavChunkSummary
     public static long getStartLocationOfFirstMetadataChunk(WavTag tag)
     {
         //Work out the location of the first metadata tag (could be id3 or LIST tag)
-        long startLocationOfMetadataTag = -1;
-        if(tag.getInfoTag()!=null)
+        if(tag.getMetadataChunkSummaryList().size()>0)
         {
-            startLocationOfMetadataTag = tag.getInfoTag().getStartLocationInFile();
-
-            if(tag.getID3Tag()!=null)
-            {
-                if(tag.getStartLocationInFileOfId3Chunk() < startLocationOfMetadataTag)
-                {
-                    startLocationOfMetadataTag = tag.getStartLocationInFileOfId3Chunk();
-                }
-            }
+            return tag.getMetadataChunkSummaryList().get(0).getFileStartLocation();
         }
-        else if(tag.getID3Tag()!=null)
-        {
-            startLocationOfMetadataTag = tag.getStartLocationInFileOfId3Chunk();
-        }
-        return startLocationOfMetadataTag;
+        return -1;
     }
 
     /**
-     * Checks that there are only id3 tags after the currently selected id3tag because this means its safe to truncate
+     * Checks that there are only metadata tags after the currently selected metadata because this means its safe to truncate
      * the remainder of the file.
      *
      * @param tag
