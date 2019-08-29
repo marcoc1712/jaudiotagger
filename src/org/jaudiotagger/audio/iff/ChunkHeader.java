@@ -40,7 +40,7 @@ public class ChunkHeader
         header.order(byteOrder);
         header.position(0);
         this.chunkId  = Utils.readFourBytesAsChars(header);
-        this.size = header.getInt();
+        this.size = Integer.toUnsignedLong(header.getInt());
         return true;
     }
 

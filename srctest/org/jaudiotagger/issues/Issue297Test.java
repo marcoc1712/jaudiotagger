@@ -8,14 +8,13 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.TagOptionSingleton;
 
 import java.io.File;
-import java.util.List;
 
 /**
- * Test, useful for just reading file info
+ * Test, allow Wav files that are larger than 2GB
  */
-public class WriteFileTest extends AbstractTestCase
+public class Issue297Test extends AbstractTestCase
 {
-    public void testWriteFile() throws Exception
+    public void testReadWrite2GBFile() throws Exception
     {
         final TagOptionSingleton tagOptions = TagOptionSingleton.getInstance();
         tagOptions.setWavSaveOptions(WavSaveOptions.SAVE_ACTIVE);
