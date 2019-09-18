@@ -60,7 +60,7 @@ public class WavTagReader
      */
     public WavTag read(Path path) throws CannotReadException, IOException
     {
-        logger.severe(loggingName + " Read Tag:start");
+        logger.config(loggingName + " Read Tag:start");
         WavTag tag = new WavTag(TagOptionSingleton.getInstance().getWavOptions());
         try(FileChannel fc = FileChannel.open(path))
         {
