@@ -73,11 +73,11 @@ public class Mp4TagCreator extends AbstractTagCreator
      * Convert tagdata to rawdata ready for writing to file
      *
      * @param tag
-     * @param padding TODO padding parameter currently ignored
+     * @param isLastBlock TODO padding parameter currently ignored
      * @return
      * @throws UnsupportedEncodingException
      */
-    public ByteBuffer convert(Tag tag, int padding) throws UnsupportedEncodingException
+    public ByteBuffer convertMetadata(Tag tag, boolean isLastBlock) throws UnsupportedEncodingException
     {
         try
         {

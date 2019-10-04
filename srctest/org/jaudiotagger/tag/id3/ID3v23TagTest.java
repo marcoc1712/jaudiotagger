@@ -266,7 +266,7 @@ public class ID3v23TagTest extends TestCase
         assertNotNull(v23frame);
         assertTrue(v23frame.getBody() instanceof FrameBodyTIT2);
 
-        //Save as v23 tag (side effect convert v23 to v24 tag as well)
+        //Save as v23 tag (side effect convertMetadata v23 to v24 tag as well)
         mp3File.setID3v2Tag(v23tag);
         mp3File.save();
 
@@ -279,7 +279,7 @@ public class ID3v23TagTest extends TestCase
         assertNotNull(v23frame);
         assertTrue(v23frame.getBody() instanceof FrameBodyTIT2);
 
-        //Save as v23 tag (side effect convert v23 to v24 tag as well)
+        //Save as v23 tag (side effect convertMetadata v23 to v24 tag as well)
         mp3File.setID3v2Tag(v23tag);
         mp3File.save();
 
@@ -319,7 +319,7 @@ public class ID3v23TagTest extends TestCase
         assertNotNull(v23frame);
         assertTrue(v23frame.getBody() instanceof FrameBodyUnsupported);
 
-        //Save as v23 tag (side effect convert v23 to v24 tag as well)
+        //Save as v23 tag (side effect convertMetadata v23 to v24 tag as well)
         mp3File.setID3v2Tag(v23tag);
         mp3File.save();
 
@@ -332,7 +332,7 @@ public class ID3v23TagTest extends TestCase
         assertNotNull(v23frame);
         assertTrue(v23frame.getBody() instanceof FrameBodyUnsupported);
 
-        //Save as v23 tag (side effect convert v23 to v24 tag as well)
+        //Save as v23 tag (side effect convertMetadata v23 to v24 tag as well)
         mp3File.setID3v2Tag(v23tag);
         mp3File.save();
 
@@ -414,7 +414,7 @@ public class ID3v23TagTest extends TestCase
         assertNotNull(v23frame);
         assertTrue(v23frame.getBody() instanceof FrameBodyUnsupported);
 
-        //Save as v23 tag (side effect convert v23 to v24 tag as well)
+        //Save as v23 tag (side effect convertMetadata v23 to v24 tag as well)
         mp3File.setID3v2Tag(v23tag);
         mp3File.save();
 
@@ -427,7 +427,7 @@ public class ID3v23TagTest extends TestCase
         assertNotNull(v23frame);
         assertTrue(v23frame.getBody() instanceof FrameBodyUnsupported);
 
-        //Save as v23 tag (side effect convert v23 to v24 tag as well)
+        //Save as v23 tag (side effect convertMetadata v23 to v24 tag as well)
         mp3File.setID3v2Tag(v23tag);
         mp3File.save();
 

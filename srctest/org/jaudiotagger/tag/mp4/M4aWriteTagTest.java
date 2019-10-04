@@ -65,7 +65,7 @@ public class M4aWriteTagTest extends TestCase
             assertEquals(TEST_FILE1_SIZE, testFile.length());
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -199,7 +199,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -335,7 +335,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -479,7 +479,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -627,7 +627,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -822,7 +822,7 @@ public class M4aWriteTagTest extends TestCase
             assertEquals(TEST_FILE2_SIZE, testFile.length());
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -958,7 +958,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -1093,7 +1093,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -1228,7 +1228,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -1364,7 +1364,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -1489,7 +1489,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -1636,7 +1636,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields
@@ -1751,7 +1751,7 @@ public class M4aWriteTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields

@@ -100,6 +100,7 @@ public class Mp4Tag extends AbstractTag
         tagFieldToMp4Field.put(FieldKey.ISWC, Mp4FieldKey.ISWC);
         tagFieldToMp4Field.put(FieldKey.IS_COMPILATION, Mp4FieldKey.COMPILATION);
         tagFieldToMp4Field.put(FieldKey.IS_CLASSICAL, Mp4FieldKey.IS_CLASSICAL);
+        tagFieldToMp4Field.put(FieldKey.IS_GREATEST_HITS, Mp4FieldKey.IS_GREATEST_HITS);
         tagFieldToMp4Field.put(FieldKey.IS_HD, Mp4FieldKey.IS_HD);
         tagFieldToMp4Field.put(FieldKey.IS_SOUNDTRACK, Mp4FieldKey.IS_SOUNDTRACK);
         tagFieldToMp4Field.put(FieldKey.KEY, Mp4FieldKey.KEY);
@@ -136,9 +137,9 @@ public class Mp4Tag extends AbstractTag
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_RELEASE_TYPE, Mp4FieldKey.MUSICBRAINZ_ALBUM_TYPE);
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_TRACK_ID, Mp4FieldKey.MUSICBRAINZ_TRACKID);
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_ID, Mp4FieldKey.MUSICBRAINZ_WORKID);
-        tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID, Mp4FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID);
+        tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_RECORDING_WORK_ID, Mp4FieldKey.MUSICBRAINZ_RECORDING_WORK_ID);
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID, Mp4FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID);
-        tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION, Mp4FieldKey.MUSICBRAINZ_WORK_COMPOSITION);
+        tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_RECORDING_WORK, Mp4FieldKey.MUSICBRAINZ_RECORDING_WORK);
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1, Mp4FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1);
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_TYPE, Mp4FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_TYPE);
         tagFieldToMp4Field.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID, Mp4FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID);
@@ -691,7 +692,7 @@ public class Mp4Tag extends AbstractTag
             }
             catch(NumberFormatException nfe)
             {
-                //If not number we want to convert to an expected exception (which is not a RuntimeException)
+                //If not number we want to convertMetadata to an expected exception (which is not a RuntimeException)
                 //so can be handled properly by calling program
                 throw new FieldDataInvalidException("Value "+value + " is not a number as required",nfe);
             }

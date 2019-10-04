@@ -983,6 +983,7 @@ public class ID3v23Tag extends AbstractID3v2Tag
             Artwork artwork = ArtworkFactory.getNew();
             artwork.setMimeType(coverArt.getMimeType());
             artwork.setPictureType(coverArt.getPictureType());
+            artwork.setDescription(coverArt.getDescription());
             if (coverArt.isImageUrl())
             {
                 artwork.setLinked(true);
@@ -1009,7 +1010,7 @@ public class ID3v23Tag extends AbstractID3v2Tag
             body.setObjectValue(DataTypes.OBJ_PICTURE_DATA, artwork.getBinaryData());
             body.setObjectValue(DataTypes.OBJ_PICTURE_TYPE, artwork.getPictureType());
             body.setObjectValue(DataTypes.OBJ_MIME_TYPE, artwork.getMimeType());
-            body.setObjectValue(DataTypes.OBJ_DESCRIPTION, "");
+            body.setObjectValue(DataTypes.OBJ_DESCRIPTION, artwork.getDescription());
             return frame;
         }
         else
@@ -1024,7 +1025,7 @@ public class ID3v23Tag extends AbstractID3v2Tag
             }
             body.setObjectValue(DataTypes.OBJ_PICTURE_TYPE, artwork.getPictureType());
             body.setObjectValue(DataTypes.OBJ_MIME_TYPE, FrameBodyAPIC.IMAGE_IS_URL);
-            body.setObjectValue(DataTypes.OBJ_DESCRIPTION, "");
+            body.setObjectValue(DataTypes.OBJ_DESCRIPTION, artwork.getDescription());
             return frame;
         }
     }
@@ -1239,7 +1240,7 @@ public class ID3v23Tag extends AbstractID3v2Tag
             if(frame.getContent().length()==0)
             {
                 //Discard not useful to complicate by trying to map it
-                logger.warning("TDAT is empty so just ignoring");
+                logger.warning(getLoggingFilename() + ":TDAT is empty so just ignoring");
                 return;
             }
         }
@@ -1367,6 +1368,27 @@ public class ID3v23Tag extends AbstractID3v2Tag
         else
         {
             return super.getFields(genericKey);
+        }
+    }
+
+    /**
+     * Remove frame(s) with this identifier from tag
+     *
+     * @param identifier frameId to look for
+     */
+    public void removeFrame(String identifier)
+    {
+        logger.config("Removing frame with identifier:" + identifier);
+        frameMap.remove(identifier);
+
+        if(identifier.equals(ID3v23Frames.FRAME_ID_V3_TYER))
+        {
+            frameMap.remove(ID3v23Frames.FRAME_ID_V3_TYER);
+            frameMap.remove(TyerTdatAggregatedFrame.ID_TYER_TDAT);
+        }
+        else
+        {
+            frameMap.remove(identifier);
         }
     }
 

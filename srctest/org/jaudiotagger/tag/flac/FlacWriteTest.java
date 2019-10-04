@@ -93,7 +93,7 @@ public class FlacWriteTest extends TestCase
             RandomAccessFile imageFile = new RandomAccessFile(new File("testdata", "coverart.png"), "r");
             byte[] imagedata = new byte[(int) imageFile.length()];
             imageFile.read(imagedata);
-            tag.setField(tag.createArtworkField(imagedata, PictureTypes.DEFAULT_ID, ImageFormats.MIME_TYPE_PNG, "test", 200, 200, 24, 0));
+            tag.setField(tag.createArtworkField(imagedata, PictureTypes.DEFAULT_ID, ImageFormats.MIME_TYPE_PNG, "Édition", 200, 200, 24, 0));
 
             assertEquals("11",tag.getFirst(FieldKey.TRACK_TOTAL));
             assertEquals("3",tag.getFirst(FieldKey.DISC_TOTAL));
@@ -131,7 +131,7 @@ public class FlacWriteTest extends TestCase
             MetadataBlockDataPicture pic = tag.getImages().get(0);
             assertEquals((int) PictureTypes.DEFAULT_ID, pic.getPictureType());
             assertEquals(ImageFormats.MIME_TYPE_PNG, pic.getMimeType());
-            assertEquals("test", pic.getDescription());
+            assertEquals("Édition", pic.getDescription());
             assertEquals(200, pic.getWidth());
             assertEquals(200, pic.getHeight());
             assertEquals(24, pic.getColourDepth());
@@ -149,7 +149,7 @@ public class FlacWriteTest extends TestCase
             assertEquals("Sarah Curtis",tag.getFirst("VIOLINIST"));
 
             System.out.println("NewFileSize:"+f.getFile().length());
-            assertEquals(144202, f.getFile().length());
+            assertEquals(144206, f.getFile().length());
         }
         catch (Exception e)
         {

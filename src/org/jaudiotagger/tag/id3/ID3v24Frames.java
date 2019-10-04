@@ -42,6 +42,8 @@ public class ID3v24Frames extends ID3Frames
     public static final String FRAME_ID_AUDIO_ENCRYPTION = "AENC";
     public static final String FRAME_ID_AUDIO_SEEK_POINT_INDEX = "ASPI";
     public static final String FRAME_ID_BPM = "TBPM";
+    public static final String FRAME_ID_CHAPTER = ID3v2ChapterFrames.FRAME_ID_CHAPTER;
+    public static final String FRAME_ID_CHAPTER_TOC = ID3v2ChapterFrames.FRAME_ID_TABLE_OF_CONTENT;
     public static final String FRAME_ID_COMMENT = "COMM";
     public static final String FRAME_ID_COMMERCIAL_FRAME = "COMR";
     public static final String FRAME_ID_COMPOSER = "TCOM";
@@ -158,6 +160,8 @@ public class ID3v24Frames extends ID3Frames
         supportedFrames.add(FRAME_ID_AUDIO_ENCRYPTION);
         supportedFrames.add(FRAME_ID_AUDIO_SEEK_POINT_INDEX);
         supportedFrames.add(FRAME_ID_BPM);
+        supportedFrames.add(FRAME_ID_CHAPTER);
+        supportedFrames.add(FRAME_ID_CHAPTER_TOC);
         supportedFrames.add(FRAME_ID_COMMENT);
         supportedFrames.add(FRAME_ID_COMMERCIAL_FRAME);
         supportedFrames.add(FRAME_ID_COMPOSER);
@@ -269,6 +273,8 @@ public class ID3v24Frames extends ID3Frames
         idToValue.put(FRAME_ID_AUDIO_ENCRYPTION, "Audio encryption");
         idToValue.put(FRAME_ID_AUDIO_SEEK_POINT_INDEX, "Audio seek point index");
         idToValue.put(FRAME_ID_BPM, "Text: BPM (Beats Per Minute)");
+        idToValue.put(FRAME_ID_CHAPTER, "Chapter");
+        idToValue.put(FRAME_ID_CHAPTER_TOC, "Chapter TOC");
         idToValue.put(FRAME_ID_COMMENT, "Comments");
         idToValue.put(FRAME_ID_COMMERCIAL_FRAME, "Commercial Frame");
         idToValue.put(FRAME_ID_COMPOSER, "Text: Composer");
@@ -363,6 +369,7 @@ public class ID3v24Frames extends ID3Frames
         multipleFrames.add(FRAME_ID_POPULARIMETER);
         multipleFrames.add(FRAME_ID_GENERAL_ENCAPS_OBJECT);
         multipleFrames.add(FRAME_ID_URL_ARTIST_WEB);
+        multipleFrames.add(FRAME_ID_RELATIVE_VOLUME_ADJUSTMENT2);
 
         discardIfFileAlteredFrames.add(FRAME_ID_EVENT_TIMING_CODES);
         discardIfFileAlteredFrames.add(FRAME_ID_MPEG_LOCATION_LOOKUP_TABLE);
@@ -430,6 +437,7 @@ public class ID3v24Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v24FieldKey.IS_CLASSICAL);
         tagFieldToId3.put(FieldKey.IS_COMPILATION, ID3v24FieldKey.IS_COMPILATION);
         tagFieldToId3.put(FieldKey.IS_SOUNDTRACK, ID3v24FieldKey.IS_SOUNDTRACK);
+        tagFieldToId3.put(FieldKey.IS_GREATEST_HITS, ID3v24FieldKey.IS_GREATEST_HITS);
         tagFieldToId3.put(FieldKey.IS_HD, ID3v24FieldKey.IS_HD);
         tagFieldToId3.put(FieldKey.ITUNES_GROUPING, ID3v24FieldKey.ITUNES_GROUPING);
         tagFieldToId3.put(FieldKey.KEY, ID3v24FieldKey.KEY);
@@ -466,8 +474,8 @@ public class ID3v24Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_TRACK_ID, ID3v24FieldKey.MUSICBRAINZ_TRACK_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK, ID3v24FieldKey.MUSICBRAINZ_WORK);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_ID, ID3v24FieldKey.MUSICBRAINZ_WORK_ID);
-        tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION, ID3v24FieldKey.WORK_COMPOSITION);
-        tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID, ID3v24FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID);
+        tagFieldToId3.put(FieldKey.MUSICBRAINZ_RECORDING_WORK, ID3v24FieldKey.MUSICBRAINZ_RECORDING_WORK);
+        tagFieldToId3.put(FieldKey.MUSICBRAINZ_RECORDING_WORK_ID, ID3v24FieldKey.MUSICBRAINZ_RECORDING_WORK_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID, ID3v24FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID, ID3v24FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL3_ID, ID3v24FieldKey.MUSICBRAINZ_WORK_PART_LEVEL3_ID);

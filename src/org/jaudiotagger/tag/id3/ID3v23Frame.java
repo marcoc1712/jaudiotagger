@@ -236,7 +236,7 @@ public class ID3v23Frame extends AbstractID3v2Frame
             // Unable to find a suitable frameBody, this should not happen
             else
             {
-                logger.severe("Orig id is:" + frame.getIdentifier() + "Unable to create Frame Body");
+                logger.severe("Orig id is:" + frame.getIdentifier() + ":Unable to create Frame Body");
                 throw new InvalidFrameException("Orig id is:" + frame.getIdentifier() + "Unable to create Frame Body");
             }
         }

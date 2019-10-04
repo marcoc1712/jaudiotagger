@@ -172,7 +172,7 @@ public class NewInterfaceTest extends TestCase
         //Create v1 tag (old method)
         ID3v11Tag v1tag = new ID3v11Tag();
         v1tag.setField(FieldKey.ARTIST,V1_ARTIST);
-        v1tag.setField(FieldKey.ALBUM,"V1ALBUM" + "\u01ff");         //Note always convert to single byte so will be written as FF
+        v1tag.setField(FieldKey.ALBUM,"V1ALBUM" + "\u01ff");         //Note always convertMetadata to single byte so will be written as FF
         v1tag.setField(v1tag.createField(FieldKey.TITLE, "title"));
         v1tag.setField(FieldKey.GENRE,"Rock");
         v1tag.setField(v1tag.createField(FieldKey.TRACK, "12"));
@@ -1295,5 +1295,148 @@ public class NewInterfaceTest extends TestCase
         assertNull(exceptionCaught);
 
 
+    }
+
+    public void testv23DeletingYearField()
+    {
+        Exception ex = null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("testV1.mp3", new File("testBasicWrite.mp3"));
+            org.jaudiotagger.audio.AudioFile audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            org.jaudiotagger.tag.Tag newTag = audioFile.getTag();
+            assertTrue(newTag == null);
+            if (audioFile.getTag() == null)
+            {
+                audioFile.setTag(new ID3v23Tag());
+                newTag = audioFile.getTag();
+            }
+
+            newTag.setField(FieldKey.YEAR,"2018-02-02");
+            audioFile.commit();
+            audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            newTag = audioFile.getTag();
+            //..and read back
+            assertEquals("2018-02-02", newTag.getFirst(FieldKey.YEAR));
+            for(String frameId:((ID3v23Tag)newTag).frameMap.keySet())
+            {
+                System.out.println(frameId);
+            }
+
+            //Remove YEAR
+            newTag.deleteField(FieldKey.YEAR);
+            audioFile.commit();
+            audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            newTag = audioFile.getTag();
+            for(String frameId:((ID3v23Tag)newTag).frameMap.keySet())
+            {
+                System.out.println(frameId);
+            }
+
+            //..and read back
+            assertEquals("", newTag.getFirst(FieldKey.YEAR));
+
+        }
+        catch (Exception e)
+        {
+            ex = e;
+            ex.printStackTrace();
+        }
+        assertNull(ex);
+    }
+
+    public void testv24DeletingYearField()
+    {
+        Exception ex = null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("testV1.mp3", new File("testBasicWrite.mp3"));
+            org.jaudiotagger.audio.AudioFile audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            org.jaudiotagger.tag.Tag newTag = audioFile.getTag();
+            assertTrue(newTag == null);
+            if (audioFile.getTag() == null)
+            {
+                audioFile.setTag(new ID3v24Tag());
+                newTag = audioFile.getTag();
+            }
+
+            newTag.setField(FieldKey.YEAR,"2018-02-02");
+            audioFile.commit();
+            audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            newTag = audioFile.getTag();
+            //..and read back
+            assertEquals("2018-02-02", newTag.getFirst(FieldKey.YEAR));
+            for(String frameId:((ID3v24Tag)newTag).frameMap.keySet())
+            {
+                System.out.println(frameId);
+            }
+
+            //Remove YEAR
+            newTag.deleteField(FieldKey.YEAR);
+            audioFile.commit();
+            audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            newTag = audioFile.getTag();
+            for(String frameId:((ID3v24Tag)newTag).frameMap.keySet())
+            {
+                System.out.println(frameId);
+            }
+            //..and read back
+            assertEquals("", newTag.getFirst(FieldKey.YEAR));
+
+        }
+        catch (Exception e)
+        {
+            ex = e;
+            ex.printStackTrace();
+        }
+        assertNull(ex);
+    }
+
+    public void testv22DeletingYearField()
+    {
+        Exception ex = null;
+        try
+        {
+            File testFile = AbstractTestCase.copyAudioToTmp("testV1.mp3", new File("testBasicWrite.mp3"));
+            org.jaudiotagger.audio.AudioFile audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            org.jaudiotagger.tag.Tag newTag = audioFile.getTag();
+            assertTrue(newTag == null);
+            if (audioFile.getTag() == null)
+            {
+                audioFile.setTag(new ID3v22Tag());
+                newTag = audioFile.getTag();
+            }
+
+            newTag.setField(FieldKey.YEAR,"2018-02-02");
+            audioFile.commit();
+            audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            newTag = audioFile.getTag();
+            //..and read back
+            assertEquals("2018-02-02", newTag.getFirst(FieldKey.YEAR));
+            for(String frameId:((ID3v22Tag)newTag).frameMap.keySet())
+            {
+                System.out.println(frameId);
+            }
+
+            //Remove YEAR
+            newTag.deleteField(FieldKey.YEAR);
+            audioFile.commit();
+            audioFile = org.jaudiotagger.audio.AudioFileIO.read(testFile);
+            newTag = audioFile.getTag();
+            for(String frameId:((ID3v22Tag)newTag).frameMap.keySet())
+            {
+                System.out.println(frameId);
+            }
+
+            //..and read back
+            assertEquals("", newTag.getFirst(FieldKey.YEAR));
+
+        }
+        catch (Exception e)
+        {
+            ex = e;
+            ex.printStackTrace();
+        }
+        assertNull(ex);
     }
 }

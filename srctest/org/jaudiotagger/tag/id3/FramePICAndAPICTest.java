@@ -159,7 +159,7 @@ public class FramePICAndAPICTest extends AbstractTestCase
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         mp3File.setID3v2TagOnly(new ID3v23Tag(mp3File.getID3v2TagAsv24()));
         mp3File.save();
@@ -185,7 +185,7 @@ public class FramePICAndAPICTest extends AbstractTestCase
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v22 and save
+        //Reload and convertMetadata to v22 and save
         mp3File = new MP3File(testFile);
         mp3File.setID3v2TagOnly(new ID3v22Tag(mp3File.getID3v2TagAsv24()));
         mp3File.save();
@@ -214,7 +214,7 @@ public class FramePICAndAPICTest extends AbstractTestCase
         mp3File.setID3v2TagOnly((ID3v22Tag) tag);
         mp3File.save();
 
-        //Reload and convert from v22 to v24 and save
+        //Reload and convertMetadata from v22 to v24 and save
         mp3File = new MP3File(testFile);
         mp3File.setID3v2TagOnly(new ID3v24Tag(mp3File.getID3v2Tag()));
         mp3File.save();

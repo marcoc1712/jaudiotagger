@@ -80,6 +80,30 @@ Summarise Changes
 #242:Problem with deprecated frames in ID3 tag conversion
 #238:Avoid crashes caused by corrupt mp3 files
 #250:Multi-value TXXX frames encoded as UTF-16 not read properly
+#254:Missing filename in log message in ID3v23Tag
+#255:Possible missing return in addField in FlacTag after case WRITE_ALBUMARTIST
+#258:setToDefault() should set preserveFileIdentity = true
+#260:MP3Audio getTrackLength() is truncated , all other formats are rounded up
+#265:Fix reading and writing Wavs using 'ID3 ' instead of 'id3, also better handled files with multiple ID3 tags
+#266:Read and remove arbitary null padding sections
+#253:MetadataBlockDataStreamInfo exception when bytes length is 0
+#272:For ID3 rename TXXX:Script to TXXX:SCRIPT
+#273:For WM use WM/ComposerSortOnrder rather than WM/ComposerSort
+#271:Mp4 Out of Bounds Exception
+#269:NoSuchMethodError on Java 10
+#SONGKONG-1211:Rename MUSICBRAINZ_WORK_COMPOSITION to MUSICBRAINZ_TRACK_WORK
+#276:Chapter Frames should be marked as being part of ID3v23 and ID3v24 so files containing these fields can be freely converted between the two
+#278:Add IS_GREATEST_HITS field for single artist compilations instead of setting IS_COMPILATION
+#279:Full Date added to IDv23Tag not deleted with deleteField(YEAR)
+#280:MP4 truncated track length
+#282:Flac:Problem saving files where Image description contains text characters that require more than one byte
+#285:Change order that block types are written to FLAC
+#288:APIC frames not saving description for ID3 based formats
+#291:Do not throw error if unable to decode subframe frames, just log error
+#290:Unable to save Wav files if has existing non-contiguous metadata chunks separated by data chunk
+#270:NullPointerException with some WAV tag conversion
+#297:Allow Wav files that are larger than 2GB
+#298:Move to Java 1.8
 
 2.2.5
 #033:Added getAudioStartPos() and getAudioEndPos() methods to AudioHeader interface and implemented for most formats

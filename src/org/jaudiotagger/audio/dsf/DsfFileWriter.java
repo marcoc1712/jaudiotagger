@@ -49,10 +49,28 @@ public class DsfFileWriter extends AudioFileWriter2
                 if (dsd.getMetadataOffset() > 0)
                 {
                     fc.position(dsd.getMetadataOffset());
-                    ID3Chunk id3Chunk = ID3Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, (int) (fc.size() - fc.position())));
-                    if (id3Chunk != null)
+                    if(((int)fc.size() - fc.position())>=DsfChunkType.ID3.getCode().length())
                     {
-                        //Remove Existing tag
+                        ID3Chunk id3Chunk = ID3Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, (int) (fc.size() - fc.position())));
+                        if (id3Chunk != null)
+                        {
+                            //Remove Existing tag
+                            fc.position(dsd.getMetadataOffset());
+                            fc.truncate(fc.position());
+                            final ByteBuffer bb = convert((AbstractID3v2Tag) tag);
+                            fc.write(bb);
+                            dsd.setFileLength(fc.size());
+                            fc.position(0);
+                            fc.write(dsd.write());
+                        }
+                        else
+                        {
+                            throw new CannotWriteException(file + "Could not find existing ID3v2 Tag (1)");
+                        }
+                    }
+                    else
+                    {
+                        //Remove Existing nonetag (must be at/near end of file)
                         fc.position(dsd.getMetadataOffset());
                         fc.truncate(fc.position());
                         final ByteBuffer bb = convert((AbstractID3v2Tag) tag);
@@ -60,10 +78,6 @@ public class DsfFileWriter extends AudioFileWriter2
                         dsd.setFileLength(fc.size());
                         fc.position(0);
                         fc.write(dsd.write());
-                    }
-                    else
-                    {
-                        throw new CannotWriteException(file + "Could not find existing ID3v2 Tag");
                     }
                 }
                 else

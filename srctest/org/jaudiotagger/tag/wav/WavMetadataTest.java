@@ -5,6 +5,7 @@ import org.jaudiotagger.FilePermissionsTest;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.CannotWriteException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.audio.wav.WavCleaner;
@@ -733,7 +734,7 @@ public class WavMetadataTest extends AbstractTestCase
 
             assertTrue(f.getTag() instanceof WavTag);
             WavTag tag = (WavTag) f.getTag();
-
+            System.out.println(f.getTag());
             assertTrue(tag.isExistingInfoTag());
 
             assertEquals(926264L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
@@ -753,12 +754,12 @@ public class WavMetadataTest extends AbstractTestCase
             f = AudioFileIO.read(testFile);
             assertTrue(f.getTag() instanceof WavTag);
             tag = (WavTag) f.getTag();
-            System.out.println(((WavTag) tag).getInfoTag());
+            System.out.println(tag);
             assertEquals("fred", tag.getFirst(FieldKey.ARTIST));
 
             assertEquals(926264L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
-            assertEquals(926560L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
-            assertEquals(288L, ((WavTag) tag).getInfoTag().getSizeOfTag());
+            assertEquals(926542L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
+            assertEquals(270L, ((WavTag) tag).getInfoTag().getSizeOfTag());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagOnly());
             assertEquals(0L, ((WavTag) tag).getStartLocationInFileOfId3Chunk());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
@@ -886,8 +887,8 @@ public class WavMetadataTest extends AbstractTestCase
             assertEquals("fred", tag.getFirst(FieldKey.ARTIST));
 
             assertEquals(926264L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
-            assertEquals(926560L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
-            assertEquals(288L, ((WavTag) tag).getInfoTag().getSizeOfTag());
+            assertEquals(926542L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
+            assertEquals(270L, ((WavTag) tag).getInfoTag().getSizeOfTag());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagOnly());
             assertEquals(0L, ((WavTag) tag).getStartLocationInFileOfId3Chunk());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
@@ -1445,7 +1446,7 @@ public class WavMetadataTest extends AbstractTestCase
     }
 
     /**
-     *  When chunk header has negative size we know something has gone wrong and should throw exception accordingly
+     *  When chunk header has negative size we know something has gone wrong but if
      *
      */
     public void testWavWithCorruptDataAfterDataChunkHeaderSize()
@@ -1469,15 +1470,20 @@ public class WavMetadataTest extends AbstractTestCase
             System.out.println(f.getAudioHeader());
             System.out.println(f.getTag());
 
-
-
+            f.getTag().setField(FieldKey.ALBUM, "Album");
+            f.commit();
+            f = AudioFileIO.read(testFile);
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
+            assertEquals(f.getTag().getFirst(FieldKey.ALBUM), "album");
         }
         catch (Exception e)
         {
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assert(exceptionCaught instanceof CannotReadException);
+
+        assertTrue(exceptionCaught instanceof CannotWriteException);
     }
 
     public void testCleanAndThenWriteWavWithCorruptDataChunkHeaderSize()
@@ -1584,14 +1590,15 @@ public class WavMetadataTest extends AbstractTestCase
             f.getTag().setField(FieldKey.ARTIST, "artist");
             f.commit();
             f = AudioFileIO.read(testFile);
-
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
         }
         catch (Exception e)
         {
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertTrue(exceptionCaught instanceof CannotWriteException);
     }
 
     public void testWriteWriteProtectedFileWithCheckDisabled() throws Exception {
@@ -1681,14 +1688,15 @@ public class WavMetadataTest extends AbstractTestCase
 
             f.commit();
             f = AudioFileIO.read(testFile);
-
+            System.out.println(f.getAudioHeader());
+            System.out.println(f.getTag());
         }
         catch (Exception e)
         {
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertNull(exceptionCaught);
     }
 
     public void testWavRead3()

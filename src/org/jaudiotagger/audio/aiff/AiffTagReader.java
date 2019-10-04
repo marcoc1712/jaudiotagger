@@ -64,7 +64,7 @@ public class AiffTagReader extends AiffChunkReader
             {
                 aiffTag.setID3Tag(AiffTag.createDefaultID3Tag());
             }
-            logger.severe("LastChunkPos:"+Hex.asDecAndHex(fc.position())
+            logger.config("LastChunkPos:"+Hex.asDecAndHex(fc.position())
                     +":OfficialEndLocation:"+Hex.asDecAndHex(endLocationOfAiffData));
             if(fc.position() > endLocationOfAiffData)
             {

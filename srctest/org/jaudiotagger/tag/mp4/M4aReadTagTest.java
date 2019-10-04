@@ -53,7 +53,7 @@ public class M4aReadTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
             assertEquals(new String("2"), f.getAudioHeader().getChannels());
             assertEquals(128, f.getAudioHeader().getBitRateAsNumber());
@@ -214,7 +214,7 @@ public class M4aReadTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
             assertEquals(new String("2"), f.getAudioHeader().getChannels());
             assertEquals(128, f.getAudioHeader().getBitRateAsNumber());
@@ -371,7 +371,7 @@ public class M4aReadTagTest extends TestCase
 
               //AudioInfo
               //Time in seconds
-              assertEquals(241, f.getAudioHeader().getTrackLength());
+              assertEquals(242, f.getAudioHeader().getTrackLength());
               assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
               assertEquals(new String("2"), f.getAudioHeader().getChannels());
               assertEquals(126, f.getAudioHeader().getBitRateAsNumber());
@@ -440,7 +440,7 @@ public class M4aReadTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //MPEG Specific
@@ -611,7 +611,7 @@ public class M4aReadTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //MPEG Specific
@@ -1026,7 +1026,7 @@ public class M4aReadTagTest extends TestCase
 
             //AudioInfo
             //Time in seconds
-            assertEquals(241, f.getAudioHeader().getTrackLength());
+            assertEquals(242, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //MPEG Specific

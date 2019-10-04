@@ -258,7 +258,7 @@ public class MP3AudioHeaderTest extends TestCase
         }
         assertNull(exceptionCaught);
         assertEquals("44100", mp3AudioHeader.getSampleRate());
-        assertEquals("00:13", mp3AudioHeader.getTrackLengthAsString());
+        assertEquals("00:14", mp3AudioHeader.getTrackLengthAsString());
         assertFalse(mp3AudioHeader.isVariableBitRate());
         assertEquals(MPEGFrameHeader.mpegVersionMap.get(new Integer(MPEGFrameHeader.VERSION_1)), mp3AudioHeader.getMpegVersion());
         assertEquals(MPEGFrameHeader.mpegLayerMap.get(new Integer(MPEGFrameHeader.LAYER_II)), mp3AudioHeader.getMpegLayer());

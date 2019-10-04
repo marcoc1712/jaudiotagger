@@ -122,13 +122,13 @@ public class Issue335Test extends AbstractTestCase
         ID3v24Tag v24tag = f.getID3v2TagAsv24();
         frame = (AbstractID3v2Frame) v24tag.getFrame("TALB");
         body = (AbstractFrameBodyTextInfo) frame.getBody();
-        //And not lost when convert to v24
+        //And not lost when convertMetadata to v24
         assertEquals(1, body.getTextEncoding());
 
         tag = new ID3v23Tag(v24tag);
         frame = (AbstractID3v2Frame) tag.getFrame("TALB");
         body = (AbstractFrameBodyTextInfo) frame.getBody();
-        //or if convert from v24 view back down to v23 view
+        //or if convertMetadata from v24 view back down to v23 view
         assertEquals(1, body.getTextEncoding());
 
     }

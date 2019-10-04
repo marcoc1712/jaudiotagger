@@ -120,7 +120,7 @@ public class Mp4StemWriteTagTest extends TestCase {
 
             //AudioInfo
             //Time in seconds
-            assertEquals(13, f.getAudioHeader().getTrackLength());
+            assertEquals(14, f.getAudioHeader().getTrackLength());
             assertEquals(44100, f.getAudioHeader().getSampleRateAsNumber());
 
             //Ease of use methods for common fields

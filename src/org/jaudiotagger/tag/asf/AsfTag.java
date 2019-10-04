@@ -142,6 +142,7 @@ public final class AsfTag extends AbstractTag
         tagFieldToAsfField.put(FieldKey.ISWC, AsfFieldKey.ISWC);
         tagFieldToAsfField.put(FieldKey.IS_CLASSICAL, AsfFieldKey.IS_CLASSICAL);
         tagFieldToAsfField.put(FieldKey.IS_COMPILATION, AsfFieldKey.IS_COMPILATION);
+        tagFieldToAsfField.put(FieldKey.IS_GREATEST_HITS, AsfFieldKey.IS_GREATEST_HITS);
         tagFieldToAsfField.put(FieldKey.IS_HD, AsfFieldKey.IS_HD);
         tagFieldToAsfField.put(FieldKey.IS_SOUNDTRACK, AsfFieldKey.IS_SOUNDTRACK);
         tagFieldToAsfField.put(FieldKey.KEY, AsfFieldKey.INITIAL_KEY);
@@ -178,8 +179,8 @@ public final class AsfTag extends AbstractTag
         tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_TRACK_ID, AsfFieldKey.MUSICBRAINZ_TRACK_ID);
         tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK, AsfFieldKey.MUSICBRAINZ_WORK);
         tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK_ID, AsfFieldKey.MUSICBRAINZ_WORKID);
-        tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION, AsfFieldKey.MUSICBRAINZ_WORK_COMPOSITION);
-        tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID, AsfFieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID);
+        tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_RECORDING_WORK, AsfFieldKey.MUSICBRAINZ_RECORDING_WORK);
+        tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_RECORDING_WORK_ID, AsfFieldKey.MUSICBRAINZ_RECORDING_WORK_ID);
         tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1, AsfFieldKey.MUSICBRAINZ_WORK_PART_LEVEL1);
         tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID, AsfFieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID);
         tagFieldToAsfField.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_TYPE, AsfFieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_TYPE);

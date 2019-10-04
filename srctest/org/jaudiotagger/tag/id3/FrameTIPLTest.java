@@ -156,7 +156,7 @@ public class FrameTIPLTest extends AbstractTestCase
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         ID3v23Tag v23Tag = new ID3v23Tag(mp3File.getID3v2TagAsv24());
         mp3File.setID3v2TagOnly(v23Tag);

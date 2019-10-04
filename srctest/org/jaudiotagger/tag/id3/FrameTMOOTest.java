@@ -168,7 +168,7 @@ public void testCreateID3v22Frame()
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         ID3v23Tag v23Tag = new ID3v23Tag(mp3File.getID3v2TagAsv24());
         assertEquals(2, v23Tag.getFields("TXXX").size());
@@ -216,7 +216,7 @@ public void testCreateID3v22Frame()
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         ID3v24Tag v24Tag = new ID3v24Tag(mp3File.getID3v2Tag());
         Iterator i = v24Tag.getFields();
@@ -259,7 +259,7 @@ public void testCreateID3v22Frame()
         mp3File.setID3v2Tag(tag);
         mp3File.save();
 
-        //Reload and convert to v23 and save
+        //Reload and convertMetadata to v23 and save
         mp3File = new MP3File(testFile);
         ID3v24Tag v24Tag = new ID3v24Tag(mp3File.getID3v2Tag());
         Iterator i = v24Tag.getFields();

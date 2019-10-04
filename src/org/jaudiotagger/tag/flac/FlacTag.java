@@ -205,6 +205,7 @@ public class FlacTag implements Tag
                 {
                     TagField tagfield = createField(genericKey, value);
                     addField(tagfield);
+                    return;
                 }
 
                 case WRITE_JRIVER_ALBUMARTIST:
@@ -625,7 +626,16 @@ public class FlacTag implements Tag
 
     public String toString()
     {
-        return "FLAC " + getVorbisCommentTag();
+        StringBuilder sb = new StringBuilder("FLAC " + getVorbisCommentTag());
+        if(images.size()>0)
+        {
+            sb.append("\n\tImages\n");
+            for (MetadataBlockDataPicture next : images)
+            {
+                sb.append(next);
+            }
+        }
+        return sb.toString();
     }
 
 }

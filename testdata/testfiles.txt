@@ -119,3 +119,11 @@ test520.m4a, no,227, qobuz 24bit wma file
 test521.aif, no,227, hdtracks 24bit aif file (trailing 4 bytes)
 test522.aif, no,227, hdtracks 96/24bit aif file (trailing 4 bytes)
 test523.wav, no,235, ripped with audio hijack, info before id3 at start of file
+test566.mp3, no, 276,mp3 id3v24 with dupliciate CHAP frames
+test537.flac, no, 282, flac from quobuz with multibyte chars in image description
+test600.flac, no,, flac from user seektable 2nd block
+test601.flac, no,, flac from user after songkong process seektable now 4th block, no longer plays in winamp, ok in vlc
+test602.wav,no,290,wav with INFO chunk as first chunk before data, and ID3 chunk as later tag after data
+test607.wav,no,297,wav with larger than 2gb of data
+test608.m4a,no,, recent mp4 from iTunes that seems to have invalid atom after mdat atom
+test609.wav,no,299, BufferUnderflowException on read

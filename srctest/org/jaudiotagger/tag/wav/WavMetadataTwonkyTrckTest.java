@@ -5,6 +5,7 @@ import org.jaudiotagger.FilePermissionsTest;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.CannotWriteException;
 import org.jaudiotagger.audio.wav.WavCleaner;
 import org.jaudiotagger.audio.wav.WavOptions;
 import org.jaudiotagger.audio.wav.WavSaveOptions;
@@ -767,8 +768,8 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             assertEquals("fred", tag.getFirst(FieldKey.ARTIST));
 
             assertEquals(926264L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
-            assertEquals(926560L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
-            assertEquals(288L, ((WavTag) tag).getInfoTag().getSizeOfTag());
+            assertEquals(926552L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
+            assertEquals(280L, ((WavTag) tag).getInfoTag().getSizeOfTag());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagOnly());
             assertEquals(0L, ((WavTag) tag).getStartLocationInFileOfId3Chunk());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
@@ -871,9 +872,10 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             assertEquals("1", f.getAudioHeader().getChannels());
             assertEquals("22050", f.getAudioHeader().getSampleRate());
 
-
             assertTrue(f.getTag() instanceof WavTag);
             WavTag tag = (WavTag) f.getTag();
+            System.out.println(tag);
+            System.out.println("FileLength:"+testFile.length());
 
             assertTrue(tag.isExistingInfoTag());
 
@@ -894,12 +896,13 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             f = AudioFileIO.read(testFile);
             assertTrue(f.getTag() instanceof WavTag);
             tag = (WavTag) f.getTag();
-            System.out.println(((WavTag) tag).getInfoTag());
+            System.out.println(tag);
+            System.out.println("FileLength:"+testFile.length());
             assertEquals("fred", tag.getFirst(FieldKey.ARTIST));
 
             assertEquals(926264L, ((WavTag) tag).getInfoTag().getStartLocationInFile().longValue());
-            assertEquals(926560L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
-            assertEquals(288L, ((WavTag) tag).getInfoTag().getSizeOfTag());
+            assertEquals(926552L, ((WavTag) tag).getInfoTag().getEndLocationInFile().longValue());
+            assertEquals(280L, ((WavTag) tag).getInfoTag().getSizeOfTag());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagOnly());
             assertEquals(0L, ((WavTag) tag).getStartLocationInFileOfId3Chunk());
             assertEquals(0L, ((WavTag) tag).getSizeOfID3TagIncludingChunkHeader());
@@ -910,6 +913,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
 
             f = AudioFileIO.read(testFile);
             System.out.println(f.getTag());
+            System.out.println("FileLength:"+testFile.length());
 
         }
         catch (Exception e)
@@ -1490,7 +1494,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             System.out.println(f.getAudioHeader());
             System.out.println(f.getTag());
 
-
+            assertTrue(((WavTag)f.getTag()).isBadChunkData());
 
         }
         catch (Exception e)
@@ -1498,7 +1502,8 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assert(exceptionCaught instanceof CannotReadException);
+
+        assertNull(exceptionCaught);
     }
 
     public void testCleanAndThenWriteWavWithCorruptDataChunkHeaderSize()
@@ -1614,7 +1619,7 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertTrue(exceptionCaught instanceof CannotWriteException);
     }
 
     public void testWriteWriteProtectedFileWithCheckDisabled() throws Exception {
@@ -1712,6 +1717,6 @@ public class WavMetadataTwonkyTrckTest extends AbstractTestCase
             e.printStackTrace();
             exceptionCaught = e;
         }
-        assertTrue(exceptionCaught instanceof CannotReadException);
+        assertNull(exceptionCaught);
     }
 }

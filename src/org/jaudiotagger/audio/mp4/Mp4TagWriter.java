@@ -133,7 +133,7 @@ public class Mp4TagWriter
     /**
      * If the existing files contains a tags atom and chp1 atom underneath the meta atom that means the file was
      * encoded by Nero. Applications such as foobar read this non-standard tag before the more usual data within
-     * {@code ilst} causing problems. So the solution is to convert the tags atom and its children into a free atom whilst
+     * {@code ilst} causing problems. So the solution is to convertMetadata the tags atom and its children into a free atom whilst
      * leaving the chp1 atom alone.
      *
      * @param fileReadChannel
@@ -382,7 +382,7 @@ public class Mp4TagWriter
         }
 
         //Go through every field constructing the data that will appear starting from ilst box
-        ByteBuffer newIlstData = tc.convert(tag);
+        ByteBuffer newIlstData = tc.convertMetadata(tag);
         newIlstData.rewind();
         sizeRequiredByNewIlstAtom = newIlstData.limit();
 
@@ -1157,7 +1157,7 @@ public class Mp4TagWriter
     }
 
     /**
-     * If any data between existing {@code ilst} atom and {@code tags} atom write it to new file, then convert
+     * If any data between existing {@code ilst} atom and {@code tags} atom write it to new file, then convertMetadata
      * {@code tags} atom to a {@code free} atom.
      *
      * @param endOfMoov

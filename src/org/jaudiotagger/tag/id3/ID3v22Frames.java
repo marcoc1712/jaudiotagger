@@ -378,6 +378,7 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ISWC, ID3v22FieldKey.ISWC);
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v22FieldKey.IS_CLASSICAL);
         tagFieldToId3.put(FieldKey.IS_COMPILATION, ID3v22FieldKey.IS_COMPILATION);
+        tagFieldToId3.put(FieldKey.IS_GREATEST_HITS, ID3v22FieldKey.IS_GREATEST_HITS);
         tagFieldToId3.put(FieldKey.IS_HD, ID3v22FieldKey.IS_HD);
         tagFieldToId3.put(FieldKey.IS_SOUNDTRACK, ID3v22FieldKey.IS_SOUNDTRACK);
         tagFieldToId3.put(FieldKey.ITUNES_GROUPING, ID3v22FieldKey.ITUNES_GROUPING);
@@ -416,7 +417,7 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_TRACK_ID, ID3v22FieldKey.MUSICBRAINZ_TRACK_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK, ID3v22FieldKey.MUSICBRAINZ_WORK);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_ID, ID3v22FieldKey.MUSICBRAINZ_WORK_ID);
-        tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID, ID3v22FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID);
+        tagFieldToId3.put(FieldKey.MUSICBRAINZ_RECORDING_WORK_ID, ID3v22FieldKey.MUSICBRAINZ_RECORDING_WORK_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID, ID3v22FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID, ID3v22FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL3_ID, ID3v22FieldKey.MUSICBRAINZ_WORK_PART_LEVEL3_ID);
@@ -466,7 +467,7 @@ public class ID3v22Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.URL_WIKIPEDIA_ARTIST_SITE, ID3v22FieldKey.URL_WIKIPEDIA_ARTIST_SITE);
         tagFieldToId3.put(FieldKey.URL_WIKIPEDIA_RELEASE_SITE, ID3v22FieldKey.URL_WIKIPEDIA_RELEASE_SITE);
         tagFieldToId3.put(FieldKey.WORK, ID3v22FieldKey.WORK);
-        tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION, ID3v22FieldKey.MUSICBRAINZ_WORK_COMPOSITION);
+        tagFieldToId3.put(FieldKey.MUSICBRAINZ_RECORDING_WORK, ID3v22FieldKey.MUSICBRAINZ_RECORDING_WORK);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1, ID3v22FieldKey.WORK_PART_LEVEL1);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_TYPE, ID3v22FieldKey.WORK_PART_LEVEL1_TYPE);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2, ID3v22FieldKey.WORK_PART_LEVEL2);

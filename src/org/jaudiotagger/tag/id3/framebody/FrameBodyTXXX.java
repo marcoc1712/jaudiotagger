@@ -78,6 +78,7 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String IPI                          = "IPI";
     public static final String INSTRUMENT                   = "INSTRUMENT";
     public static final String IS_CLASSICAL                 = "IS_CLASSICAL";
+    public static final String IS_GREATEST_HITS             = "IS_GREATEST_HITS";
     public static final String IS_HD                        = "IS_HD";
     public static final String IS_SOUNDTRACK                = "IS_SOUNDTRACK";
     public static final String ISWC                         = "ISWC";
@@ -104,8 +105,8 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String MUSICBRAINZ_ORIGINAL_ALBUMID = "MusicBrainz Original Album Id";
     public static final String MUSICBRAINZ_RELEASE_GROUPID  = "MusicBrainz Release Group Id";
     public static final String MUSICBRAINZ_RELEASE_TRACKID  = "MusicBrainz Release Track Id";
-    public static final String MUSICBRAINZ_WORK_COMPOSITION             = "MUSICBRAINZ_WORK_COMPOSITION";
-    public static final String MUSICBRAINZ_WORK_COMPOSITION_ID          = "MUSICBRAINZ_WORK_COMPOSITION_ID";
+    public static final String MUSICBRAINZ_RECORDING_WORK               = "MUSICBRAINZ_RECORDING_WORK";
+    public static final String MUSICBRAINZ_RECORDING_WORK_ID            = "MUSICBRAINZ_RECORDING_WORK_ID";
     public static final String MUSICBRAINZ_WORKID                       = "MusicBrainz Work Id";
     public static final String MUSICBRAINZ_WORK                         = "MUSICBRAINZ_WORK";
     public static final String MUSICBRAINZ_WORK_PART_LEVEL1             = "MUSICBRAINZ_WORK_PART_LEVEL1";
@@ -138,7 +139,7 @@ public class FrameBodyTXXX extends AbstractFrameBodyTextInfo implements ID3v24Fr
     public static final String PERFORMER_NAME_SORT                      = "PERFORMER_NAME_SORT";
     public static final String PERIOD                                   = "PERIOD";
     public static final String RANKING                                  = "RANKING";
-    public static final String SCRIPT                                   = "Script";
+    public static final String SCRIPT                                   = "SCRIPT";
     public static final String SINGLE_DISC_TRACK_NO                     = "SINGLE_DISC_TRACK_NO";
     public static final String TAGS                                     = "TAGS";
     public static final String TIMBRE                                   = "TIMBRE_BRIGHTNESS";

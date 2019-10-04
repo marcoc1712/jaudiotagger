@@ -41,6 +41,8 @@ public class ID3v23Frames extends ID3Frames
     public static final String FRAME_ID_V3_ATTACHED_PICTURE = "APIC";
     public static final String FRAME_ID_V3_AUDIO_ENCRYPTION = "AENC";
     public static final String FRAME_ID_V3_BPM = "TBPM";
+    public static final String FRAME_ID_V3_CHAPTER = ID3v2ChapterFrames.FRAME_ID_CHAPTER;
+    public static final String FRAME_ID_V3_CHAPTER_TOC = ID3v2ChapterFrames.FRAME_ID_TABLE_OF_CONTENT;
     public static final String FRAME_ID_V3_COMMENT = "COMM";
     public static final String FRAME_ID_V3_COMMERCIAL_FRAME = "COMR";
     public static final String FRAME_ID_V3_COMPOSER = "TCOM";
@@ -155,6 +157,8 @@ public class ID3v23Frames extends ID3Frames
         supportedFrames.add(FRAME_ID_V3_ATTACHED_PICTURE);
         supportedFrames.add(FRAME_ID_V3_AUDIO_ENCRYPTION);
         supportedFrames.add(FRAME_ID_V3_BPM);
+        supportedFrames.add(FRAME_ID_V3_CHAPTER);
+        supportedFrames.add(FRAME_ID_V3_CHAPTER_TOC);
         supportedFrames.add(FRAME_ID_V3_COMMENT);
         supportedFrames.add(FRAME_ID_V3_COMMERCIAL_FRAME);
         supportedFrames.add(FRAME_ID_V3_COMPOSER);
@@ -266,6 +270,8 @@ public class ID3v23Frames extends ID3Frames
         idToValue.put(FRAME_ID_V3_ATTACHED_PICTURE, "Attached picture");
         idToValue.put(FRAME_ID_V3_AUDIO_ENCRYPTION, "Audio encryption");
         idToValue.put(FRAME_ID_V3_BPM, "Text: BPM (Beats Per Minute)");
+        idToValue.put(FRAME_ID_V3_CHAPTER, "Chapter");
+        idToValue.put(FRAME_ID_V3_CHAPTER_TOC, "Chapter TOC");
         idToValue.put(FRAME_ID_V3_COMMENT, "Comments");
         idToValue.put(FRAME_ID_V3_COMMERCIAL_FRAME, "");
         idToValue.put(FRAME_ID_V3_COMPOSER, "Text: Composer");
@@ -429,6 +435,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.ISWC, ID3v23FieldKey.ISWC);
         tagFieldToId3.put(FieldKey.IS_CLASSICAL, ID3v23FieldKey.IS_CLASSICAL);
         tagFieldToId3.put(FieldKey.IS_COMPILATION, ID3v23FieldKey.IS_COMPILATION);
+        tagFieldToId3.put(FieldKey.IS_GREATEST_HITS, ID3v23FieldKey.IS_GREATEST_HITS);
         tagFieldToId3.put(FieldKey.IS_HD, ID3v23FieldKey.IS_HD);
         tagFieldToId3.put(FieldKey.IS_SOUNDTRACK, ID3v23FieldKey.IS_SOUNDTRACK);
         tagFieldToId3.put(FieldKey.ITUNES_GROUPING, ID3v23FieldKey.ITUNES_GROUPING);
@@ -466,7 +473,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_TRACK_ID, ID3v23FieldKey.MUSICBRAINZ_TRACK_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK, ID3v23FieldKey.MUSICBRAINZ_WORK);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_ID, ID3v23FieldKey.MUSICBRAINZ_WORK_ID);
-        tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID, ID3v23FieldKey.MUSICBRAINZ_WORK_COMPOSITION_ID);
+        tagFieldToId3.put(FieldKey.MUSICBRAINZ_RECORDING_WORK_ID, ID3v23FieldKey.MUSICBRAINZ_RECORDING_WORK_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID, ID3v23FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID, ID3v23FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2_ID);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL3_ID, ID3v23FieldKey.MUSICBRAINZ_WORK_PART_LEVEL3_ID);
@@ -516,7 +523,7 @@ public class ID3v23Frames extends ID3Frames
         tagFieldToId3.put(FieldKey.URL_WIKIPEDIA_ARTIST_SITE, ID3v23FieldKey.URL_WIKIPEDIA_ARTIST_SITE);
         tagFieldToId3.put(FieldKey.URL_WIKIPEDIA_RELEASE_SITE, ID3v23FieldKey.URL_WIKIPEDIA_RELEASE_SITE);
         tagFieldToId3.put(FieldKey.WORK, ID3v23FieldKey.WORK);
-        tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_COMPOSITION, ID3v23FieldKey.MUSICBRAINZ_WORK_COMPOSITION);
+        tagFieldToId3.put(FieldKey.MUSICBRAINZ_RECORDING_WORK, ID3v23FieldKey.MUSICBRAINZ_RECORDING_WORK);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1, ID3v23FieldKey.WORK_PART_LEVEL1);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL1_TYPE, ID3v23FieldKey.WORK_PART_LEVEL1_TYPE);
         tagFieldToId3.put(FieldKey.MUSICBRAINZ_WORK_PART_LEVEL2, ID3v23FieldKey.WORK_PART_LEVEL2);

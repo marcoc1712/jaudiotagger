@@ -87,7 +87,7 @@ public class ItunesTest extends AbstractTestCase
     }
 
     /**
-     * This tests that we work out that the frame is unsynced and read the frame size correctly  and convert to intger
+     * This tests that we work out that the frame is unsynced and read the frame size correctly  and convertMetadata to intger
      * this is what most (non-itunes applications do)
      *
      * @throws Exception

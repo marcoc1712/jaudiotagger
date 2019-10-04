@@ -47,7 +47,8 @@ public class WavTag implements Tag, Id3SupportingTag
     
     private static final String NULL = "\0";
 
-	private List<ChunkSummary> chunkSummaryList = new ArrayList<ChunkSummary>();
+	private List<ChunkSummary> chunkSummaryList  = new ArrayList<ChunkSummary>();
+    private List<ChunkSummary> metadataChunkList = new ArrayList<ChunkSummary>();
 
     public void addChunkSummary(ChunkSummary cs)
     {
@@ -59,6 +60,24 @@ public class WavTag implements Tag, Id3SupportingTag
         return chunkSummaryList;
     }
 
+    public void addMetadataChunkSummary(ChunkSummary cs)
+    {
+        metadataChunkList.add(cs);
+    }
+
+    public List<ChunkSummary> getMetadataChunkSummaryList()
+    {
+        return metadataChunkList;
+    }
+
+
+    //(Read audio okay) but was unable to read all chunks because of bad data chunks
+    private boolean isBadChunkData = false;
+
+    //Found null bytes not part of any chunk
+    private boolean isNonStandardPadding = false;
+
+    //Metadata tag is incorrectly aligned
     private boolean isIncorrectlyAlignedTag = false;
 
     private boolean isExistingId3Tag = false;
@@ -654,5 +673,25 @@ public class WavTag implements Tag, Id3SupportingTag
         }
         //Default in case not set somehow
         return new ID3v23Tag();
+    }
+
+    public boolean isBadChunkData()
+    {
+        return isBadChunkData;
+    }
+
+    public void setBadChunkData(boolean badChunkData)
+    {
+        isBadChunkData = badChunkData;
+    }
+
+    public boolean isNonStandardPadding()
+    {
+        return isNonStandardPadding;
+    }
+
+    public void setNonStandardPadding(boolean nonStandardPadding)
+    {
+        isNonStandardPadding = nonStandardPadding;
     }
 }
