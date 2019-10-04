@@ -19,7 +19,7 @@ public class DsdChunk
     public static DsdChunk readChunk(ByteBuffer dataBuffer)
     {
         String type = Utils.readFourBytesAsChars(dataBuffer);
-        if (DsfChunkType.DSD.getCode().equals(type))
+        if (DffChunkType.DSD.getCode().equals(type))
         {
             return new DsdChunk(dataBuffer);
         }

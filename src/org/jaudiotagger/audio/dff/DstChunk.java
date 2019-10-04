@@ -28,7 +28,7 @@ public class DstChunk extends BaseChunk
     @Override
     public String toString()
     {
-        return DffChunkType.ID3.getCode();
+        return DffChunkType.DST.getCode();
     }
 
 

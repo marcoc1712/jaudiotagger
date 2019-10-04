@@ -11,19 +11,32 @@ import java.util.Map;
 public enum DffChunkType
 {
     FRM8("FRM8"),
-    DSD("DSD "),
-    PROP("PROP"),
-    SND("SND "),
-    FS("FS  "),
-    CHNL("CHNL"),
-    CMPR("CMPR"),
-    DITI("DITI"),
-    END("DSD "),
-    DST("DST "),
-    FRTE("FRTE"),
-    ID3("ID3 "),
-    DATA("data"),;
-
+		FVER("FVER"),
+		PROP("PROP"),
+			FS("FS  "),
+			CHNL("CHNL"),
+			CMPR("CMPR"),
+			ABSS("ABSS"),
+			LSCO("LSCO"),
+		COMT("COMT"),
+		DSD("DSD "),
+		DST("DST "),
+			FRTE("FRTE"),
+			DSTF("DSTF"),
+			DSTC("DSTC"),
+		DSTI("DSTI"),
+		DIIN("DIIN"),
+			EMID("EMID"),
+			MARK("MARK"),
+			DIAR("DIAR"),
+			DITI("DITI"),
+		MANF("MANF"),
+		
+		SND("SND "),
+		//ID3("ID3 "),
+		END("DSD "),
+		DATA("data");
+ 
     private static final Map<String, DffChunkType> CODE_TYPE_MAP = new HashMap<String, DffChunkType>();
     private String code;
 

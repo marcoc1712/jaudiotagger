@@ -19,6 +19,8 @@ import org.jaudiotagger.audio.exceptions.InvalidChunkException;
 
 import org.jaudiotagger.tag.Tag;
 
+//http://www.sonicstudio.com/pdf/dsd/DSDIFF_1.5_Spec.pdf
+
 public class DffFileReader extends AudioFileReader2
 {
     public static Logger logger = Logger.getLogger("org.jaudiotagger.audio.dff");
@@ -31,11 +33,15 @@ public class DffFileReader extends AudioFileReader2
             Frm8Chunk frm8 = Frm8Chunk.readChunk(Utils.readFileDataIntoBufferLE(fc, Frm8Chunk.FRM8_HEADER_LENGTH));
             if (frm8 != null)
             {
-                DsdChunk dsd = DsdChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, DsdChunk.DSD_HEADER_LENGTH));
-
-                if (dsd == null)
+                /*DsdChunk dsd = DsdChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, DsdChunk.DSD_HEADER_LENGTH));
+				if (dsd == null)
                 {
                     throw new CannotReadException(file + " Not a valid dff file. Missing 'DSD '  after 'FRM8' ");
+                }*/
+				FverChunk fver = FverChunk.readChunk(Utils.readFileDataIntoBufferLE(fc, FverChunk.FVER_HEADER_LENGTH));
+                if (fver == null)
+                {
+                    throw new CannotReadException(file + " Not a valid dff file. Missing 'FVER '");
                 }
                 PropChunk prop;
                 for (; ; )
@@ -67,14 +73,13 @@ public class DffFileReader extends AudioFileReader2
                 EndChunk end = null;
                 DstChunk dst = null;
                 FrteChunk frte = null;
-                Id3Chunk id3 = null;
-
+								
                 for (; ; )
                 {
                     try
                     {
                         chunk = BaseChunk.readIdChunk(Utils.readFileDataIntoBufferLE(fc, BaseChunk.ID_LENGHT));
-
+						
                     }
                     catch (InvalidChunkException ex)
                     {
@@ -86,25 +91,25 @@ public class DffFileReader extends AudioFileReader2
                     {
                         fs = (FsChunk) chunk;
                         fs.readDataChunch(fc);
-
+						
                     }
                     else if (chunk instanceof ChnlChunk)
                     {
                         chnl = (ChnlChunk) chunk;
                         chnl.readDataChunch(fc);
-
+						
                     }
                     else if (chunk instanceof CmprChunk)
                     {
                         cmpr = (CmprChunk) chunk;
                         cmpr.readDataChunch(fc);
-
+						
                     }
                     else if (chunk instanceof DitiChunk)
                     {
                         diti = (DitiChunk) chunk;
                         diti.readDataChunch(fc);
-
+						
                     }
                     else if (chunk instanceof EndChunk)
                     {
@@ -118,7 +123,7 @@ public class DffFileReader extends AudioFileReader2
                     {
                         dst = (DstChunk) chunk;
                         dst.readDataChunch(fc);
-
+												
                         try
                         {
 
@@ -138,16 +143,7 @@ public class DffFileReader extends AudioFileReader2
 
                         }
 
-                    }
-                    else if (chunk instanceof Id3Chunk)
-                    {
-                        id3 = (Id3Chunk) chunk;
-                        id3.readDataChunch(fc);
-
-
-                    }
-					else {
-						
+                    }else {	
 						((GenericChunk) chunk).readDataChunch(fc);
 						
 					}

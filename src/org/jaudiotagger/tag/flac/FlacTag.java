@@ -551,7 +551,7 @@ public class FlacTag implements Tag
     {         
         List<Artwork>  artworkList  = new ArrayList<Artwork>(images.size());
 
-        for(MetadataBlockDataPicture coverArt:images)
+        for(MetadataBlockDataPicture coverArt: images)
         {
             Artwork artwork= ArtworkFactory.createArtworkFromMetadataBlockDataPicture(coverArt);
             artworkList.add(artwork);

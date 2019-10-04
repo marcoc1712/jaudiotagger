@@ -26,7 +26,7 @@ public class BaseChunk
     {
 
         String type = Utils.readFourBytesAsChars(dataBuffer);
-		logger.log(Level.FINE, "BaseChunk.type: {0}", type);
+		logger.log(Level.INFO, "BaseChunk.type: {0}", type);
        
         if (DffChunkType.FS.getCode().equals(type))
         {
@@ -62,12 +62,6 @@ public class BaseChunk
         {
 
             return new FrteChunk(dataBuffer);
-
-        }
-        else if (DffChunkType.ID3.getCode().equals(type))
-        {
-
-            return new Id3Chunk(dataBuffer);
 
         }
         else
